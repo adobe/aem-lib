@@ -28,7 +28,7 @@ const banner = `/*
 const bundles = [
   {
     source: 'src/index.js',
-    outputFile: 'dist/aem-lib',
+    outputFile: 'dist/aem',
   },
 ];
 
@@ -46,7 +46,7 @@ export default [...bundles.map(({ outputFile, source }) => ({
   ].filter((m) => m),
   plugins: [
     cleanup({
-      comments: ['eslint', 'jsdoc', /^\//],
+      comments: ['eslint', 'jsdoc', /^\//, /^\*(?!\n \* Copyright)/],
       maxEmptyLines: -1,
     }),
   ],
