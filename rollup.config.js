@@ -27,7 +27,7 @@ const banner = `/*
 
 const bundles = [
   {
-    source: 'src/lib-franklin.js',
+    source: 'src/index.js',
     outputFile: 'dist/aem-lib',
   },
 ];
