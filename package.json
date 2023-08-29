@@ -29,7 +29,6 @@
     "@web/test-runner": "0.15.1",
     "@web/test-runner-commands": "0.6.5",
     "@web/test-runner-mocha": "0.8.1",
-    "@web/test-runner-puppeteer": "0.14.0",
     "chai": "4.3.7",
     "eslint": "8.35.0",
     "eslint-config-airbnb-base": "15.0.0",
