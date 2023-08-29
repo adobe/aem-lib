@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <header></header>
+    
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { loadHeader } from '../src/block-loader.js';
+
+      window.hlx = {};
+
+      runTests(() => {
+        it('loadHeader - block code is available', async () => {
+          window.hlx.codeBasePath = '/test/fixtures';
+          const header = document.querySelector('header');
+          header.innerHTML = '';
+
+          const block = await loadHeader(header);
+
+          expect(header.classList.contains('header-wrapper')).to.be.true;
+
+          expect(block).to.be.instanceOf(HTMLElement);
+          expect(block.classList.contains('header')).to.be.true;
+          expect(block.classList.contains('block')).to.be.true;
+          expect(block.dataset.blockName).to.equal('header');
+          expect(block.innerHTML).to.equal('<p>This is a test header block.</p>');
+
+          const css = document.querySelector('link');
+          expect(css.href).to.contains('/blocks/header/header.css');
+        });
+      });
+    </script>
+  </body>
+</html>

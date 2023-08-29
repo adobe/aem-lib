@@ -79,7 +79,7 @@ export async function loadBlock(block) {
       const decorationComplete = new Promise((resolve) => {
         (async () => {
           try {
-            const mod = await import(`../blocks/${blockName}/${blockName}.js`);
+            const mod = await import(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.js`);
             if (mod.default) {
               await mod.default(block);
             }
@@ -97,6 +97,7 @@ export async function loadBlock(block) {
     }
     block.dataset.blockStatus = 'loaded';
   }
+  return block;
 }
 
 /**
@@ -145,7 +146,7 @@ export function decorateBlocks(main) {
  * @param {Element} header header element
  * @returns {Promise}
  */
-export function loadHeader(header) {
+export async function loadHeader(header) {
   const headerBlock = buildBlock('header', '');
   header.append(headerBlock);
   decorateBlock(headerBlock);
@@ -157,7 +158,7 @@ export function loadHeader(header) {
  * @param footer footer element
  * @returns {Promise}
  */
-export function loadFooter(footer) {
+export async function loadFooter(footer) {
   const footerBlock = buildBlock('footer', '');
   footer.append(footerBlock);
   decorateBlock(footerBlock);
