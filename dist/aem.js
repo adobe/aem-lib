@@ -308,34 +308,6 @@ function createOptimizedPicture(
 }
 
 /**
- * Normalizes all headings within a container element.
- * @param {Element} el The container element
- * @param {string} allowedHeadings The list of allowed headings (h1 ... h6)
- */
-function normalizeHeadings(el, allowedHeadings) {
-  const allowed = allowedHeadings.map((h) => h.toLowerCase());
-  el.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((tag) => {
-    const h = tag.tagName.toLowerCase();
-    if (allowed.indexOf(h) === -1) {
-      // current heading is not in the allowed list -> try first to "promote" the heading
-      let level = parseInt(h.charAt(1), 10) - 1;
-      while (allowed.indexOf(`h${level}`) === -1 && level > 0) {
-        level -= 1;
-      }
-      if (level === 0) {
-        // did not find a match -> try to "downgrade" the heading
-        while (allowed.indexOf(`h${level}`) === -1 && level < 7) {
-          level += 1;
-        }
-      }
-      if (level !== 7) {
-        tag.outerHTML = `<h${level} id="${tag.id}">${tag.textContent}</h${level}>`;
-      }
-    }
-  });
-}
-
-/**
  * Set template (page structure) and theme (page styles).
  */
 function decorateTemplateAndTheme() {
@@ -509,15 +481,14 @@ function decorateSections(main) {
 // eslint-disable-next-line import/prefer-default-export
 async function fetchPlaceholders(prefix = 'default') {
   window.placeholders = window.placeholders || {};
-  const loaded = window.placeholders[`${prefix}-loaded`];
-  if (!loaded) {
-    window.placeholders[`${prefix}-loaded`] = new Promise((resolve, reject) => {
+  if (!window.placeholders[prefix]) {
+    window.placeholders[prefix] = new Promise((resolve) => {
       fetch(`${prefix === 'default' ? '' : prefix}/placeholders.json`)
         .then((resp) => {
           if (resp.ok) {
             return resp.json();
           }
-          throw new Error(`${resp.status}: ${resp.statusText}`);
+          return {};
         })
         .then((json) => {
           const placeholders = {};
@@ -527,17 +498,16 @@ async function fetchPlaceholders(prefix = 'default') {
               placeholders[toCamelCase(placeholder.Key)] = placeholder.Text;
             });
           window.placeholders[prefix] = placeholders;
-          resolve();
+          resolve(window.placeholders[prefix]);
         })
-        .catch((error) => {
+        .catch(() => {
           // error loading placeholders
           window.placeholders[prefix] = {};
-          reject(error);
+          resolve(window.placeholders[prefix]);
         });
     });
   }
-  await window.placeholders[`${prefix}-loaded`];
-  return window.placeholders[prefix];
+  return window.placeholders[`${prefix}`];
 }
 
 /**
@@ -733,7 +703,6 @@ export {
   loadFooter,
   loadHeader,
   loadScript,
-  normalizeHeadings,
   readBlockConfig,
   sampleRUM,
   setup,
