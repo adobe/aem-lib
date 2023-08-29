@@ -20,15 +20,14 @@ import { toCamelCase } from './utils.js';
 // eslint-disable-next-line import/prefer-default-export
 export async function fetchPlaceholders(prefix = 'default') {
   window.placeholders = window.placeholders || {};
-  const loaded = window.placeholders[`${prefix}-loaded`];
-  if (!loaded) {
-    window.placeholders[`${prefix}-loaded`] = new Promise((resolve, reject) => {
+  if (!window.placeholders[prefix]) {
+    window.placeholders[prefix] = new Promise((resolve) => {
       fetch(`${prefix === 'default' ? '' : prefix}/placeholders.json`)
         .then((resp) => {
           if (resp.ok) {
             return resp.json();
           }
-          throw new Error(`${resp.status}: ${resp.statusText}`);
+          return {};
         }).then((json) => {
           const placeholders = {};
           json.data
@@ -37,14 +36,13 @@ export async function fetchPlaceholders(prefix = 'default') {
               placeholders[toCamelCase(placeholder.Key)] = placeholder.Text;
             });
           window.placeholders[prefix] = placeholders;
-          resolve();
-        }).catch((error) => {
+          resolve(window.placeholders[prefix]);
+        }).catch(() => {
           // error loading placeholders
           window.placeholders[prefix] = {};
-          reject(error);
+          resolve(window.placeholders[prefix]);
         });
     });
   }
-  await window.placeholders[`${prefix}-loaded`];
-  return window.placeholders[prefix];
+  return window.placeholders[`${prefix}`];
 }
