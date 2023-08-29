@@ -9,12 +9,13 @@
   </head>
   <body>
     <script type="module">
+      /* eslint-env mocha */
       import { runTests } from '@web/test-runner-mocha';
       import { expect } from '@esm-bundle/chai';
       import { getMetadata } from '../src/dom-utils.js';
 
       runTests(() => {
-        it('get description', ()=> {
+        it('get description', () => {
           expect(getMetadata('description')).to.equal('description metadata');
         });
 
@@ -25,7 +26,7 @@
         it('get unknown meta', () => {
           expect(getMetadata('unknown')).to.equal('');
         });
-        
+
         it('get article:tag', () => {
           expect(getMetadata('article:tag')).to.equal('tag 1, tag 2, tag 3');
         });

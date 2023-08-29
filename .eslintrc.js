@@ -17,5 +17,10 @@ module.exports = {
     'import/extensions': ['error', {
       js: 'always',
     }],
+    'no-unused-expressions': 'off',
   },
+  plugins: [
+    'html',
+  ],
+  ignorePatterns: ['coverage'],
 };

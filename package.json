@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rollup --config --environment NODE_ENV:development && npm run format",
     "format": "prettier-eslint \"dist/*.js\" --write",
-    "lint:js": "eslint .",
+    "lint:js": "eslint --ext js,html .",
     "lint:css": "stylelint blocks/**/*.css styles/*.css",
     "lint": "npm run lint:js && npm run lint:css",
     "test": "web-test-runner \"test/**/*.test.{html,js}\" --node-resolve --coverage",
@@ -32,6 +32,7 @@
     "chai": "4.3.7",
     "eslint": "8.35.0",
     "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-html": "7.1.0",
     "eslint-plugin-import": "2.27.5",
     "prettier-eslint": "15.0.1",
     "prettier-eslint-cli": "7.1.0",
