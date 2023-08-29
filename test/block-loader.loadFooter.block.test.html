@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <footer></footer>
+    
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { loadFooter } from '../src/block-loader.js';
+
+      window.hlx = {};
+
+      runTests(() => {
+        it('loadfooter - block code is available', async () => {
+          window.hlx.codeBasePath = '/test/fixtures';
+          const footer = document.querySelector('footer');
+          footer.innerHTML = '';
+
+          const block = await loadFooter(footer);
+
+          expect(footer.classList.contains('footer-wrapper')).to.be.true;
+
+          expect(block).to.be.instanceOf(HTMLElement);
+          expect(block.classList.contains('footer')).to.be.true;
+          expect(block.classList.contains('block')).to.be.true;
+          expect(block.dataset.blockName).to.equal('footer');
+          expect(block.innerHTML).to.equal('<p>This is a test footer block.</p>');
+
+          const css = document.querySelector('link');
+          expect(css.href).to.contains('/blocks/footer/footer.css');
+        });
+      });
+    </script>
+  </body>
+</html>
