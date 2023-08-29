@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="description" content="description metadata">
+    <meta property="og:title" content="og:title metadata">
+    <meta property="article:tag" content="tag 1">
+    <meta property="article:tag" content="tag 2">
+    <meta property="article:tag" content="tag 3">
+  </head>
+  <body>
+    <script type="module">
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from "@esm-bundle/chai";
+      import { getMetadata } from '../src/dom-utils.js';
+
+      runTests(() => {
+        it('get description', async () => {
+          expect(getMetadata('description')).to.equal('description metadata');
+        });
+
+        it('get og:title', async () => {
+          expect(getMetadata('og:title')).to.equal('og:title metadata');
+        });
+
+        it('get unknown meta', async () => {
+          expect(getMetadata('unknown')).to.equal('');
+        });
+        
+        it('get article:tag', async () => {
+          expect(getMetadata('article:tag')).to.equal('tag 1, tag 2, tag 3');
+        });
+      });
+    </script>
+  </body>
+</html>
