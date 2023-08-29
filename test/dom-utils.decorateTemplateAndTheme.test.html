@@ -11,18 +11,11 @@
     import { decorateTemplateAndTheme } from '../src/dom-utils.js';
 
     runTests(() => {
-      it('decorates template', async () => {
+      it('decorates template and theme', () => {
         decorateTemplateAndTheme();
         const doc = document.body;
-        const classes = [...doc.classList];
-        expect(classes).to.include('foo');
-      });
-
-      it('decorates theme', async () => {
-        decorateTemplateAndTheme();
-        const doc = document.body;
-        const classes = [...doc.classList];
-        expect(classes).to.include('bar-baz');
+        expect(doc.classList.contains('foo')).to.be.true;
+        expect(doc.classList.contains('bar-baz')).to.be.true;
       });
     });
   </script>
