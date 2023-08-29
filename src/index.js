@@ -19,7 +19,6 @@ export {
   loadScript,
   getMetadata,
   createOptimizedPicture,
-  normalizeHeadings,
   decorateTemplateAndTheme,
 } from './dom-utils.js';
 export { decorateButtons, decorateIcons, decorateSections } from './decorate.js';
