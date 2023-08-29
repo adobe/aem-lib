@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "description": "AEM Library",
   "scripts": {
-    "build": "rollup --config --environment NODE_ENV:development",
+    "build": "rollup --config --environment NODE_ENV:development && npm run format",
+    "format": "prettier-eslint \"dist/*.js\" --write",
     "lint:js": "eslint .",
     "lint:css": "stylelint blocks/**/*.css styles/*.css",
     "lint": "npm run lint:js && npm run lint:css",
@@ -30,6 +31,8 @@
     "eslint": "8.35.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.27.5",
+    "prettier-eslint": "15.0.1",
+    "prettier-eslint-cli": "7.1.0",
     "rollup": "^2.79.1",
     "rollup-plugin-cleanup": "^3.2.1",
     "sinon": "15.0.1",

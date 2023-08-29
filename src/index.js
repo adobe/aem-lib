@@ -10,9 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import { toCamelCase, toClassName } from './utils.js';
-import { readBlockConfig } from './block-utils.js';
-import {
+import { init } from './setup.js';
+
+export { toCamelCase, toClassName } from './utils.js';
+export { readBlockConfig } from './block-utils.js';
+export {
   loadCSS,
   loadScript,
   getMetadata,
@@ -20,10 +22,10 @@ import {
   normalizeHeadings,
   decorateTemplateAndTheme,
 } from './dom-utils.js';
-import { decorateButtons, decorateIcons, decorateSections } from './decorate.js';
-import { sampleRUM } from './rum.js';
-import { fetchPlaceholders } from './placeholders.js';
-import {
+export { decorateButtons, decorateIcons, decorateSections } from './decorate.js';
+export { sampleRUM } from './rum.js';
+export { fetchPlaceholders } from './placeholders.js';
+export {
   updateSectionsStatus,
   buildBlock,
   loadBlock,
@@ -34,34 +36,7 @@ import {
   loadFooter,
   waitForLCP,
 } from './block-loader.js';
-import { init, setup } from './setup.js';
+
+export { setup } from './setup.js';
 
 init();
-
-// eslint-disable-next-line max-len
-export {
-  toCamelCase,
-  toClassName,
-  readBlockConfig,
-  loadCSS,
-  loadScript,
-  getMetadata,
-  createOptimizedPicture,
-  normalizeHeadings,
-  decorateTemplateAndTheme,
-  decorateButtons,
-  decorateIcons,
-  decorateSections,
-  sampleRUM,
-  fetchPlaceholders,
-  updateSectionsStatus,
-  buildBlock,
-  loadBlock,
-  loadBlocks,
-  decorateBlock,
-  decorateBlocks,
-  loadHeader,
-  loadFooter,
-  waitForLCP,
-  setup,
-};
