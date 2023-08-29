@@ -1,0 +1,14 @@
+{
+  "total": 2,
+  "offset": 0,
+  "limit": 2,
+  "data": [
+    {
+      "Key": "Key1",
+      "Text": "Value1"
+    }, {
+      "Key": "Key With Space",
+      "Text": "Key With Space Value"
+    }
+  ]
+}

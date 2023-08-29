@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="description" content="description metadata">
+    <meta property="og:title" content="og:title metadata">
+    <meta property="article:tag" content="tag 1">
+    <meta property="article:tag" content="tag 2">
+    <meta property="article:tag" content="tag 3">
+  </head>
+  <body>
+    <script type="module">
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { fetchPlaceholders } from '../src/placeholders.js';
+
+      runTests(() => {
+        it('fetchPlaceholders - no placeholder file at root', async () => {
+          try {
+            const placeholders = await fetchPlaceholders();
+            expect(placeholders).to.deep.equal({});
+          } catch (error) {
+            expect(error).to.be.null;
+          }
+        });
+
+        it('fetchPlaceholders - placeholder file in fixtures folder', async () => {
+          const placeholders = await fetchPlaceholders('fixtures');
+          expect(placeholders.key1).to.equal('Value1');
+          expect(placeholders.keyWithSpace).to.equal('Key With Space Value');
+          expect(placeholders.unknown).to.be.undefined;
+        });
+      });
+    </script>
+  </body>
+</html>
