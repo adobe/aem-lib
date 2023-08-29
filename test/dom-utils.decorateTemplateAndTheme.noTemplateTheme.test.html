@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <script type="module">
+    import { runTests } from '@web/test-runner-mocha';
+    import { expect } from '@esm-bundle/chai';
+    import { decorateTemplateAndTheme } from '../src/dom-utils.js';
+
+    runTests(() => {
+      it('applies no template or theme if not present in metadata', async () => {
+        decorateTemplateAndTheme();
+        const doc = document.body;
+        const classes = [...doc.classList];
+        expect(classes.length).to.equal(0);
+      });
+    });
+  </script>
+</body>
+</html>

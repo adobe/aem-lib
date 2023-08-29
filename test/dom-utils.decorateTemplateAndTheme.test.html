@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="template" content="foo">
+  <meta name="theme" content="bar baz">
+</head>
+<body>
+  <script type="module">
+    import { runTests } from '@web/test-runner-mocha';
+    import { expect } from '@esm-bundle/chai';
+    import { decorateTemplateAndTheme } from '../src/dom-utils.js';
+
+    runTests(() => {
+      it('decorates template', async () => {
+        decorateTemplateAndTheme();
+        const doc = document.body;
+        const classes = [...doc.classList];
+        expect(classes).to.include('foo');
+      });
+
+      it('decorates theme', async () => {
+        decorateTemplateAndTheme();
+        const doc = document.body;
+        const classes = [...doc.classList];
+        expect(classes).to.include('bar-baz');
+      });
+    });
+  </script>
+</body>
+</html>
