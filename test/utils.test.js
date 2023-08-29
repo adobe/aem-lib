@@ -30,6 +30,11 @@ describe('toClassName', () => {
   it('converts string to class name', () => {
     expect(toClassName('føo bår')).to.equal('f-o-b-r');
   });
+
+  it('supports only strings', () => {
+    expect(toClassName(1)).to.equal('');
+    expect(toClassName({})).to.equal('');
+  });
 });
 
 describe('toCamelCase', () => {
