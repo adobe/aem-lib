@@ -7,7 +7,7 @@
     "build": "rollup --config --environment NODE_ENV:development && npm run format",
     "format": "prettier-eslint \"dist/*.js\" --write",
     "lint:js": "eslint --ext js,html .",
-    "lint:css": "stylelint blocks/**/*.css styles/*.css",
+    "lint:css": "stylelint test/fixtures/blocks/**/*.css test/fixtures/*.css",
     "lint": "npm run lint:js && npm run lint:css",
     "test": "web-test-runner \"test/**/*.test.{html,js}\" --node-resolve --coverage",
     "test:watch": "web-test-runner \"test/**/*.test.{html,js}\" --node-resolve --watch --coverage"
