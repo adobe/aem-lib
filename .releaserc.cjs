@@ -12,7 +12,7 @@ module.exports = {
     }],
     ["@semantic-release/github", {}],
     ["@semantic-release/exec", {
-      "publishCmd": "./publish.sh ${nextRelease.version}"
+      "publishCmd": "./publish.sh ${nextRelease.version} ${nextRelease.type}"
     }],
   ],
   branches: ['main'],
