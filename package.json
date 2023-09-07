@@ -5,6 +5,7 @@
   "description": "AEM Library",
   "scripts": {
     "build": "rollup --config --environment NODE_ENV:development && npm run format",
+    "prepack": "npm run build",
     "format": "prettier-eslint \"dist/*.js\" --write",
     "lint:js": "eslint --ext js,html .",
     "lint:css": "stylelint test/fixtures/blocks/**/*.css test/fixtures/*.css",
@@ -28,6 +29,7 @@
     "@babel/eslint-parser": "7.19.1",
     "@esm-bundle/chai": "4.3.4-fix.0",
     "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/exec": "6.0.3",
     "@semantic-release/git": "10.0.1",
     "@web/test-runner": "0.15.1",
     "@web/test-runner-commands": "0.6.5",
