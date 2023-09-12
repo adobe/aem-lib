@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "description": "AEM Library",
+  "type": "module",
   "scripts": {
     "build": "rollup --config --environment NODE_ENV:development && npm run format",
     "format": "prettier-eslint \"dist/*.js\" --write",
