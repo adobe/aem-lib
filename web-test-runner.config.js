@@ -8,5 +8,12 @@ export default {
       functions: 100,
       lines: 100,
     },
+    exclude: [
+      'test/fixtures/**',
+      'node_modules/**',
+    ],
   },
+  files: [
+    'test/**/*.test.{html,js}',
+  ],
 };
