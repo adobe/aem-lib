@@ -25,7 +25,7 @@
         });
 
         it('fetchPlaceholders - placeholder file in fixtures folder', async () => {
-          const placeholders = await fetchPlaceholders('fixtures');
+          const placeholders = await fetchPlaceholders('../fixtures');
           expect(placeholders.key1).to.equal('Value1');
           expect(placeholders.keyWithSpace).to.equal('Key With Space Value');
           expect(placeholders.unknown).to.be.undefined;
