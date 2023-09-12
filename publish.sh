@@ -1,5 +1,5 @@
 #!/bin/bash
-ORG=elc9aya2ls612j
+ORG=adobe
 REPO=helix-project-boilerplate
 FILENAME=scripts/aem.js
 VERSION=$1
