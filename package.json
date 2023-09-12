@@ -11,7 +11,7 @@
     "lint:css": "stylelint test/fixtures/blocks/**/*.css test/fixtures/*.css",
     "lint": "npm run lint:js && npm run lint:css",
     "test": "web-test-runner --node-resolve --coverage",
-    "test:watch": "web-test-runner \"test/**/*.test.{html,js}\" --node-resolve --watch --coverage"
+    "test:watch": "web-test-runner --node-resolve --watch --coverage"
   },
   "repository": {
     "type": "git",
