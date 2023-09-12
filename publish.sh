@@ -1,7 +1,7 @@
 #!/bin/bash
 ORG=elc9aya2ls612j
 REPO=helix-project-boilerplate
-FILENAME=scripts/lib-franklin.js
+FILENAME=scripts/aem.js
 VERSION=$1
 TYPE=$2 # can be major, minor, patch
 # VERSION with all dots replaced by dashes
