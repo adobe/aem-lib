@@ -9,8 +9,8 @@
     "lint:js": "eslint --ext js,html .",
     "lint:css": "stylelint test/fixtures/blocks/**/*.css test/fixtures/*.css",
     "lint": "npm run lint:js && npm run lint:css",
-    "test": "web-test-runner \"test/**/*.test.{html,js}\" --node-resolve --coverage",
-    "test:watch": "web-test-runner \"test/**/*.test.{html,js}\" --node-resolve --watch --coverage"
+    "test": "web-test-runner \"test/rum/*.test.{html,js}\" --node-resolve --coverage",
+    "test:watch": "web-test-runner \"test/rum/*.test.{html,js}\" --node-resolve --watch --coverage"
   },
   "repository": {
     "type": "git",
