@@ -15,6 +15,6 @@ export default {
     ],
   },
   files: [
-    'test/decorate/*.test.{html,js}',
+    'test/**/*.test.{html,js}',
   ],
 };
