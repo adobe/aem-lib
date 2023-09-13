@@ -182,6 +182,8 @@ export async function waitForLCP(lcpBlocks) {
       lcpCandidate.addEventListener('load', resolve);
       lcpCandidate.addEventListener('error', resolve);
     } else {
+      /* c8 ignore next 3 */
+      // need to be ignore because it is not reliably testable, depends on image loading time.
       resolve();
     }
   });
