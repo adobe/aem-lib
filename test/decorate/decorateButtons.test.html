@@ -85,7 +85,7 @@
     /* eslint-env mocha */
     import { runTests } from '@web/test-runner-mocha';
     import { expect } from '@esm-bundle/chai';
-    import { decorateButtons, decorateSections } from '../src/decorate.js';
+    import { decorateButtons } from '../../src/decorate.js';
 
     runTests(() => {
       it('decorates buttons', () => {
@@ -110,30 +110,6 @@
             expect(a.classList.contains('button')).to.be.false;
           }
         });
-      });
-
-      it('decorates sections', () => {
-        const { body } = document;
-        const meta = body.querySelector('.section-metadata').parentElement;
-        decorateSections(body);
-        const sections = body.querySelectorAll(':scope > div');
-        sections.forEach((section) => {
-          expect(section.classList.contains('section')).to.be.true;
-          expect(section.dataset.sectionStatus).to.equal('initialized');
-          expect(section.style.display).to.equal('none');
-          [...section.children].forEach((child) => {
-            const block = child.querySelector('[class]');
-            if (!block) {
-              expect(child.className).to.equal('default-content-wrapper');
-            } else {
-              // section children containing blocks are not default content
-              expect(child.className).to.equal('');
-            }
-          });
-        });
-        // section metadata is applied
-        expect(meta.classList.contains('highlight')).to.be.true;
-        expect(meta.dataset.anchor).to.equal('highlights');
       });
     });
   </script>

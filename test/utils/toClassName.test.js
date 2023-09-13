@@ -12,7 +12,7 @@
 
 /* eslint-env mocha */
 import { expect } from '@esm-bundle/chai';
-import { toClassName, toCamelCase } from '../src/utils.js';
+import { toClassName } from '../../src/utils.js';
 
 describe('toClassName', () => {
   it('converts string to class name', () => {
@@ -34,19 +34,5 @@ describe('toClassName', () => {
   it('supports only strings', () => {
     expect(toClassName(1)).to.equal('');
     expect(toClassName({})).to.equal('');
-  });
-});
-
-describe('toCamelCase', () => {
-  it('converts string to camel-cased JS property name', () => {
-    expect(toCamelCase('foo bar')).to.equal('fooBar');
-  });
-
-  it('converts string to camel-cased JS property name', () => {
-    expect(toCamelCase('foo-bar')).to.equal('fooBar');
-  });
-
-  it('converts string to camel-cased JS property name', () => {
-    expect(toCamelCase('FOO BAR')).to.equal('fooBar');
   });
 });

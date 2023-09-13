@@ -5,7 +5,7 @@
     /* eslint-env mocha */
     import { runTests } from '@web/test-runner-mocha';
     import { expect } from '@esm-bundle/chai';
-    import { decorateTemplateAndTheme } from '../src/dom-utils.js';
+    import { decorateTemplateAndTheme } from '../../src/dom-utils.js';
 
     runTests(() => {
       it('applies no template or theme if not present in metadata', async () => {

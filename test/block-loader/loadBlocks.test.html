@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <main>
+      <div class="section">
+        <div class="wrapper">
+          <div class="block block1" data-block-name="simpleblock"><p>This is the first block</p></div>
+        </div>
+        <div class="wrapper">
+          <div class="block block2" data-block-name="asyncblock"><p>This is the second block</p></div>
+        </div>
+      </div>
+    </main>
+    
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { loadBlocks } from '../../src/block-loader.js';
+
+      window.hlx = {};
+
+      runTests(() => {
+        it('loadBlocks - loads all blocks', async () => {
+          window.hlx.codeBasePath = '/test/fixtures';
+
+          await loadBlocks(document.querySelector('main'));
+
+          const block1 = document.querySelector('.block1');
+          expect(block1.classList.contains('block1')).to.be.true;
+          expect(block1.dataset.blockName).to.equal('simpleblock');
+          expect(block1.dataset.blockStatus).to.equal('loaded');
+          expect(block1.innerHTML).to.equal('<p>This is a simple block.</p>');
+
+          const block2 = document.querySelector('.block2');
+          expect(block2.classList.contains('block2')).to.be.true;
+          expect(block2.dataset.blockName).to.equal('asyncblock');
+          expect(block2.dataset.blockStatus).to.equal('loaded');
+          expect(block2.innerHTML).to.equal('<p>This is an async loaded block.</p>');
+
+          expect(document.querySelector('link[href="/test/fixtures/blocks/simpleblock/simpleblock.css"]')).to.not.be.null;
+          expect(document.querySelector('link[href="/test/fixtures/blocks/simpleblock/simpleblock.css"]')).to.not.be.null;
+        });
+      });
+    </script>
+  </body>
+</html>

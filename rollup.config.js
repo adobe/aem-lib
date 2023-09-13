@@ -46,7 +46,7 @@ export default [...bundles.map(({ outputFile, source }) => ({
   ].filter((m) => m),
   plugins: [
     cleanup({
-      comments: ['eslint', 'jsdoc', /^\//, /^\*(?!\n \* Copyright)/],
+      comments: ['eslint', 'jsdoc', /^\//, /^\*(?!\sc8\s)(?!\n \* Copyright)/],
       maxEmptyLines: -1,
     }),
   ],

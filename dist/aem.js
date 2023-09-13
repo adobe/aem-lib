@@ -334,7 +334,7 @@ function decorateButtons(element) {
       const twoup = a.parentElement.parentElement;
       if (!a.querySelector('img')) {
         if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
-          a.className = 'button primary'; // default
+          a.className = 'button'; // default
           up.classList.add('button-container');
         }
         if (
@@ -579,7 +579,9 @@ async function loadBlock(block) {
       const decorationComplete = new Promise((resolve) => {
         (async () => {
           try {
-            const mod = await import(`../blocks/${blockName}/${blockName}.js`);
+            const mod = await import(
+              `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.js`
+            );
             if (mod.default) {
               await mod.default(block);
             }
@@ -597,6 +599,7 @@ async function loadBlock(block) {
     }
     block.dataset.blockStatus = 'loaded';
   }
+  return block;
 }
 
 /**
@@ -643,7 +646,7 @@ function decorateBlocks(main) {
  * @param {Element} header header element
  * @returns {Promise}
  */
-function loadHeader(header) {
+async function loadHeader(header) {
   const headerBlock = buildBlock('header', '');
   header.append(headerBlock);
   decorateBlock(headerBlock);
@@ -655,7 +658,7 @@ function loadHeader(header) {
  * @param footer footer element
  * @returns {Promise}
  */
-function loadFooter(footer) {
+async function loadFooter(footer) {
   const footerBlock = buildBlock('footer', '');
   footer.append(footerBlock);
   decorateBlock(footerBlock);

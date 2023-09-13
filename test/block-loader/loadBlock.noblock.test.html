@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <main>
+      <div class="section">
+        <div class="wrapper">
+          <div class="ablock" data-block-name="doesnotexistblock"><p>This is a test block</p></div>
+        </div>
+      </div>
+    </main>
+    
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { loadBlock } from '../../src/block-loader.js';
+
+      window.hlx = {};
+
+      runTests(() => {
+        it('loadBlock - no block code available', async () => {
+          window.hlx.codeBasePath = '/test/fixtures';
+
+          const block = document.querySelector('.ablock');
+
+          await loadBlock(block);
+
+          expect(block.classList.contains('ablock')).to.be.true;
+          expect(block.dataset.blockName).to.equal('doesnotexistblock');
+          expect(block.dataset.blockStatus).to.equal('loaded');
+          expect(block.innerHTML).to.equal('<p>This is a test block</p>');
+        });
+      });
+    </script>
+  </body>
+</html>

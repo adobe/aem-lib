@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <div>
+    <span class="icon icon-styled"></span>
+  </div>
+  <script type="module">
+    /* eslint-env mocha */
+    import { runTests } from '@web/test-runner-mocha';
+    import { expect } from '@esm-bundle/chai';
+    import { decorateIcons } from '../../src/decorate.js';
+
+    window.hlx = {};
+
+    runTests(() => {
+      it('decorates styled icons', async () => {
+        window.hlx.codeBasePath = '/test/fixtures';
+
+        await decorateIcons(document.body);
+
+        const icons = document.querySelectorAll('.icon');
+        expect(icons.length).to.equal(1);
+        const icon = icons[0];
+        expect(icon.childElementCount).to.be.equal(1);
+        expect(icon.firstElementChild.tagName).to.be.equal('svg');
+        expect(icon.querySelector('.someclass')).to.not.be.null;
+
+        // sprite should be empty
+        const sprite = document.getElementById('franklin-svg-sprite');
+        expect(sprite).to.not.be.null;
+        expect(sprite.tagName).to.be.equal('svg');
+        expect(sprite.childElementCount).to.be.equal(0);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/some/path/scripts/scripts.js"></script>
+  </head>
+  <body>
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { setup } from '../../src/setup.js';
+
+      runTests(() => {
+        it('setup - defines window.hlx', () => {
+          setup();
+
+          expect(window.hlx).to.not.be.null;
+        });
+
+        it('setup - does not override existing variables', () => {
+          window.hlx = {
+            custom: 'keep it',
+          };
+
+          setup();
+          expect(window.hlx).to.not.be.null;
+          expect(window.hlx.custom).to.be.equal('keep it');
+        });
+
+        it('setup - sets some globals', () => {
+          setup();
+          expect(window.hlx).to.not.be.null;
+          expect(window.hlx.codeBasePath).to.be.equal('/some/path');
+          expect(window.hlx.lighthouse).to.be.false;
+        });
+      });
+    </script>
+  </body>
+</html>
