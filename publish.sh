@@ -1,6 +1,6 @@
 #!/bin/bash
 ORG=adobe
-REPO=helix-project-boilerplate
+REPO=aem-boilerplate
 FILENAME=scripts/aem.js
 VERSION=$1
 TYPE=$2 # can be major, minor, patch
