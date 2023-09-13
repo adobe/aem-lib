@@ -11,6 +11,7 @@ export default {
     exclude: [
       'test/fixtures/**',
       'node_modules/**',
+      'src/rum.js', // no need to test rum.js, coming as external dependency from https://github.com/adobe/helix-rum-js
     ],
   },
   files: [
