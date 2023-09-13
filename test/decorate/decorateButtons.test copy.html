@@ -85,31 +85,31 @@
     /* eslint-env mocha */
     import { runTests } from '@web/test-runner-mocha';
     import { expect } from '@esm-bundle/chai';
-    import { decorateSections } from '../../src/decorate.js';
+    import { decorateButtons } from '../../src/decorate.js';
 
     runTests(() => {
-      it('decorates sections', () => {
+      it('decorates buttons', () => {
         const { body } = document;
-        const meta = body.querySelector('.section-metadata').parentElement;
-        decorateSections(body);
-        const sections = body.querySelectorAll(':scope > div');
-        sections.forEach((section) => {
-          expect(section.classList.contains('section')).to.be.true;
-          expect(section.dataset.sectionStatus).to.equal('initialized');
-          expect(section.style.display).to.equal('none');
-          [...section.children].forEach((child) => {
-            const block = child.querySelector('[class]');
-            if (!block) {
-              expect(child.className).to.equal('default-content-wrapper');
-            } else {
-              // section children containing blocks are not default content
-              expect(child.className).to.equal('');
+        decorateButtons(body);
+        body.querySelectorAll('a').forEach((a) => {
+          const p = a.closest('p');
+          const parent = a.parentElement;
+          if (p.textContent === a.textContent) {
+            expect(a.classList.contains('button')).to.be.true;
+            if (parent.nodeName === 'STRONG') {
+              // buttons wrapped in strong tag become primary buttons
+              expect(a.classList.contains('primary')).to.be.true;
+              expect(a.classList.contains('secondary')).to.be.false;
+            } else if (parent.nodeName === 'EM') {
+              // buttons wrapped in em tag become secondary buttons
+              expect(a.classList.contains('primary')).to.be.false;
+              expect(a.classList.contains('secondary')).to.be.true;
             }
-          });
+          } else {
+            // inline as are not decorated as buttons
+            expect(a.classList.contains('button')).to.be.false;
+          }
         });
-        // section metadata is applied
-        expect(meta.classList.contains('highlight')).to.be.true;
-        expect(meta.dataset.anchor).to.equal('highlights');
       });
     });
   </script>
