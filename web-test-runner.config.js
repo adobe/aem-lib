@@ -15,6 +15,7 @@ export default {
     ],
   },
   files: [
-    'test/**/*.test.{html,js}',
+    'test/block-utils/*.test.{html,js}',
+    'test/utils/*.test.{html,js}',
   ],
 };

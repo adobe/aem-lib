@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+      <div class="basic-wrapper">
+        <div class="basic block" data-block-name="basic">
+          <div>
+            <div>prop1</div>
+            <div>value1</div>
+          </div>
+          <div>
+            <div>prop2</div>
+            <div><a href="/path/">a link</a></div>
+          </div>
+          <div>
+            <div>prop3</div>
+            <div>
+              <a href="/path1/">a first link</a>
+              <a href="/path2/">a second link</a>
+            </div>
+          </div>
+          <div>
+            <div>prop4</div>
+            <div><img src="/img.png"></div>
+          </div>
+          <div>
+            <div>prop5</div>
+            <div>
+              <img src="/img1.png">
+              <img src="/img2.png">
+            </div>
+          </div>
+          <div>
+            <div>prop 6</div>
+            <div><p>paragraph propery with space in name</p></div>
+          </div>
+          <div>
+            <div>prop 7 and more ?</div>
+            <div>
+              <p>paragraph 1</p>
+              <p>paragraph 2<br> with a line break</p>
+            </div>
+          </div>
+          <div>
+            <p>This is a basic block.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { readBlockConfig } from '../../src/block-utils.js';
+
+      runTests(() => {
+        it('readBlockConfig ', async () => {
+          const config = readBlockConfig(document.querySelector('.basic'));
+          expect(config.prop1).to.be.equal('value1');
+          expect(config.prop2).to.be.equal('http://localhost:8000/path/');
+          expect(config.prop3).to.be.deep.equal(['http://localhost:8000/path1/', 'http://localhost:8000/path2/']);
+          expect(config.prop4).to.be.equal('http://localhost:8000/img.png');
+          expect(config.prop5).to.be.deep.equal(['http://localhost:8000/img1.png', 'http://localhost:8000/img2.png']);
+          expect(config['prop-6']).to.be.equal('paragraph propery with space in name');
+          expect(config['prop-7-and-more']).to.be.deep.equal(['paragraph 1', 'paragraph 2 with a line break']);
+        });
+      });
+    </script>
+  </body>
+</html>
