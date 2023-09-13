@@ -30,9 +30,6 @@
     "@babel/eslint-parser": "7.22.15",
     "@esm-bundle/chai": "4.3.4-fix.0",
     "@rollup/plugin-node-resolve": "15.2.1",
-    "@semantic-release/changelog": "6.0.3",
-    "@semantic-release/exec": "6.0.3",
-    "@semantic-release/git": "10.0.1",
     "@web/test-runner": "0.15.1",
     "@web/test-runner-commands": "0.6.5",
     "@web/test-runner-mocha": "0.8.1",
@@ -51,6 +48,6 @@
     "stylelint-config-standard": "30.0.1"
   },
   "dependencies": {
-    "@adobe/helix-rum-js": "^1.4.0"
+    "@adobe/helix-rum-js": "1.4.0"
   }
 }
