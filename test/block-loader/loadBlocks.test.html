@@ -24,7 +24,7 @@
         it('loadBlocks - loads all blocks', async () => {
           window.hlx.codeBasePath = '/test/fixtures';
 
-          await loadBlocks(document.body);
+          await loadBlocks(document.querySelector('main'));
 
           const block1 = document.querySelector('.block1');
           expect(block1.classList.contains('block1')).to.be.true;
