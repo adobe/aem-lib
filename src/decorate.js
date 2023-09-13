@@ -84,6 +84,7 @@ export async function decorateIcons(element) {
           };
         }
       } catch (error) {
+        /* c8 ignore next 4 */
         ICONS_CACHE[iconName] = false;
         // eslint-disable-next-line no-console
         console.error(error);
