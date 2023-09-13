@@ -11,6 +11,7 @@
  */
 
 import cleanup from 'rollup-plugin-cleanup';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 const banner = `/*
  * Copyright ${new Date().getFullYear()} Adobe. All rights reserved.
@@ -49,5 +50,6 @@ export default [...bundles.map(({ outputFile, source }) => ({
       comments: ['eslint', 'jsdoc', /^\//, /^\*(?!\sc8\s)(?!\n \* Copyright)/],
       maxEmptyLines: -1,
     }),
+    nodeResolve({ resolveOnly: ['@adobe/helix-rum-js'] }),
   ],
 }))];

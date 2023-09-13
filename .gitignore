@@ -4,4 +4,8 @@ logs/*
 node_modules/*
 
 .DS_Store
+<<<<<<< HEAD
 upstream
+=======
+.npmrc
+>>>>>>> a7f1bbb (feat(rum): import sampleRUM from helix-rum-js package)
