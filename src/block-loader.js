@@ -176,14 +176,14 @@ export async function waitForLCP(lcpBlocks) {
 
   document.body.style.display = null;
   const lcpCandidate = document.querySelector('main img');
+  /* c8 ignore next 10 */
+  /* c8 - need to be ignored because it is not reliably testable, depends on image loading time. */
   await new Promise((resolve) => {
     if (lcpCandidate && !lcpCandidate.complete) {
       lcpCandidate.setAttribute('loading', 'eager');
       lcpCandidate.addEventListener('load', resolve);
       lcpCandidate.addEventListener('error', resolve);
     } else {
-      /* c8 ignore next 3 */
-      // need to be ignore because it is not reliably testable, depends on image loading time.
       resolve();
     }
   });
