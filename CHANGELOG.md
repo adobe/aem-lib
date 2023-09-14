@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/adobe/aem-lib/compare/v1.0.1...v1.0.2) (2023-09-14)
+
+
+### Bug Fixes
+
+* empty commit ([0b71dc7](https://github.com/adobe/aem-lib/commit/0b71dc73e5217f050f02b7bc1ae8cef17ef7d70b))
+
 ## [1.0.1](https://github.com/adobe/aem-lib/compare/v1.0.0...v1.0.1) (2023-09-14)
 
 
