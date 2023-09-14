@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/adobe/aem-lib/compare/v1.0.3...v1.0.4) (2023-09-14)
+
+
+### Bug Fixes
+
+* do not use a subdirectory for aem-boilerplate ([c3f10bc](https://github.com/adobe/aem-lib/commit/c3f10bc48cef07be0f53176fea478e2c839afeb7))
+
 ## [1.0.3](https://github.com/adobe/aem-lib/compare/v1.0.2...v1.0.3) (2023-09-14)
 
 
