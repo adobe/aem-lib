@@ -13,6 +13,11 @@ gh repo clone $ORG/$REPO upstream
 cp dist/aem.js upstream/$FILENAME
 
 cd upstream
+
+git remote remove origin
+git remote add origin https://${GITHUB_TOKEN}@github.com/$ORG/$REPO
+git push
+
 git checkout -b $BRANCH
 git add $FILENAME
 
