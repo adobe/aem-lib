@@ -10,7 +10,6 @@ BRANCH=update-lib-aem-$TYPE-$VERSION_DASH
 
 cd ..
 echo "Using gh version: $(gh --version)"
-echo gh repo clone $ORG/$REPO upstream
 gh repo clone $ORG/$REPO
 cp aem-lib/dist/aem.js $REPO/$FILENAME
 
@@ -20,9 +19,12 @@ cd $REPO
 # git remote add origin https://${GITHUB_TOKEN}@github.com/$ORG/$REPO
 # git push
 
+echo "Creating branch $BRANCH"
 git checkout -b $BRANCH
 git add $FILENAME
 
+
+echo "Committing changes"
 # case $TYPE in major, minor, patch
 case $TYPE in
   major)
