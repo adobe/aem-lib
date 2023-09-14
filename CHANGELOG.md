@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/adobe/aem-lib/compare/v1.0.10...v1.1.0) (2023-09-14)
+
+
+### Features
+
+* release needs to contain latest aem.js ([e70c8a8](https://github.com/adobe/aem-lib/commit/e70c8a8b3b32ad606565464afce000b00f7d0d66))
+
 ## [1.0.10](https://github.com/adobe/aem-lib/compare/v1.0.9...v1.0.10) (2023-09-14)
 
 

@@ -120,6 +120,7 @@ function setup() {
 /**
  * Auto initializiation.
  */
+
 function init() {
   setup();
   sampleRUM('top');
@@ -676,6 +677,7 @@ async function waitForLCP(lcpBlocks) {
 
   document.body.style.display = null;
   const lcpCandidate = document.querySelector('main img');
+
   await new Promise((resolve) => {
     if (lcpCandidate && !lcpCandidate.complete) {
       lcpCandidate.setAttribute('loading', 'eager');
