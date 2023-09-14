@@ -53,6 +53,7 @@ Release Notes: https://github.com/adobe/aem-lib/releases/tag/v$VERSION
 esac
 
 
+echo "Ready to create PR"
 gh repo set-default $ORG/$REPO
-git push --set-upstream origin $BRANCH
+# git push --set-upstream origin $BRANCH
 gh pr create -f
