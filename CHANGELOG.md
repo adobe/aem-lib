@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/adobe/aem-lib/compare/v1.0.4...v1.0.5) (2023-09-14)
+
+
+### Bug Fixes
+
+* do push from git cli, use gh instead ([8603746](https://github.com/adobe/aem-lib/commit/8603746df46c92743e1e3450ecc8b8dc7b4a4063))
+
 ## [1.0.4](https://github.com/adobe/aem-lib/compare/v1.0.3...v1.0.4) (2023-09-14)
 
 
