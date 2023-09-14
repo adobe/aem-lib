@@ -8,7 +8,7 @@ TYPE=$2 # can be major, minor, patch
 VERSION_DASH=${VERSION//./-}
 BRANCH=update-lib-aem-$TYPE-$VERSION_DASH
 
-
+echo "Using GH Token: $GITHUB_TOKEN"
 gh repo clone $ORG/$REPO upstream
 cp dist/aem.js upstream/$FILENAME
 
