@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/adobe/aem-lib/compare/v1.0.7...v1.0.8) (2023-09-14)
+
+
+### Bug Fixes
+
+* push branch manually ([dc7b509](https://github.com/adobe/aem-lib/commit/dc7b509479836057539a13663557862fe123ae80))
+
 ## [1.0.7](https://github.com/adobe/aem-lib/compare/v1.0.6...v1.0.7) (2023-09-14)
 
 
