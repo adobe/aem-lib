@@ -58,4 +58,5 @@ esac
 echo "Ready to create PR"
 gh repo set-default $ORG/$REPO
 # git push --set-upstream origin $BRANCH
-gh pr create -f
+echo gh pr create -f --head $BRANCH
+gh pr create -f --head $BRANCH
