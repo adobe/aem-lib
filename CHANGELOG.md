@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/adobe/aem-lib/compare/v1.0.6...v1.0.7) (2023-09-14)
+
+
+### Bug Fixes
+
+* specify head branch ([d6b691b](https://github.com/adobe/aem-lib/commit/d6b691be984220ec17f6becf3fecdc212975fd87))
+
 ## [1.0.6](https://github.com/adobe/aem-lib/compare/v1.0.5...v1.0.6) (2023-09-14)
 
 
