@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/adobe/aem-lib/compare/v1.0.8...v1.0.9) (2023-09-14)
+
+
+### Bug Fixes
+
+* set authed remote ([3c1d281](https://github.com/adobe/aem-lib/commit/3c1d28108a9e3e0b80c0fc1ae572848e26241ebb))
+
 ## [1.0.8](https://github.com/adobe/aem-lib/compare/v1.0.7...v1.0.8) (2023-09-14)
 
 
