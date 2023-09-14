@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/adobe/aem-lib/compare/v1.0.5...v1.0.6) (2023-09-14)
+
+
+### Bug Fixes
+
+* use different tokens ([047f229](https://github.com/adobe/aem-lib/commit/047f229afd48eb82b8105dda9d3d58490b2209d5))
+
 ## [1.0.5](https://github.com/adobe/aem-lib/compare/v1.0.4...v1.0.5) (2023-09-14)
 
 
