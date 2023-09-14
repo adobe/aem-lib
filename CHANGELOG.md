@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/adobe/aem-lib/compare/v1.0.0...v1.0.1) (2023-09-14)
+
+
+### Bug Fixes
+
+* use gh token ([9255f88](https://github.com/adobe/aem-lib/commit/9255f88c733bc648fb79d9a2d7bce685819d314f))
+
 # 1.0.0 (2023-09-14)
 
 
