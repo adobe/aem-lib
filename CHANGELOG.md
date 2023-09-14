@@ -1,3 +1,10 @@
+## [1.0.10](https://github.com/adobe/aem-lib/compare/v1.0.9...v1.0.10) (2023-09-14)
+
+
+### Bug Fixes
+
+* use bot token to release ([e921d7b](https://github.com/adobe/aem-lib/commit/e921d7b1905ae0983f539f4c324bd45db9d33787))
+
 ## [1.0.9](https://github.com/adobe/aem-lib/compare/v1.0.8...v1.0.9) (2023-09-14)
 
 
