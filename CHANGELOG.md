@@ -1,3 +1,11 @@
+## [1.0.3](https://github.com/adobe/aem-lib/compare/v1.0.2...v1.0.3) (2023-09-14)
+
+
+### Bug Fixes
+
+* log gh repo clone command ([fcc5867](https://github.com/adobe/aem-lib/commit/fcc5867e0db917ba7460aa13fc1d134a1a79b329))
+* log gh repo clone command ([d172f62](https://github.com/adobe/aem-lib/commit/d172f62223abe991af3e88d17a7dcd71110a2f9a))
+
 ## [1.0.2](https://github.com/adobe/aem-lib/compare/v1.0.1...v1.0.2) (2023-09-14)
 
 
