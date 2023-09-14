@@ -15,10 +15,6 @@ cp aem-lib/dist/aem.js $REPO/$FILENAME
 
 cd $REPO
 
-# git remote remove origin
-# git remote add origin https://${GITHUB_TOKEN}@github.com/$ORG/$REPO
-# git push
-
 echo "Creating branch $BRANCH"
 git checkout -b $BRANCH
 git add $FILENAME
@@ -57,7 +53,12 @@ esac
 
 echo "Ready to create PR"
 gh repo set-default $ORG/$REPO
-echo git push --set-upstream origin $BRANCH
-git push --set-upstream origin $BRANCH
+
+git remote add token-authed-github https://${GITHUB_TOKEN}@github.com/$ORG/$REPO
+
+echo "Successfully added remote"
+
+echo git push --set-upstream token-authed-github $BRANCH
+git push --set-upstream token-authed-github $BRANCH
 echo gh pr create -f
 gh pr create -f
