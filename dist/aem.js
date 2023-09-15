@@ -81,6 +81,10 @@ function sampleRUM(checkpoint, data = {}) {
         'source',
         'target',
         'cwv',
+        'CLS',
+        'FID',
+        'LCP',
+        'INP',
       ];
       const sendPing = (pdata = data) => {
         // eslint-disable-next-line object-curly-newline, max-len, no-use-before-define
