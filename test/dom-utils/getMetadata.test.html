@@ -30,6 +30,30 @@
         it('get article:tag', () => {
           expect(getMetadata('article:tag')).to.equal('tag 1, tag 2, tag 3');
         });
+
+        // Test a custom document
+        const testDoc = document.implementation.createHTMLDocument();
+        const titleMeta = testDoc.createElement('meta');
+        titleMeta.setAttribute('property', 'og:title');
+        titleMeta.setAttribute('content', 'Camping in Western Australia');
+        testDoc.head.appendChild(titleMeta);
+
+        const descriptionMeta = testDoc.createElement('meta');
+        descriptionMeta.setAttribute('property', 'og:description');
+        descriptionMeta.setAttribute('content', 'The Australian West coast is a camper’s heaven.');
+        testDoc.head.appendChild(descriptionMeta);
+
+        it('get og:title from custom document', () => {
+          expect(getMetadata('og:title', testDoc)).to.equal('Camping in Western Australia');
+        });
+
+        it('get og:description from custom document', () => {
+          expect(getMetadata('og:description', testDoc)).to.equal('The Australian West coast is a camper’s heaven.');
+        });
+
+        it('query metadata which does not exist from custom document', () => {
+          expect(getMetadata('og:not-set-metadata', testDoc)).to.equal('');
+        });
       });
     </script>
   </body>
