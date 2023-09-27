@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <div class="one">
+    <span class="icon icon-styled"></span>
+  </div>
+  <div class="two">
+    <span class="icon icon-styled"></span>
+  </div>
+  <script type="module">
+    /* eslint-env mocha */
+    import { runTests } from '@web/test-runner-mocha';
+    import { expect } from '@esm-bundle/chai';
+    import { decorateIcons } from '../../src/decorate.js';
+
+    window.hlx = {};
+
+    runTests(() => {
+      it('decorates icons', async () => {
+        window.hlx.codeBasePath = '/test/fixtures';
+
+        const icon1 = document.querySelector('.one');
+        const icon2 = document.querySelector('.two');
+    
+        await Promise.all([decorateIcons(icon1), decorateIcons(icon2)]);
+
+        const icons = document.querySelectorAll('.icon');
+        expect(icons.length).to.equal(2);
+        icons.forEach((icon) => {
+          expect(icon.childElementCount).to.be.equal(1);
+          expect(icon.firstElementChild.tagName).to.be.equal('IMG');
+          expect(icon.firstElementChild.loading).to.be.equal('lazy');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
