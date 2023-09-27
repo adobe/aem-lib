@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/adobe/aem-lib/compare/v1.2.1...v1.3.0) (2023-09-27)
+
+
+### Features
+
+* enable getMetadata to query any document ([#17](https://github.com/adobe/aem-lib/issues/17)) ([a7a5111](https://github.com/adobe/aem-lib/commit/a7a511137178eecf2e56a942f0d022cef8b1314e))
+
 ## [1.2.1](https://github.com/adobe/aem-lib/compare/v1.2.0...v1.2.1) (2023-09-27)
 
 
