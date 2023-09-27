@@ -25,13 +25,9 @@
         expect(icons.length).to.equal(4);
         icons.forEach((icon) => {
           expect(icon.childElementCount).to.be.equal(1);
-          expect(icon.firstElementChild.tagName).to.be.equal('svg');
+          expect(icon.firstElementChild.tagName).to.be.equal('IMG');
+          expect(icon.firstElementChild.loading).to.be.equal('lazy');
         });
-
-        const sprite = document.getElementById('franklin-svg-sprite');
-        expect(sprite).to.not.be.null;
-        expect(sprite.tagName).to.be.equal('svg');
-        expect(sprite.childElementCount).to.be.equal(2);
       });
     });
   </script>
