@@ -1,3 +1,17 @@
+## [1.2.1](https://github.com/adobe/aem-lib/compare/v1.2.0...v1.2.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* revert icons to simple decoration ([#15](https://github.com/adobe/aem-lib/issues/15)) ([17af83b](https://github.com/adobe/aem-lib/commit/17af83bf1838cc4b5dfad19c40124c22c70780eb))
+
+# [1.2.0](https://github.com/adobe/aem-lib/compare/v1.1.0...v1.2.0) (2023-09-22)
+
+
+### Features
+
+* **rum:** import sampleRUM from helix-rum-js package ([#10](https://github.com/adobe/aem-lib/issues/10)) ([1dc2797](https://github.com/adobe/aem-lib/commit/1dc2797a4a15cbf26ae86b6d49c2743ff5be960e))
+
 # [1.1.0](https://github.com/adobe/aem-lib/compare/v1.0.10...v1.1.0) (2023-09-14)
 
 

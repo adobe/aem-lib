@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import { sampleRUM } from './rum.js';
+import { sampleRUM } from '@adobe/helix-rum-js';
 
 /**
  * Setup block utils.
