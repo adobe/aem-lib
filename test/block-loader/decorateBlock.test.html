@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <main>
+      <div class="section">
+        <div class="wrapper">
+          <div class="ablock"><p>This is a test block</p></div>
+        </div>
+      </div>
+    </main>
+    
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { decorateBlock } from '../../src/block-loader.js';
+
+      runTests(() => {
+        it('decorateBlock - block and parents are decorated', () => {
+          const section = document.querySelector('.section');
+          const wrapper = document.querySelector('.wrapper');
+          const block = document.querySelector('.ablock');
+
+          decorateBlock(block);
+
+          expect(section.classList.contains('ablock-container')).to.be.true;
+          expect(wrapper.classList.contains('ablock-wrapper')).to.be.true;
+          expect(block.classList.contains('ablock')).to.be.true;
+          expect(block.classList.contains('block')).to.be.true;
+          expect(block.dataset.blockName).to.equal('ablock');
+          expect(block.dataset.blockStatus).to.equal('initialized');
+          expect(block.innerHTML).to.equal('<p>This is a test block</p>');
+        });
+      });
+    </script>
+  </body>
+</html>

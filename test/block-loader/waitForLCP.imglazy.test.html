@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <main>
+      <div class="section">
+        <div class="wrapper">
+          <div class="ablock block" data-block-name="lazyimgblock"></div>
+        </div>
+      </div>
+    </main>
+    
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { waitForLCP } from '../../src/block-loader.js';
+
+      window.hlx = {};
+
+      runTests(() => {
+        it('waitForLCP - wait for lazy loaded img in block', async () => {
+          window.hlx.codeBasePath = '/test/fixtures';
+
+          const block = document.querySelector('.ablock');
+
+          await waitForLCP(['lazyimgblock']);
+
+          expect(block.dataset.blockName).to.equal('lazyimgblock');
+          expect(block.dataset.blockStatus).to.equal('loaded');
+
+          const img = block.querySelector('img');
+          expect(img).to.not.be.null;
+          expect(img.complete).to.be.true;
+          expect(img.naturalHeight).to.not.equal(0);
+        });
+      });
+    </script>
+  </body>
+</html>

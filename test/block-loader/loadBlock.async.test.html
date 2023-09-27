@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <main>
+      <div class="section">
+        <div class="wrapper">
+          <div class="ablock" data-block-name="asyncblock"><p>This is a test block</p></div>
+        </div>
+      </div>
+    </main>
+    
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { loadBlock } from '../../src/block-loader.js';
+
+      window.hlx = {};
+
+      runTests(() => {
+        it('loadBlock - async block', async () => {
+          window.hlx.codeBasePath = '/test/fixtures';
+
+          const block = document.querySelector('.ablock');
+
+          await loadBlock(block);
+
+          expect(block.classList.contains('ablock')).to.be.true;
+          expect(block.dataset.blockName).to.equal('asyncblock');
+          expect(block.dataset.blockStatus).to.equal('loaded');
+          expect(block.innerHTML).to.equal('<p>This is an async loaded block.</p>');
+
+          const css = document.querySelector('link');
+          expect(css.href).to.contains('/blocks/asyncblock/asyncblock.css');
+        });
+      });
+    </script>
+  </body>
+</html>

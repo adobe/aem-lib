@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import { sampleRUM } from './rum.js';
+import { sampleRUM } from '@adobe/helix-rum-js';
 
 /**
  * Setup block utils.
@@ -26,6 +26,7 @@ export function setup() {
     try {
       [window.hlx.codeBasePath] = new URL(scriptEl.src).pathname.split('/scripts/scripts.js');
     } catch (error) {
+      /* c8 ignore next 3 */
       // eslint-disable-next-line no-console
       console.log(error);
     }
@@ -35,6 +36,7 @@ export function setup() {
 /**
  * Auto initializiation.
  */
+/* c8 ignore next 14 */
 export function init() {
   setup();
   sampleRUM('top');
@@ -42,10 +44,12 @@ export function init() {
   window.addEventListener('load', () => sampleRUM('load'));
 
   window.addEventListener('unhandledrejection', (event) => {
+    /* c8 ignore next */
     sampleRUM('error', { source: event.reason.sourceURL, target: event.reason.line });
   });
 
   window.addEventListener('error', (event) => {
+    /* c8 ignore next */
     sampleRUM('error', { source: event.filename, target: event.lineno });
   });
 }

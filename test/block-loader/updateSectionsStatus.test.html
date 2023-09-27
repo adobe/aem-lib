@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <main>
+      <div class="section section1"><div class="block block11" data-block-status="initialized"></div></div>
+      <div class="section section2"><div class="block block21" data-block-status="loading"></div></div>
+      <div class="section section3">
+        <div class="block block31" data-block-status="initialized"></div>
+        <div class="block block32" data-block-status="loading"></div>
+      </div>
+      <div class="section section4">
+        <div class="block block41" data-block-status="initialized"></div>
+        <div class="block block42" data-block-status="loading"></div>
+        <div class="block block43" data-block-status="loaded"></div>
+      </div>
+      <div class="section section5">
+        <div class="block block51" data-block-status="loaded"></div>
+      </div>
+    </main>
+    
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { updateSectionsStatus } from '../../src/block-loader.js';
+
+      runTests(() => {
+        it('updateSectionsStatus - updates setions status', async () => {
+          const main = document.querySelector('main');
+
+          const section1 = document.querySelector('.section1');
+          const section2 = document.querySelector('.section2');
+          const section3 = document.querySelector('.section3');
+          const section4 = document.querySelector('.section4');
+          const section5 = document.querySelector('.section5');
+
+          const block11 = document.querySelector('.block11');
+          const block21 = document.querySelector('.block21');
+          const block31 = document.querySelector('.block31');
+          const block32 = document.querySelector('.block32');
+          const block41 = document.querySelector('.block41');
+          const block42 = document.querySelector('.block42');
+          const block43 = document.querySelector('.block43');
+
+          updateSectionsStatus(main);
+
+          expect(section1.dataset.sectionStatus).to.equal('loading');
+          expect(section2.dataset.sectionStatus).to.be.undefined;
+          expect(section3.dataset.sectionStatus).to.be.undefined;
+          expect(section4.dataset.sectionStatus).to.be.undefined;
+          expect(section5.dataset.sectionStatus).to.be.undefined;
+
+          block11.dataset.blockStatus = 'loaded';
+
+          updateSectionsStatus(main);
+
+          expect(section1.dataset.sectionStatus).to.equal('loaded');
+          expect(section2.dataset.sectionStatus).to.equal('loading');
+          expect(section3.dataset.sectionStatus).to.be.undefined;
+          expect(section4.dataset.sectionStatus).to.be.undefined;
+          expect(section5.dataset.sectionStatus).to.be.undefined;
+
+          // still loading, not change
+          updateSectionsStatus(main);
+
+          expect(section1.dataset.sectionStatus).to.equal('loaded');
+          expect(section2.dataset.sectionStatus).to.equal('loading');
+          expect(section3.dataset.sectionStatus).to.be.undefined;
+          expect(section4.dataset.sectionStatus).to.be.undefined;
+          expect(section5.dataset.sectionStatus).to.be.undefined;
+
+          block21.dataset.blockStatus = 'loaded';
+
+          updateSectionsStatus(main);
+
+          block31.dataset.blockStatus = 'loaded';
+          block32.dataset.blockStatus = 'loaded';
+          block41.dataset.blockStatus = 'loaded';
+          block42.dataset.blockStatus = 'loaded';
+          block43.dataset.blockStatus = 'loaded';
+
+          updateSectionsStatus(main);
+
+          expect(section1.dataset.sectionStatus).to.equal('loaded');
+          expect(section2.dataset.sectionStatus).to.equal('loaded');
+          expect(section3.dataset.sectionStatus).to.equal('loaded');
+          expect(section4.dataset.sectionStatus).to.equal('loaded');
+          expect(section5.dataset.sectionStatus).to.equal('loaded');
+        });
+      });
+    </script>
+  </body>
+</html>

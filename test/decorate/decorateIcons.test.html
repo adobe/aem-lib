@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <div>
+    <span class="icon icon-a"></span>
+    <p><span class="icon icon-b"></span></p>
+    <a href="#"><span class="icon icon-a"></span></a>
+    <p><span class="icon icon-doesnotexist"></span></p>
+  </div>
+  <script type="module">
+    /* eslint-env mocha */
+    import { runTests } from '@web/test-runner-mocha';
+    import { expect } from '@esm-bundle/chai';
+    import { decorateIcons } from '../../src/decorate.js';
+
+    window.hlx = {};
+
+    runTests(() => {
+      it('decorates icons', async () => {
+        window.hlx.codeBasePath = '/test/fixtures';
+
+        await decorateIcons(document.body);
+
+        const icons = document.querySelectorAll('.icon');
+        expect(icons.length).to.equal(4);
+        icons.forEach((icon) => {
+          expect(icon.childElementCount).to.be.equal(1);
+          expect(icon.firstElementChild.tagName).to.be.equal('IMG');
+          expect(icon.firstElementChild.loading).to.be.equal('lazy');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

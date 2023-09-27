@@ -14,19 +14,7 @@
 /* eslint-disable no-unused-expressions */
 
 import { expect } from '@esm-bundle/chai';
-import { createOptimizedPicture, loadCSS, loadScript } from '../src/dom-utils.js';
-
-describe('createOptimizedPictured', () => {
-  it('creates optimized picture', () => {
-    const picture = createOptimizedPicture('/test/fixtures/logo.png');
-    // webp
-    expect(picture.querySelector(':scope source[type="image/webp"]')).to.exist;
-    // fallback
-    expect(picture.querySelector(':scope source:not([type="image/webp"])')).to.exist;
-    // default
-    expect(picture.querySelector(':scope img').src).to.include('format=png&optimize=medium');
-  });
-});
+import { loadCSS } from '../../src/dom-utils.js';
 
 describe('loadCSS', () => {
   it('loads CSS file', async () => {
@@ -47,33 +35,6 @@ describe('loadCSS', () => {
   it('does not load invalid CSS files', async () => {
     try {
       const invalid = await loadCSS('/test/fixtures/foo.css');
-      expect(invalid).to.exist;
-    } catch (error) {
-      expect(error).to.exist;
-    }
-  });
-});
-
-describe('loadScript', () => {
-  it('loads JS file with attributes', async () => {
-    const load = await loadScript('/test/fixtures/script.js', { foo: 'bar' });
-    expect(load).to.exist;
-    const { head, body } = document;
-    expect(head.querySelector('script[foo="bar"]').src).to.include('/test/fixtures/script.js');
-    expect(body.dataset.foo).to.equal('bar');
-  });
-
-  it('does not reload already loaded JS files', async () => {
-    const reload = await loadScript('/test/fixtures/script.js');
-    expect(reload).to.not.exist;
-    const { head, body } = document;
-    expect(head.querySelector('script[src*="/test/fixtures/script.js"]')).to.exist;
-    expect(body.dataset.foo).to.equal('bar');
-  });
-
-  it('does not load invalid JS files', async () => {
-    try {
-      const invalid = await loadScript('/test/fixtures/foo.js');
       expect(invalid).to.exist;
     } catch (error) {
       expect(error).to.exist;

@@ -22,7 +22,7 @@ export {
   decorateTemplateAndTheme,
 } from './dom-utils.js';
 export { decorateButtons, decorateIcons, decorateSections } from './decorate.js';
-export { sampleRUM } from './rum.js';
+export { sampleRUM } from '@adobe/helix-rum-js';
 export { fetchPlaceholders } from './placeholders.js';
 export {
   updateSectionsStatus,
