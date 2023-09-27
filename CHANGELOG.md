@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/adobe/aem-lib/compare/v1.2.0...v1.2.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* revert icons to simple decoration ([#15](https://github.com/adobe/aem-lib/issues/15)) ([17af83b](https://github.com/adobe/aem-lib/commit/17af83bf1838cc4b5dfad19c40124c22c70780eb))
+
 # [1.2.0](https://github.com/adobe/aem-lib/compare/v1.1.0...v1.2.0) (2023-09-22)
 
 
