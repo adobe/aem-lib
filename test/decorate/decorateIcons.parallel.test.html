@@ -28,13 +28,8 @@
         expect(icons.length).to.equal(2);
         icons.forEach((icon) => {
           expect(icon.childElementCount).to.be.equal(1);
-          const svg = icon.firstElementChild;
-          expect(svg.tagName).to.be.equal('svg');
-          if (svg.childElementCount === 1 && svg.firstElementChild.tagName === 'use') {
-            const href = icon.firstElementChild.firstElementChild.getAttribute('href');
-            const sprite = document.querySelector(`#franklin-svg-sprite > ${href}`);
-            expect(sprite).to.not.be.null;
-          }
+          expect(icon.firstElementChild.tagName).to.be.equal('IMG');
+          expect(icon.firstElementChild.loading).to.be.equal('lazy');
         });
       });
     });
