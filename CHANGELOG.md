@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/adobe/aem-lib/compare/v1.3.1...v1.3.2) (2023-10-02)
+
+
+### Bug Fixes
+
+* trigger release ([1bc6f71](https://github.com/adobe/aem-lib/commit/1bc6f71fd879a5d68b6c725bbc5f2807e96ac39c))
+
 ## [1.3.1](https://github.com/adobe/aem-lib/compare/v1.3.0...v1.3.1) (2023-10-02)
 
 
