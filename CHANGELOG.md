@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/adobe/aem-lib/compare/v1.3.0...v1.3.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* use correct codeBasePath (and test) ([#19](https://github.com/adobe/aem-lib/issues/19)) ([11dc7d3](https://github.com/adobe/aem-lib/commit/11dc7d37e551ba8e229c1147e1c5618f7fe84bf1))
+
 # [1.3.0](https://github.com/adobe/aem-lib/compare/v1.2.1...v1.3.0) (2023-09-27)
 
 
