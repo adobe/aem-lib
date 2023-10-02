@@ -52,7 +52,7 @@ export function decorateIcon(span, prefix = '') {
   const iconName = Array.from(span.classList).find((c) => c.startsWith('icon-')).substring(5);
   const img = document.createElement('img');
   img.dataset.iconName = iconName;
-  img.src = `${window.codeBasePath}${prefix}/icons/${iconName}.svg`;
+  img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
   img.loading = 'lazy';
   span.append(img);
 }

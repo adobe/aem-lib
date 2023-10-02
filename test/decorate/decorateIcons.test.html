@@ -28,6 +28,16 @@
           expect(icon.firstElementChild.tagName).to.be.equal('IMG');
           expect(icon.firstElementChild.loading).to.be.equal('lazy');
         });
+
+        const testSrc = (clazz, path) => {
+          const icon = document.querySelector(clazz);
+          expect(icon).to.not.be.null;
+          const u = new URL(icon.firstElementChild.src);
+          expect(u.pathname).to.be.equal(path);
+        };
+        testSrc('.icon-a', '/test/fixtures/icons/a.svg');
+        testSrc('.icon-b', '/test/fixtures/icons/b.svg');
+        testSrc('.icon-doesnotexist', '/test/fixtures/icons/doesnotexist.svg');
       });
     });
   </script>
