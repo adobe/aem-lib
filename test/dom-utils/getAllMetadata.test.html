@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta property="foo:bar" content="baz">
+    <meta name="foo-qux" content="corge">
+  </head>
+  <body>
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { getAllMetadata } from '../../src/dom-utils.js';
+
+      runTests(() => {
+        it('get scoped properties', () => {
+          expect(getAllMetadata('foo')).to.eql({
+            bar: 'baz',
+            qux: 'corge',
+          });
+        });
+
+        it('get properties for unknown scope', () => {
+          expect(getAllMetadata('bar')).to.eql({});
+        });
+
+        // Test a custom document
+        const testDoc = document.implementation.createHTMLDocument();
+        const titleMeta = testDoc.createElement('meta');
+        titleMeta.setAttribute('property', 'grault:bar');
+        titleMeta.setAttribute('content', 'baz');
+        testDoc.head.appendChild(titleMeta);
+
+        const descriptionMeta = testDoc.createElement('meta');
+        descriptionMeta.setAttribute('name', 'grault-qux');
+        descriptionMeta.setAttribute('content', 'corge');
+        testDoc.head.appendChild(descriptionMeta);
+
+        it('get scoped properties from custom document', () => {
+          expect(getAllMetadata('grault', testDoc)).to.eql({
+            bar: 'baz',
+            qux: 'corge',
+          });
+        });
+
+        it('get properties for unknown scope from custom document', () => {
+          expect(getAllMetadata('bar', testDoc)).to.eql({});
+        });
+      });
+    </script>
+  </body>
+</html>
