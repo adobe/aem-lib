@@ -21,9 +21,9 @@ describe('loadModule', () => {
     const options = {};
     const api = await loadModule('/test/fixtures/plugins/full-api.js', null, document, options);
     expect(options.init).to.be.true;
-    expect(api.loadEager).to.not.be.undefined;
-    expect(api.loadLazy).to.not.be.undefined;
-    expect(api.loadDelayed).to.not.be.undefined;
+    expect(api.loadEager).to.exist;
+    expect(api.loadLazy).to.exist;
+    expect(api.loadDelayed).to.exist;
   });
 
   it('loads and applies the CSS file', async () => {

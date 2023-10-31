@@ -24,7 +24,7 @@
               options: { foo: 'bar' },
             });
             const plugin = window.hlx.plugins.get('inline');
-            expect(plugin).to.not.be.undefined;
+            expect(plugin).to.exist;
             expect(plugin.options).to.eql({ foo: 'bar' });
             expect(window.hlx.plugins.includes('inline')).to.true;
           });
@@ -72,14 +72,14 @@
           it('registration and retrieval', async () => {
             window.hlx.plugins.add('/test/fixtures/plugins/partial-api.js');
             const plugin = window.hlx.plugins.get('partial-api');
-            expect(plugin).to.not.be.undefined;
+            expect(plugin).to.exist;
             expect(window.hlx.plugins.includes('partial-api')).to.true;
           });
 
           it('run the eager phase', async () => {
             await window.hlx.plugins.load('eager');
             const plugin = window.hlx.plugins.get('partial-api');
-            expect(plugin.loadEager).to.not.be.undefined;
+            expect(plugin.loadEager).to.exist;
             expect(plugin.loadLazy).to.be.undefined;
             expect(plugin.loadDelayed).to.be.undefined;
             sinon.spy(plugin, 'loadEager');
@@ -107,7 +107,7 @@
               url: '/test/fixtures/plugins/full-api.js',
             });
             let plugin = window.hlx.plugins.get('fullapi');
-            expect(plugin).to.not.be.undefined;
+            expect(plugin).to.exist;
             expect(window.hlx.plugins.includes('fullapi')).to.true;
             await window.hlx.plugins.load('eager');
             plugin = window.hlx.plugins.get('fullapi');
@@ -121,9 +121,9 @@
           it('run the eager phase', async () => {
             await window.hlx.plugins.load('eager');
             const plugin = window.hlx.plugins.get('fullapi');
-            expect(plugin.loadEager).to.not.be.undefined;
-            expect(plugin.loadLazy).to.not.be.undefined;
-            expect(plugin.loadDelayed).to.not.be.undefined;
+            expect(plugin.loadEager).to.exist;
+            expect(plugin.loadLazy).to.exist;
+            expect(plugin.loadDelayed).to.exist;
             sinon.spy(plugin, 'loadEager');
             await window.hlx.plugins.run('loadEager');
             sinon.assert.calledOnce(plugin.loadEager);
@@ -155,7 +155,7 @@
               url: '/test/fixtures/plugins/complex',
             });
             const plugin = window.hlx.plugins.get('complex');
-            expect(plugin).to.not.be.undefined;
+            expect(plugin).to.exist;
             expect(window.hlx.plugins.includes('complex')).to.true;
           });
 
@@ -170,9 +170,9 @@
           it('run the lazy phase', async () => {
             await window.hlx.plugins.load('lazy');
             const plugin = window.hlx.plugins.get('complex');
-            expect(plugin.loadEager).to.not.be.undefined;
-            expect(plugin.loadLazy).to.not.be.undefined;
-            expect(plugin.loadDelayed).to.not.be.undefined;
+            expect(plugin.loadEager).to.exist;
+            expect(plugin.loadLazy).to.exist;
+            expect(plugin.loadDelayed).to.exist;
             sinon.spy(plugin, 'loadEager');
             sinon.spy(plugin, 'loadLazy');
             await window.hlx.plugins.run('loadLazy');
@@ -196,88 +196,12 @@
           it('removes invalid plugins if loading fails', async () => {
             window.hlx.plugins.add('/invalid.js');
             let plugin = window.hlx.plugins.get('invalid');
-            expect(plugin).to.not.be.undefined;
+            expect(plugin).to.exist;
             await window.hlx.plugins.load('eager');
             plugin = window.hlx.plugins.get('invalid');
             expect(plugin).to.be.undefined;
           });
         });
-        // it('add a simple plugin', () => {
-        //   window.hlx.plugins.add('/test/fixtures/plugins/plugin1.js');
-        //   expect(window.hlx.plugins.get('plugin1')).to.not.be.null;
-        //   expect(window.hlx.plugins.get('plugin1')).to.have.property('url', '/test/fixtures/plugins/plugin1.js');
-        //   expect(window.hlx.plugins.get('plugin1')).to.have.property('load', 'eager');
-        // });
-
-        // it('add a named plugin', async () => {
-        //   window.hlx.plugins.add('plugin-2', {
-        //     url: '/test/fixtures/plugins/plugin2',
-        //     load: 'lazy',
-        //   });
-        //   expect(window.hlx.plugins.get('plugin-2')).to.not.be.null;
-        //   expect(window.hlx.plugins.get('plugin-2')).to.have.property('url', '/test/fixtures/plugins/plugin2');
-        //   expect(window.hlx.plugins.get('plugin-2')).to.have.property('load', 'lazy');
-        // });
-
-        // it('add a complex plugin', async () => {
-        //   window.hlx.plugins.add('plugin-3', {
-        //     url: '/test/fixtures/plugins/plugin3.js',
-        //     condition: () => window.loadPlugin3,
-        //     load: 'delayed',
-        //   });
-        //   expect(window.hlx.plugins.get('plugin-3')).to.not.be.null;
-        //   expect(window.hlx.plugins.get('plugin-3')).to.have.property('url', '/test/fixtures/plugins/plugin3.js');
-        //   expect(window.hlx.plugins.get('plugin-3')).to.have.property('load', 'delayed');
-        // });
-
-        // it('loads plugins according to their load property', async () => {
-        //   window.loadPlugin3 = true;
-        //   await window.hlx.plugins.load('eager');
-        //   expect(window.hlx.plugins.get('plugin1').options.init).to.be.true;
-        //   expect(window.hlx.plugins.get('plugin-2').options.init).to.be.undefined;
-        //   expect(window.hlx.plugins.get('plugin-3').options.init).to.be.undefined;
-        //   await window.hlx.plugins.load('lazy');
-        //   expect(window.hlx.plugins.get('plugin1').options.init).to.be.true;
-        //   expect(window.hlx.plugins.get('plugin-2').options.init).to.be.true;
-        //   expect(window.hlx.plugins.get('plugin-3').options.init).to.be.undefined;
-        //   await window.hlx.plugins.load('delayed');
-        //   expect(window.hlx.plugins.get('plugin1').options.init).to.be.true;
-        //   expect(window.hlx.plugins.get('plugin-2').options.init).to.be.true;
-        //   expect(window.hlx.plugins.get('plugin-3').options.init).to.be.true;
-        // });
-
-        // it('removes plugin if it fails loading', async () => {
-        //   window.hlx.plugins.add('/test/fixtures/plugins/plugin0.js');
-        //   expect(window.hlx.plugins.get('plugin0')).to.not.be.undefined;
-        //   await window.hlx.plugins.load('eager');
-        //   expect(window.hlx.plugins.get('plugin0')).to.be.undefined;
-        // });
-
-        // it('run the matching phase for a plugin', async () => {
-        //   window.loadPlugin3 = true;
-        //   window.hlx.plugins.add('plugin4', '/test/fixtures/plugins/plugin1.js');
-        //   window.hlx.plugins.add('plugin5', { url: '/test/fixtures/plugins/plugin2/plugin2.js', load: 'lazy' });
-        //   window.hlx.plugins.add('plugin6', { url: '/test/fixtures/plugins/plugin3.js', load: 'delayed', condition: () => window.loadPlugin3 });
-        //   await window.hlx.plugins.load('eager');
-        //   await window.hlx.plugins.run('loadEager');
-        //   expect(window.hlx.plugins.get('plugin4').options.eager).to.be.true;
-        //   expect(window.hlx.plugins.get('plugin5').options.eager).to.be.undefined;
-        //   expect(window.hlx.plugins.get('plugin6').options.eager).to.be.undefined;
-        //   await window.hlx.plugins.load('lazy');
-        //   await window.hlx.plugins.run('loadLazy');
-        //   expect(window.hlx.plugins.get('plugin4').options.lazy).to.be.undefined; // plugin1.js does not have a loadLazy export
-        //   expect(window.hlx.plugins.get('plugin5').options.lazy).to.be.true;
-        //   expect(window.hlx.plugins.get('plugin6').options.lazy).to.be.undefined; // plugin3.js is not loaded yet
-        //   await window.hlx.plugins.load('delayed');
-        //   window.hlx.plugins.get('plugin6').condition = () => false;
-        //   await window.hlx.plugins.run('loadDelayed');
-        //   expect(window.hlx.plugins.get('plugin4').options.delayed).to.be.undefined; // plugin1.js does not have a loadDelayed export
-        //   expect(window.hlx.plugins.get('plugin5').options.delayed).to.be.true;
-        //   expect(window.hlx.plugins.get('plugin6').options.delayed).to.be.undefined; // plugin3.js condition is not met
-        //   window.hlx.plugins.get('plugin6').condition = () => true;
-        //   await window.hlx.plugins.run('loadDelayed');
-        //   expect(window.hlx.plugins.get('plugin6').options.delayed).to.be.true;
-        // });
       });
     </script>
   </body>
