@@ -62,9 +62,8 @@ export default class PluginsRegistry {
         try {
           // If the plugin has a default export, it will be executed immediately
           const pluginApi = (await loadModule(
-            key,
-            !plugin.url.endsWith('.js') ? `${plugin.url}/${key}.js` : plugin.url,
-            !plugin.url.endsWith('.js') ? `${plugin.url}/${key}.css` : null,
+            !plugin.url.endsWith('.js') ? `${plugin.url}/${plugin.url.split('/').pop()}.js` : plugin.url,
+            !plugin.url.endsWith('.js') ? `${plugin.url}/${plugin.url.split('/').pop()}.css` : null,
             document,
             plugin.options,
             context,
@@ -73,6 +72,7 @@ export default class PluginsRegistry {
         } catch (err) {
           // eslint-disable-next-line no-console
           console.error('Could not load specified plugin', key);
+          this.#plugins.delete(key);
         }
       }));
   }

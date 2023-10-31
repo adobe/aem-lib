@@ -58,15 +58,14 @@ export async function loadScript(src, attrs) {
 
 /**
  * Loads JS and CSS for a module and executes it's default export.
- * @param {string} name The module name
  * @param {string} jsPath The JS file to load
  * @param {string} [cssPath] An optional CSS file to load
  * @param {object[]} [args] Parameters to be passed to the default export when it is called
  */
-export async function loadModule(name, jsPath, cssPath, ...args) {
+export async function loadModule(jsPath, cssPath, ...args) {
   const cssLoaded = cssPath ? loadCSS(cssPath) : Promise.resolve();
   const decorationComplete = jsPath
-    ? new Promise((resolve) => {
+    ? new Promise((resolve, reject) => {
       (async () => {
         let mod;
         try {
@@ -75,8 +74,7 @@ export async function loadModule(name, jsPath, cssPath, ...args) {
             await mod.default.apply(null, args);
           }
         } catch (error) {
-          // eslint-disable-next-line no-console
-          console.log(`failed to load module for ${name}`, error);
+          reject(error);
         }
         resolve(mod);
       })();

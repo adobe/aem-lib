@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <main>
+      <div class="section">
+        <div class="wrapper">
+          <div class="ablock" data-block-name="asyncblock"></div>
+        </div>
+      </div>
+    </main>
+    
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { setup } from '../../src/setup.js';
+      import { loadBlock } from '../../src/block-loader.js';
+
+      setup();
+
+      runTests(() => {
+        it('loadBlock - async block', async () => {
+          window.hlx.codeBasePath = '/test/fixtures';
+          // Modify the block name
+          window.hlx.patchBlockConfig.push((cfg) => ({
+            ...cfg,
+            blockName: `${cfg.blockName}-alt`,
+          }));
+          // Modify the css/js path using the new & original block name
+          window.hlx.patchBlockConfig.push((cfg, original) => ({
+            ...cfg,
+            cssPath: `/blocks-alt/${original.blockName}/${cfg.blockName}.css`,
+            jsPath: `/blocks-alt/${original.blockName}/${cfg.blockName}.js`,
+          }));
+
+          const block = document.querySelector('.ablock');
+
+          await loadBlock(block);
+
+          expect(block.classList.contains('ablock')).to.be.true;
+          expect(block.dataset.blockName).to.equal('asyncblock');
+          expect(block.dataset.blockStatus).to.equal('loaded');
+
+          const css = document.querySelector('link');
+          expect(css.href).to.contains('/blocks-alt/asyncblock/asyncblock-alt.css');
+        });
+      });
+    </script>
+  </body>
+</html>
