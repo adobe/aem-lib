@@ -80,10 +80,10 @@ export default class PluginsRegistry {
   // Run a specific phase in the plugin
   async run(phase, context) {
     return [...this.#plugins.values()]
-      .reduce((promise, plugin) => ( // Using reduce to execute plugins sequencially
-        plugin[phase] && (!plugin.condition
-            || plugin.condition(document, plugin.options, context))
-          ? promise.then(() => plugin[phase](document, plugin.options, context))
+      .reduce((promise, p) => ( // Using reduce to execute plugins sequencially
+        p[phase] && (!p.condition
+            || p.condition(document, p.options, context))
+          ? promise.then(() => p[phase](document, p.options, context))
           : promise
       ), Promise.resolve());
   }
