@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="/some/path/scripts/scripts.js"></script>
   </head>
   <body>
     <script type="module">
@@ -28,6 +27,9 @@
         });
 
         it('setup - sets some globals', () => {
+          const script = document.createElement('script');
+          script.src = '/some/path/scripts/scripts.js';
+          document.head.append(script);
           setup();
           expect(window.hlx).to.not.be.null;
           expect(window.hlx.codeBasePath).to.be.equal('/some/path');
