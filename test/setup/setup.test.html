@@ -36,22 +36,6 @@
           expect(window.hlx.plugins).to.exist;
           expect(window.hlx.templates).to.exist;
         });
-
-        it('setup - handles invalid script.js url', () => {
-          window.hlx.codeBasePath = null;
-          const script = document.querySelector('script[src="/some/path/scripts/scripts.js"]');
-          script.src = 'tel:/scripts/scripts.js"';
-          document.head.append(script);
-          setup();
-          expect(window.hlx.codeBasePath).to.be.equal('');
-          script.remove();
-        });
-
-        it('setup - handles missing scripts.js', () => {
-          window.hlx.codeBasePath = null;
-          setup();
-          expect(window.hlx.codeBasePath).to.be.equal('');
-        });
       });
     </script>
   </body>

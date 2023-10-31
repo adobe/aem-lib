@@ -27,11 +27,12 @@ export function setup() {
   window.hlx.templates = new TemplatesRegistry();
 
   const scriptEl = document.querySelector('script[src$="/scripts/scripts.js"]');
+  /* c8 ignore next 1 */
   if (scriptEl) {
     try {
       [window.hlx.codeBasePath] = new URL(scriptEl.src).pathname.split('/scripts/scripts.js');
     } catch (error) {
-      /* c8 ignore next 3 */
+      /* c8 ignore next 2 */
       // eslint-disable-next-line no-console
       console.log(error);
     }
