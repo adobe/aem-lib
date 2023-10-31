@@ -178,6 +178,7 @@
             await window.hlx.plugins.run('loadLazy');
             sinon.assert.notCalled(plugin.loadEager);
             sinon.assert.calledOnce(plugin.loadLazy);
+            expect(getComputedStyle(document.body).fontFamily).to.equal('system-ui');
           });
 
           it('run the delayed phase', async () => {
