@@ -26,6 +26,10 @@ export default class PluginsRegistry {
         : config),
     };
     pluginConfig.options ||= {};
+    pluginConfig.options.id ||= pluginId;
+    if (!pluginConfig.options.url && pluginConfig.url) {
+      pluginConfig.options.url ||= pluginConfig.url;
+    }
     return { id: pluginId, config: pluginConfig };
   }
 
