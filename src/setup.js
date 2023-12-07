@@ -24,7 +24,7 @@ export function setup() {
   const scriptEl = document.querySelector('script[src$="/scripts/scripts.js"]');
   if (scriptEl) {
     try {
-      [window.hlx.codeBasePath] = new URL(scriptEl.src).pathname.split('/scripts/scripts.js');
+      [window.hlx.codeBasePath] = new URL(scriptEl.src, window.location).pathname.split('/scripts/scripts.js');
     } catch (error) {
       /* c8 ignore next 3 */
       // eslint-disable-next-line no-console
