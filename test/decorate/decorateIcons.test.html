@@ -26,6 +26,7 @@
         icons.forEach((icon) => {
           expect(icon.childElementCount).to.be.equal(1);
           expect(icon.firstElementChild.tagName).to.be.equal('IMG');
+          expect(icon.firstElementChild.alt).to.be.equal('');
           expect(icon.firstElementChild.loading).to.be.equal('lazy');
         });
 
