@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/adobe/aem-lib/compare/v1.3.2...v1.4.0) (2023-12-13)
+
+
+### Bug Fixes
+
+* remove trim() from decorateIcon ([2961b11](https://github.com/adobe/aem-lib/commit/2961b117e5678c6837cba340c82b7037e6e668a8))
+* update tests with default alt text ([490fc4c](https://github.com/adobe/aem-lib/commit/490fc4cfc3f2a2817020632d00d4f3113ed9e2e3))
+
+
+### Features
+
+* add alt text support to decorateIcon ([8a0ef92](https://github.com/adobe/aem-lib/commit/8a0ef923ce5b51ebc691b87efea613fe77e5d3fd))
+* write test to validate custom icon alt text ([13bca8f](https://github.com/adobe/aem-lib/commit/13bca8fcc545f64d88557f201a37926989c10d16))
+
 ## [1.3.2](https://github.com/adobe/aem-lib/compare/v1.3.1...v1.3.2) (2023-10-02)
 
 
