@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/adobe/aem-lib/compare/v1.4.0...v1.5.0) (2023-12-19)
+
+
+### Features
+
+* filter out blank values in style list ([aa188f9](https://github.com/adobe/aem-lib/commit/aa188f9c73ec46069ea193f9a3405ac40d3d4466))
+
 # [1.4.0](https://github.com/adobe/aem-lib/compare/v1.3.2...v1.4.0) (2023-12-13)
 
 
