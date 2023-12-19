@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="template" content="foo"/>
+  </head>
+  <body>
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { setup } from '../../src/setup.js';
+
+      runTests(() => {
+        before(() => {
+          setup();
+        });
+
+        it('add a simple template', () => {
+          window.hlx.templates.add('/foo.js');
+          expect(window.hlx.templates.get('foo')).to.not.be.null;
+          expect(window.hlx.templates.get('foo')).to.have.property('url', '/foo.js');
+          expect(window.hlx.templates.get('foo')).to.have.property('load', 'eager');
+          expect(window.hlx.templates.get('foo').condition()).to.be.true;
+        });
+
+        it('add a named template', () => {
+          window.hlx.templates.add('bar', '/foo.js');
+          expect(window.hlx.templates.get('bar')).to.not.be.null;
+          expect(window.hlx.templates.get('bar')).to.have.property('url', '/foo.js');
+          expect(window.hlx.templates.get('bar')).to.have.property('load', 'eager');
+          expect(window.hlx.templates.get('bar').condition()).to.be.false;
+        });
+
+        it('adds multiple templates', () => {
+          window.hlx.templates.add(['/baz.js', '/qux.js']);
+          expect(window.hlx.templates.get('baz')).to.not.be.null;
+          expect(window.hlx.templates.get('baz')).to.have.property('url', '/baz.js');
+          expect(window.hlx.templates.get('baz')).to.have.property('load', 'eager');
+          expect(window.hlx.templates.get('qux')).to.not.be.null;
+          expect(window.hlx.templates.get('qux')).to.have.property('url', '/qux.js');
+          expect(window.hlx.templates.get('qux')).to.have.property('load', 'eager');
+        });
+
+        it('includes returns true if template exists', () => {
+          window.hlx.templates.add('/corge.js');
+          expect(window.hlx.templates.includes('corge')).to.be.true;
+        });
+
+        it('includes returns false if template does not exist', () => {
+          expect(window.hlx.templates.includes('grault')).to.be.false;
+        });
+      });
+    </script>
+  </body>
+</html>

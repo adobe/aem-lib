@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import sinon from 'sinon';
+      import { setup } from '../../src/setup.js';
+
+      runTests(() => {
+        describe('inline plugin', () => {
+          before(() => {
+            setup();
+          });
+
+          it('registration and retrieval', async () => {
+            window.hlx.plugins.add('inline', {
+              loadEager: sinon.stub(),
+              loadLazy: sinon.stub(),
+              loadDelayed: sinon.stub(),
+              options: { foo: 'bar' },
+            });
+            const plugin = window.hlx.plugins.get('inline');
+            expect(plugin).to.exist;
+            expect(plugin.options).to.eql({ foo: 'bar' });
+            expect(window.hlx.plugins.includes('inline')).to.true;
+          });
+
+          it('run the eager phase', async () => {
+            const plugin = window.hlx.plugins.get('inline');
+            await window.hlx.plugins.run('loadEager');
+            sinon.assert.calledOnce(plugin.loadEager);
+            sinon.assert.notCalled(plugin.loadLazy);
+            sinon.assert.notCalled(plugin.loadDelayed);
+          });
+
+          it('run the lazy phase', async () => {
+            const plugin = window.hlx.plugins.get('inline');
+            await window.hlx.plugins.run('loadLazy');
+            sinon.assert.calledOnce(plugin.loadEager);
+            sinon.assert.calledOnce(plugin.loadLazy);
+            sinon.assert.notCalled(plugin.loadDelayed);
+          });
+
+          it('run the delayed phase', async () => {
+            const plugin = window.hlx.plugins.get('inline');
+            await window.hlx.plugins.run('loadDelayed');
+            sinon.assert.calledOnce(plugin.loadEager);
+            sinon.assert.calledOnce(plugin.loadLazy);
+            sinon.assert.calledOnce(plugin.loadDelayed);
+          });
+
+          it('not running when condition is not met', async () => {
+            window.hlx.plugins.add('inline-alt', {
+              condition: () => false,
+              loadEager: (_, options) => { options.eager = true; },
+            });
+            await window.hlx.plugins.run('loadEager');
+            const plugin = window.hlx.plugins.get('inline-alt');
+            expect(plugin.options.eager).to.be.undefined;
+          });
+        });
+
+        describe('plugin with partial API', () => {
+          before(() => {
+            setup();
+          });
+
+          it('registration and retrieval', async () => {
+            window.hlx.plugins.add('/test/fixtures/plugins/partial-api.js');
+            const plugin = window.hlx.plugins.get('partial-api');
+            expect(plugin).to.exist;
+            expect(window.hlx.plugins.includes('partial-api')).to.true;
+          });
+
+          it('run the eager phase', async () => {
+            await window.hlx.plugins.load('eager');
+            const plugin = window.hlx.plugins.get('partial-api');
+            expect(plugin.loadEager).to.exist;
+            expect(plugin.loadLazy).to.be.undefined;
+            expect(plugin.loadDelayed).to.be.undefined;
+            sinon.spy(plugin, 'loadEager');
+            await window.hlx.plugins.run('loadEager');
+            sinon.assert.calledOnce(plugin.loadEager);
+          });
+
+          it('run the lazy phase', () => {
+            expect(async () => window.hlx.plugins.run('loadLazy')).to.not.throw;
+          });
+
+          it('run the delayed phase', () => {
+            expect(async () => window.hlx.plugins.run('loadDelayed')).to.not.throw;
+          });
+        });
+
+        describe('plugin with full API', () => {
+          before(() => {
+            setup();
+          });
+
+          it('registration and retrieval', async () => {
+            window.hlx.plugins.add('fullapi', {
+              condition: () => false,
+              url: '/test/fixtures/plugins/full-api.js',
+            });
+            let plugin = window.hlx.plugins.get('fullapi');
+            expect(plugin).to.exist;
+            expect(window.hlx.plugins.includes('fullapi')).to.true;
+            await window.hlx.plugins.load('eager');
+            plugin = window.hlx.plugins.get('fullapi');
+            expect(plugin).to.be.undefined; // condition not met, so plugin is removed
+            window.hlx.plugins.add('fullapi', {
+              condition: () => true,
+              url: '/test/fixtures/plugins/full-api.js',
+            });
+          });
+
+          it('run the eager phase', async () => {
+            await window.hlx.plugins.load('eager');
+            const plugin = window.hlx.plugins.get('fullapi');
+            expect(plugin.loadEager).to.exist;
+            expect(plugin.loadLazy).to.exist;
+            expect(plugin.loadDelayed).to.exist;
+            sinon.spy(plugin, 'loadEager');
+            await window.hlx.plugins.run('loadEager');
+            sinon.assert.calledOnce(plugin.loadEager);
+          });
+
+          it('run the lazy phase', async () => {
+            const plugin = window.hlx.plugins.get('fullapi');
+            sinon.spy(plugin, 'loadLazy');
+            await window.hlx.plugins.run('loadLazy');
+            sinon.assert.calledOnce(plugin.loadLazy);
+          });
+
+          it('run the delayed phase', async () => {
+            const plugin = window.hlx.plugins.get('fullapi');
+            sinon.spy(plugin, 'loadDelayed');
+            await window.hlx.plugins.run('loadDelayed');
+            sinon.assert.calledOnce(plugin.loadDelayed);
+          });
+        });
+
+        describe('plugin with JS and CSS', () => {
+          before(() => {
+            setup();
+          });
+
+          it('registration and retrieval', async () => {
+            window.hlx.plugins.add('complex', {
+              load: 'lazy',
+              url: '/test/fixtures/plugins/complex',
+            });
+            const plugin = window.hlx.plugins.get('complex');
+            expect(plugin).to.exist;
+            expect(window.hlx.plugins.includes('complex')).to.true;
+          });
+
+          it('run the eager phase', async () => {
+            await window.hlx.plugins.load('eager');
+            const plugin = window.hlx.plugins.get('complex');
+            expect(plugin.loadEager).to.be.undefined;
+            expect(plugin.loadLazy).to.be.undefined;
+            expect(plugin.loadDelayed).to.be.undefined;
+          });
+
+          it('run the lazy phase', async () => {
+            await window.hlx.plugins.load('lazy');
+            const plugin = window.hlx.plugins.get('complex');
+            expect(plugin.loadEager).to.exist;
+            expect(plugin.loadLazy).to.exist;
+            expect(plugin.loadDelayed).to.exist;
+            sinon.spy(plugin, 'loadEager');
+            sinon.spy(plugin, 'loadLazy');
+            await window.hlx.plugins.run('loadLazy');
+            sinon.assert.notCalled(plugin.loadEager);
+            sinon.assert.calledOnce(plugin.loadLazy);
+            expect(getComputedStyle(document.body).fontFamily).to.equal('system-ui');
+          });
+
+          it('run the delayed phase', async () => {
+            const plugin = window.hlx.plugins.get('complex');
+            sinon.spy(plugin, 'loadDelayed');
+            await window.hlx.plugins.run('loadDelayed');
+            sinon.assert.calledOnce(plugin.loadDelayed);
+          });
+        });
+
+        describe('Generic', () => {
+          before(() => {
+            setup();
+          });
+
+          it('removes invalid plugins if loading fails', async () => {
+            window.hlx.plugins.add('/invalid.js');
+            let plugin = window.hlx.plugins.get('invalid');
+            expect(plugin).to.exist;
+            await window.hlx.plugins.load('eager');
+            plugin = window.hlx.plugins.get('invalid');
+            expect(plugin).to.be.undefined;
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
