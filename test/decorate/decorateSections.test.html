@@ -73,7 +73,7 @@
     <div class="section-metadata">
       <div>
         <div>Style</div>
-        <div>highlight</div>
+        <div>highlight,,afterempty</div>
       </div>
       <div>
         <div>Anchor</div>
@@ -109,6 +109,7 @@
         });
         // section metadata is applied
         expect(meta.classList.contains('highlight')).to.be.true;
+        expect(meta.classList.contains('afterempty')).to.be.true;
         expect(meta.dataset.anchor).to.equal('highlights');
       });
     });
