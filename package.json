@@ -35,19 +35,19 @@
     "@web/test-runner": "0.15.1",
     "@web/test-runner-commands": "0.6.5",
     "@web/test-runner-mocha": "0.8.1",
-    "chai": "4.3.7",
+    "chai": "5.0.0",
     "eslint": "8.49.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-html": "7.1.0",
     "eslint-plugin-import": "2.28.1",
-    "prettier-eslint": "15.0.1",
-    "prettier-eslint-cli": "7.1.0",
-    "rollup": "^2.79.1",
+    "prettier-eslint": "16.3.0",
+    "prettier-eslint-cli": "8.0.1",
+    "rollup": "^4.0.0",
     "rollup-plugin-cleanup": "^3.2.1",
-    "semantic-release": "21.1.1",
-    "sinon": "15.0.1",
-    "stylelint": "15.10.3",
-    "stylelint-config-standard": "30.0.1"
+    "semantic-release": "22.0.12",
+    "sinon": "17.0.1",
+    "stylelint": "16.2.0",
+    "stylelint-config-standard": "36.0.0"
   },
   "dependencies": {
     "@adobe/helix-rum-js": "1.8.0"
