@@ -1,3 +1,13 @@
 {
-  "extends": ["github>adobe/helix-shared"]
+  "extends": [
+    "github>adobe/helix-shared"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "helix-rum-js"
+      ],
+      "allowedVersions": ">=1.0.0 <2.0.0"
+    }
+  ]
 }
