@@ -32,6 +32,9 @@
           expect(window.hlx).to.not.be.null;
           expect(window.hlx.codeBasePath).to.be.equal('/some/path');
           expect(window.hlx.lighthouse).to.be.false;
+          expect(window.hlx.patchBlockConfig).to.be.eql([]);
+          expect(window.hlx.plugins).to.exist;
+          expect(window.hlx.templates).to.exist;
         });
       });
     </script>
