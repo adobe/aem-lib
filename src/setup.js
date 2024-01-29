@@ -25,8 +25,8 @@ export function setup() {
   if (scriptEl) {
     try {
       [window.hlx.codeBasePath] = new URL(scriptEl.src).pathname.split('/scripts/scripts.js');
+      /* c8 ignore next 4 */
     } catch (error) {
-      /* c8 ignore next 3 */
       // eslint-disable-next-line no-console
       console.log(error);
     }
