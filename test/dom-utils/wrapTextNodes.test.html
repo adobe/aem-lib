@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="/some/path/scripts/scripts.js"></script>
+</head>
+
+<body>
+  <main>
+    <div>
+      <div class="text original">
+        <div>
+          <div>This will get a wrapping p</div>
+          <div><p>This will get a not get wrapping p since it already has one</p></div>
+          <div>  </div> <!-- I'm not sure pipeline can produce this structure, but adding it JIC -->
+        </div>
+      </div>
+      <div class="text expected">
+        <div>
+          <div><p>This will get a wrapping p</p></div>
+          <div><p>This will get a not get wrapping p since it already has one</p></div>
+          <div><p>  </p></div> <!-- I'm not sure pipeline can produce this structure, but adding it JIC -->
+        </div>
+      </div>
+      <div class="icons original">
+        <div>
+          <div><span class="icon icon-name"></span> it also works when the icon comes first</div>
+          <div><span class="icon icon-name"></span></div>
+        </div>
+      </div>
+      <div class="icons expected">
+        <div>
+          <div><p><span class="icon icon-name"></span> it also works when the icon comes first</p></div>
+          <div><p><span class="icon icon-name"></span></p></div>
+        </div>
+      </div>
+      <div class="code original">
+        <div>
+          <div><code>code blocks also get wrapped</code></div>
+          <div>text with some <code>inline code block also get wrapped</code></div>
+          <div><code>inline code block also get wrapped</code> with text after it, too</div>
+          <div>and for completeness <code>inline code block also get wrapped</code> with text before and after it!</div>
+        </div>
+        <div>
+          <div><pre><code>pre is a block level element so it doens't get a wrapper</code></pre></div>
+        </div>
+      </div>
+      <div class="code expected">
+        <div>
+          <div><p><code>code blocks also get wrapped</code></p></div>
+          <div><p>text with some <code>inline code block also get wrapped</code></p></div>
+          <div><p><code>inline code block also get wrapped</code> with text after it, too</p></div>
+          <div><p>and for completeness <code>inline code block also get wrapped</code> with text before and after it!</p></div>
+        </div>
+        <div>
+          <div><pre><code>pre is a block level element so it doens't get a wrapper</code></pre></div>
+        </div>
+      </div>
+      <div class="headings original">
+        <div>
+          <div>
+            <h2>headings will not be wrapped</h2>
+          </div>
+          <div>
+            <h3>headings of all levels will not be wrapped</h3>
+          </div>
+        </div>
+      </div>
+      <div class="headings expected">
+        <div>
+          <div>
+            <h2>headings will not be wrapped</h2>
+          </div>
+          <div>
+            <h3>headings of all levels will not be wrapped</h3>
+          </div>
+        </div>
+      </div>
+      <div class="pictures original">
+        <div>
+          <div><picture><img src="./media_123123123.png"></picture></div>
+          <div>
+            <p><picture><img src="./media_123123123.png"></picture></p>
+            <p>a picture with some text</p>
+          </div>
+          <div><picture><img src="./media_123123123.png"></picture> a picture with inline text</div>
+          <div>inline text with a picture<picture><img src="./media_123123123.png"></picture></div>
+          <div><picture><img src="./media_123123123.png"></picture> <a>a picture with an inline link</a></div>
+        </div>
+      </div>
+      <div class="pictures expected">
+        <div>
+          <div><picture><img src="./media_123123123.png"></picture></div>
+          <div>
+            <p><picture><img src="./media_123123123.png"></picture></p>
+            <p>a picture with some text</p>
+          </div>
+          <div><p><picture><img src="./media_123123123.png"></picture> a picture with inline text</p></div>
+          <div><p>inline text with a picture<picture><img src="./media_123123123.png"></picture></p></div>
+          <div><p><picture><img src="./media_123123123.png"></picture> <a>a picture with an inline link</a></p></div>
+        </div>
+      </div>
+      <div class="empty-cells original">
+        <div>
+          <div></div>
+        </div>
+      </div>
+      <div class="empty-cells expected">
+        <div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script type="module">
+    /* eslint-env mocha */
+    import { runTests } from '@web/test-runner-mocha';
+    import { expect } from '@esm-bundle/chai';
+    import { wrapTextNodes } from '../../src/dom-utils.js';
+
+    runTests(() => {
+      it('adds paragraphs to text nodes inside of blocks', () => {
+        const original = document.querySelector('.original.text');
+        const expected = document.querySelector('.expected.text');
+
+        wrapTextNodes(original);
+
+        expect(original.innerHTML).to.equal(expected.innerHTML);
+      });
+
+      it('adds paragraphs to text nodes with icons inside of blocks', () => {
+        const original = document.querySelector('.original.icons');
+        const expected = document.querySelector('.expected.icons');
+
+        wrapTextNodes(original);
+
+        expect(original.innerHTML).to.equal(expected.innerHTML);
+      });
+
+      it('wraps code inside of blocks, with pre when the code is an only-child', () => {
+        const original = document.querySelector('.original.code');
+        const expected = document.querySelector('.expected.code');
+        wrapTextNodes(original);
+
+        expect(original.innerHTML).to.equal(expected.innerHTML);
+      });
+
+      it('only wraps pictures inside of blocks when they have sibling text nodes', () => {
+        const original = document.querySelector('.original.pictures');
+        const expected = document.querySelector('.expected.pictures');
+        wrapTextNodes(original);
+
+        expect(original.innerHTML).to.equal(expected.innerHTML);
+      });
+
+      it('does not modify headings', () => {
+        const original = document.querySelector('.original.headings');
+        const expected = document.querySelector('.expected.headings');
+        wrapTextNodes(original);
+
+        expect(original.innerHTML).to.equal(expected.innerHTML);
+      });
+
+      it('does not modify empty cells', () => {
+        const original = document.querySelector('.original.empty-cells');
+        const expected = document.querySelector('.expected.empty-cells');
+        wrapTextNodes(original);
+
+        expect(original.innerHTML).to.equal(expected.innerHTML);
+      });
+    });
+  </script>
+
+</body>
+
+</html>
