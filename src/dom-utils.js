@@ -139,8 +139,8 @@ export function wrapTextNodes(block) {
     'H1', 'H2', 'H3', 'H4', 'H5', 'H6',
   ];
 
-  const wrap = (el, tag = 'p') => {
-    const wrapper = document.createElement(tag);
+  const wrap = (el) => {
+    const wrapper = document.createElement('p');
     wrapper.append(...el.childNodes);
     el.append(wrapper);
   };
