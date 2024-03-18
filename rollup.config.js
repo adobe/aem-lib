@@ -35,7 +35,6 @@ const bundles = [
 
 export default [...bundles.map(({ outputFile, source }) => ({
   input: source,
-  inlineDynamicImports: true,
   output: [
     {
       file: `${outputFile}.js`,
@@ -43,6 +42,7 @@ export default [...bundles.map(({ outputFile, source }) => ({
       sourcemap: false,
       exports: 'auto',
       banner,
+      inlineDynamicImports: true,
     },
   ].filter((m) => m),
   plugins: [
