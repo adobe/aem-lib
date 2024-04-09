@@ -44,12 +44,12 @@
     "prettier-eslint-cli": "8.0.1",
     "rollup": "4.14.1",
     "rollup-plugin-cleanup": "3.2.1",
-    "semantic-release": "22.0.12",
+    "semantic-release": "23.0.8",
     "sinon": "17.0.1",
     "stylelint": "16.3.1",
     "stylelint-config-standard": "36.0.0"
   },
   "dependencies": {
-    "@adobe/helix-rum-js": "1.8.0"
+    "@adobe/helix-rum-js": "2.0.0"
   }
 }
