@@ -56,6 +56,19 @@ export function decorateIcon(span, prefix = '', alt = '') {
   img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
   img.alt = alt;
   img.loading = 'lazy';
+  const fontSize = window.getComputedStyle(span).fontSize.replace(/\D/g, '');
+  img.width = fontSize;
+  img.height = fontSize;
+  fetch(img.src).then((res) => {
+    res.text().then((text) => {
+      const temp = document.createElement('div');
+      temp.innerHTML = text;
+      const width = temp.querySelector('[width]');
+      if (width) img.width = width.getAttribute('width').replace(/\D/g, '');
+      const height = temp.querySelector('[height]');
+      if (height) img.height = height.getAttribute('height').replace(/\D/g, '');
+    });
+  });
   span.append(img);
 }
 
