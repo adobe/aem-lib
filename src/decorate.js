@@ -60,14 +60,17 @@ export function decorateIcon(span, prefix = '', alt = '') {
   img.width = fontSize;
   img.height = fontSize;
   fetch(img.src).then((res) => {
-    res.text().then((text) => {
-      const temp = document.createElement('div');
-      temp.innerHTML = text;
-      const width = temp.querySelector('[width]');
-      if (width) img.width = width.getAttribute('width').replace(/\D/g, '');
-      const height = temp.querySelector('[height]');
-      if (height) img.height = height.getAttribute('height').replace(/\D/g, '');
-    });
+    if (res.ok) {
+      res.text().then((text) => {
+        const temp = document.createElement('div');
+        temp.innerHTML = text;
+        const svg = temp.querySelector('svg');
+        const w = svg.width.baseVal.value;
+        if (w) img.width = w;
+        const h = svg.height.baseVal.value;
+        if (h) img.width = h;
+      });
+    }
   });
   span.append(img);
 }
