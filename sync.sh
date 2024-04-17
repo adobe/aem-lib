@@ -4,7 +4,7 @@
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git config --global user.name "github-actions[bot]"
 
-git remote add token-authed-github https://${GITHUB_TOKEN}@github.com/$ORG/$REPO
+git remote add token-authed-github https://${GITHUB_TOKEN}@github.com/adobe/aem-lib
 
 # go to target branch
 git checkout next
