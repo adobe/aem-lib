@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# set identity
+git config --global user.email "github-actions[bot]@users.noreply.github.com"
+git config --global user.name "github-actions[bot]"
+
 # go to target branch
 git checkout next
 # pull all changes from main
