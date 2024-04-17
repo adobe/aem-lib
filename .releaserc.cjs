@@ -19,7 +19,7 @@ module.exports = {
     }],
   ],
   branches: [
-    { name: 'main', channel: '1.x' },
-    { name: '2.x', channel: '2.x', prerelease: true }
+    { name: 'main', channel: '1.x', range: '1.x' },
+    { name: '2.x', channel: '2.x', range: '2.x', prerelease: true }
   ],
 };
