@@ -2,6 +2,7 @@
   "extends": [
     "github>adobe/helix-shared"
   ],
+  "baseBranches": ["main", "5.x"],
   "packageRules": [
     {
       "matchPackageNames": [
