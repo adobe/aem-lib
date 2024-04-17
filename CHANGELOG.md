@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/adobe/aem-lib/compare/v1.5.1...v1.5.2) (2024-04-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-rum-js to v2 ([ea35ac5](https://github.com/adobe/aem-lib/commit/ea35ac5116e89d5b8b6282847a9ffdb31f2c6ee0))
+
 ## [1.5.1](https://github.com/adobe/aem-lib/compare/v1.5.0...v1.5.1) (2024-01-22)
 
 
