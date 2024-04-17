@@ -18,5 +18,8 @@ module.exports = {
       "publishCmd": "./publish.sh ${nextRelease.version} ${nextRelease.type}"
     }],
   ],
-  branches: ['main', '2.x'],
+  branches: [
+    { name: 'main' },
+    { name: '2.x', prerelease: true }
+  ],
 };
