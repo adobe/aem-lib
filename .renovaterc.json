@@ -11,16 +11,10 @@
       "matchPackageNames": [
         "helix-rum-js"
       ],
-      "allowedVersions": "<2.0.0"
-    },
-    {
-      "matchPackageNames": [
-        "helix-rum-js"
+      "matchBaseBranches": [
+        "main"
       ],
-      "allowedVersions": ">=2.0.0",
-      "baseBranchList": [
-        "2.x"
-      ]
+      "allowedVersions": "<2.0.0"
     }
   ]
 }
