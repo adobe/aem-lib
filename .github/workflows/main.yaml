@@ -19,7 +19,7 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     needs: test
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/2.x'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/next'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,3 +33,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ADOBE_BOT_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.ADOBE_BOT_NPM_TOKEN }}
+      - name: Opening pull request
+        id: pull
+        uses: tretuna/sync-branches@1.4.0
+        with:
+          GITHUB_TOKEN: ${{secrets.LARS_GH_TOKEN}}
+          FROM_BRANCH: "main"
+          TO_BRANCH: "next"

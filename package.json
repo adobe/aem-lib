@@ -1,6 +1,6 @@
 {
   "name": "@adobe/aem-lib",
-  "version": "1.5.4",
+  "version": "2.0.0",
   "description": "AEM Library",
   "type": "module",
   "scripts": {
@@ -50,6 +50,6 @@
     "stylelint-config-standard": "36.0.0"
   },
   "dependencies": {
-    "@adobe/helix-rum-js": "1.8.0"
+    "@adobe/helix-rum-js": "2.0.0"
   }
 }
