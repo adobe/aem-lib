@@ -35,3 +35,5 @@ jobs:
           NPM_TOKEN: ${{ secrets.ADOBE_BOT_NPM_TOKEN }}
       - name: Sync next branch
         run: sh sync.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.ADOBE_BOT_GITHUB_TOKEN }}
