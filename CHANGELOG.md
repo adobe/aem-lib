@@ -1,3 +1,10 @@
+## [1.5.4](https://github.com/adobe/aem-lib/compare/v1.5.3...v1.5.4) (2024-04-17)
+
+
+### Bug Fixes
+
+* **release:** allow releases from 2.x ([80356f5](https://github.com/adobe/aem-lib/commit/80356f5f4c2706bf354bc258e05ee18be95676ac))
+
 ## [1.5.3](https://github.com/adobe/aem-lib/compare/v1.5.2...v1.5.3) (2024-04-17)
 
 
