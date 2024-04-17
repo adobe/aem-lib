@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/adobe/aem-lib/compare/v1.5.4...v2.0.0) (2024-04-17)
+
+
+### chore
+
+* **deps:** use helix-rum-js@v2 ([5ebd74d](https://github.com/adobe/aem-lib/commit/5ebd74dbea0fca6d125c3002f5cbbbe547c543fe))
+
+
+### BREAKING CHANGES
+
+* **deps:** this requires a helix5 origin, on aem.live
+
 ## [1.5.4](https://github.com/adobe/aem-lib/compare/v1.5.3...v1.5.4) (2024-04-17)
 
 
