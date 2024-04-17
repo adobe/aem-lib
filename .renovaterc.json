@@ -9,6 +9,7 @@
         "helix-rum-js"
       ],
       "allowedVersions": ">=1.0.0"
+      "baseBranchList": ["main"]
     }
   ]
 }
