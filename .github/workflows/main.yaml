@@ -33,10 +33,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ADOBE_BOT_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.ADOBE_BOT_NPM_TOKEN }}
-      - name: Opening pull request
-        id: pull
-        uses: tretuna/sync-branches@1.4.0
-        with:
-          GITHUB_TOKEN: ${{secrets.LARS_GH_TOKEN}}
-          FROM_BRANCH: "main"
-          TO_BRANCH: "next"
+      - name: Sync next branch
+        run: sh sync.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.ADOBE_BOT_GITHUB_TOKEN }}
