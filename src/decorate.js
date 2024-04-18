@@ -59,19 +59,6 @@ export function decorateIcon(span, prefix = '', alt = '') {
   const fontSize = window.getComputedStyle(span).fontSize.replace(/\D/g, '');
   img.width = fontSize;
   img.height = fontSize;
-  fetch(img.src).then((res) => {
-    if (res.ok) {
-      res.text().then((text) => {
-        const temp = document.createElement('div');
-        temp.innerHTML = text;
-        const svg = temp.querySelector('svg');
-        const w = svg.width.baseVal.value;
-        if (w) img.width = w;
-        const h = svg.height.baseVal.value;
-        if (h) img.width = h;
-      });
-    }
-  });
   span.append(img);
 }
 
