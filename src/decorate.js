@@ -56,9 +56,8 @@ export function decorateIcon(span, prefix = '', alt = '') {
   img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
   img.alt = alt;
   img.loading = 'lazy';
-  const fontSize = window.getComputedStyle(span).fontSize.replace(/\D/g, '');
-  img.width = fontSize;
-  img.height = fontSize;
+  img.width = 16;
+  img.height = 16;
   span.append(img);
 }
 
