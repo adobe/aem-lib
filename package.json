@@ -1,6 +1,6 @@
 {
   "name": "@adobe/aem-lib",
-  "version": "1.5.4",
+  "version": "2.1.0",
   "description": "AEM Library",
   "type": "module",
   "scripts": {

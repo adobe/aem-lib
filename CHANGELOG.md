@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/adobe/aem-lib/compare/v2.0.0...v2.1.0) (2024-04-19)
+
+
+### Features
+
+* **setup:** better RUM error logging ([3908f1e](https://github.com/adobe/aem-lib/commit/3908f1ed1bcab7005891c17294d12f1bf9559838))
+
 # [2.0.0](https://github.com/adobe/aem-lib/compare/v1.5.4...v2.0.0) (2024-04-17)
 
 
