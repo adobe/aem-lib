@@ -18,6 +18,7 @@ import { sampleRUM } from '@adobe/helix-rum-js';
 export function setup() {
   window.hlx = window.hlx || {};
   window.hlx.RUM_MASK_URL = 'full';
+  window.hlx.RUM_MANUAL_ENHANCE = true;
   window.hlx.codeBasePath = '';
   window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
 
@@ -39,17 +40,6 @@ export function setup() {
 /* c8 ignore next 14 */
 export function init() {
   setup();
-  sampleRUM('top');
-
-  window.addEventListener('load', () => sampleRUM('load'));
-
-  window.addEventListener('unhandledrejection', (event) => {
-    /* c8 ignore next */
-    sampleRUM('error', { source: event.reason.sourceURL, target: event.reason.line });
-  });
-
-  window.addEventListener('error', (event) => {
-    /* c8 ignore next */
-    sampleRUM('error', { source: event.filename, target: event.lineno });
-  });
+  sampleRUM();
+  window.addEventListener('hlx:section:loaded', sampleRUM.enhance, { once: true });
 }

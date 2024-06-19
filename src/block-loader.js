@@ -29,6 +29,7 @@ export function updateSectionsStatus(main) {
       } else {
         section.dataset.sectionStatus = 'loaded';
         section.style.display = null;
+        window.dispatchEvent(new CustomEvent('hlx:section:loaded', { detail: { section } }));
       }
     }
   }
