@@ -2,12 +2,19 @@
   "extends": [
     "github>adobe/helix-shared"
   ],
+  "baseBranches": [
+    "main",
+    "2.x"
+  ],
   "packageRules": [
     {
       "matchPackageNames": [
         "helix-rum-js"
       ],
-      "allowedVersions": ">=1.0.0 <2.0.0"
+      "matchBaseBranches": [
+        "main"
+      ],
+      "allowedVersions": "<2.0.0"
     }
   ]
 }

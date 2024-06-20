@@ -1,3 +1,57 @@
+## [2.1.2](https://github.com/adobe/aem-lib/compare/v2.1.1...v2.1.2) (2024-06-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-rum-js to v1.9.0 ([#75](https://github.com/adobe/aem-lib/issues/75)) ([92af474](https://github.com/adobe/aem-lib/commit/92af4743ce2e1f4d22e2da910f743861770eba1d))
+
+## [2.1.1](https://github.com/adobe/aem-lib/compare/v2.1.0...v2.1.1) (2024-06-07)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-rum-js to v1.8.1 ([2c64eb0](https://github.com/adobe/aem-lib/commit/2c64eb0553bff19f269faaf4ba7b44b08232cfa1))
+
+# [2.1.0](https://github.com/adobe/aem-lib/compare/v2.0.0...v2.1.0) (2024-04-19)
+
+
+### Features
+
+* **setup:** better RUM error logging ([3908f1e](https://github.com/adobe/aem-lib/commit/3908f1ed1bcab7005891c17294d12f1bf9559838))
+
+# [2.0.0](https://github.com/adobe/aem-lib/compare/v1.5.4...v2.0.0) (2024-04-17)
+
+
+### chore
+
+* **deps:** use helix-rum-js@v2 ([5ebd74d](https://github.com/adobe/aem-lib/commit/5ebd74dbea0fca6d125c3002f5cbbbe547c543fe))
+
+
+### BREAKING CHANGES
+
+* **deps:** this requires a helix5 origin, on aem.live
+
+## [1.5.4](https://github.com/adobe/aem-lib/compare/v1.5.3...v1.5.4) (2024-04-17)
+
+
+### Bug Fixes
+
+* **release:** allow releases from 2.x ([80356f5](https://github.com/adobe/aem-lib/commit/80356f5f4c2706bf354bc258e05ee18be95676ac))
+
+## [1.5.3](https://github.com/adobe/aem-lib/compare/v1.5.2...v1.5.3) (2024-04-17)
+
+
+### Bug Fixes
+
+* **package): Revert "fix(deps:** update dependency @adobe/helix-rum-js to v2" ([a0a54a9](https://github.com/adobe/aem-lib/commit/a0a54a93e6c4fb2ba9e2405e51f9535967121dc5))
+
+## [1.5.2](https://github.com/adobe/aem-lib/compare/v1.5.1...v1.5.2) (2024-04-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-rum-js to v2 ([ea35ac5](https://github.com/adobe/aem-lib/commit/ea35ac5116e89d5b8b6282847a9ffdb31f2c6ee0))
+
 ## [1.5.1](https://github.com/adobe/aem-lib/compare/v1.5.0...v1.5.1) (2024-01-22)
 
 
