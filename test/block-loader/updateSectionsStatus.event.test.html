@@ -5,7 +5,7 @@
       <div class="section section1" id="section1"><div class="block block11" data-block-status="initialized"></div></div>
       <div class="section section2" id="section2"><div class="block block21" data-block-status="loading"></div></div>
     </main>
-    
+
     <script type="module">
       /* eslint-env mocha */
       import { runTests } from '@web/test-runner-mocha';
@@ -17,7 +17,7 @@
           const main = document.querySelector('main');
 
           const events = [];
-          window.addEventListener('hlx:section:loaded', (event) => {
+          window.addEventListener('aem:section:loaded', (event) => {
             events.push(event);
           });
 
