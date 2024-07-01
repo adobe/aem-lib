@@ -1,3 +1,15 @@
+# [2.3.0](https://github.com/adobe/aem-lib/compare/v2.2.0...v2.3.0) (2024-07-01)
+
+
+### Bug Fixes
+
+* adjust coverage ([d2ee48c](https://github.com/adobe/aem-lib/commit/d2ee48c51cb962e77004bb98c7d5431989f426ee))
+
+
+### Features
+
+* improve sampleRUM error handling ([5c32dbb](https://github.com/adobe/aem-lib/commit/5c32dbba5fc62b82f2efd4aa2c2f0bab2f9110af))
+
 # [2.2.0](https://github.com/adobe/aem-lib/compare/v2.1.2...v2.2.0) (2024-07-01)
 
 
