@@ -45,12 +45,15 @@ export function init() {
 
   ['error', 'unhandledrejection'].forEach((event) => {
     window.addEventListener(event, ({ reason, error }) => {
-      /* c8 ignore next 5 */
-      const source = (reason || error).stack.split('\n')
-        .filter((line) => line.match(/https?:\/\//)).shift()
-        .replace(/at ([^ ]+) \((.+)\)/, '$1@$2');
-      const target = (reason || error).toString();
-      sampleRUM('error', { source, target });
+      const errData = { source: 'undefined error' };
+      try {
+        errData.target = (reason || error).toString();
+        errData.source = (reason || error).stack.split('\n')
+          .filter((line) => line.match(/https?:\/\//)).shift()
+          .replace(/at ([^ ]+) \((.+)\)/, '$1@$2')
+          .trim();
+      } catch (err) { /* error structure was not as expected */ }
+      sampleRUM('error', errData);
     });
   });
 }
