@@ -36,7 +36,7 @@ export function setup() {
 /**
  * Auto initializiation.
  */
-/* c8 ignore next 14 */
+/* c8 ignore next 18 */
 export function init() {
   setup();
   sampleRUM('top');
