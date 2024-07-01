@@ -3,8 +3,7 @@
     "github>adobe/helix-shared"
   ],
   "baseBranches": [
-    "main",
-    "2.x"
+    "main"
   ],
   "packageRules": [
     {

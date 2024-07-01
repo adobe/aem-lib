@@ -8,12 +8,6 @@ TYPE=$2 # can be major, minor, patch
 VERSION_DASH=${VERSION//./-}
 BRANCH=update-lib-aem-$TYPE-$VERSION_DASH
 
-# if the version is 2.0.0 or greater, exit gracefully now
-if [[ $VERSION == 2.* ]]; then
-  echo "Version $VERSION is 2.0.0 or greater, exiting gracefully"
-  exit 0
-fi
-
 cd ..
 echo "Using gh version: $(gh --version)"
 gh repo clone $ORG/$REPO
