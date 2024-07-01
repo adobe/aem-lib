@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <main>
+      <div class="section section1" id="section1"><div class="block block11" data-block-status="initialized"></div></div>
+      <div class="section section2" id="section2"><div class="block block21" data-block-status="loading"></div></div>
+    </main>
+    
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { updateSectionsStatus } from '../../src/block-loader.js';
+
+      runTests(() => {
+        it('updateSectionsStatus - fires event', async () => {
+          const main = document.querySelector('main');
+
+          const events = [];
+          window.addEventListener('hlx:section:loaded', (event) => {
+            events.push(event);
+          });
+
+          const section1 = document.querySelector('.section1');
+          const section2 = document.querySelector('.section2');
+
+          const block11 = document.querySelector('.block11');
+          const block21 = document.querySelector('.block21');
+
+          updateSectionsStatus(main);
+
+          expect(section1.dataset.sectionStatus).to.equal('loading');
+          expect(section2.dataset.sectionStatus).to.be.undefined;
+
+          block11.dataset.blockStatus = 'loaded';
+
+          updateSectionsStatus(main);
+
+          expect(section1.dataset.sectionStatus).to.equal('loaded');
+          expect(section2.dataset.sectionStatus).to.equal('loading');
+
+          expect(events.length).to.equal(1);
+
+          expect(events[0].detail).to.exists;
+          expect(events[0].detail.section).to.exists;
+          expect(events[0].detail.section.id).to.equal('section1');
+
+          block21.dataset.blockStatus = 'loaded';
+
+          updateSectionsStatus(main);
+
+          expect(section1.dataset.sectionStatus).to.equal('loaded');
+          expect(section2.dataset.sectionStatus).to.equal('loaded');
+
+          expect(events.length).to.equal(2);
+
+          expect(events[1].detail).to.exists;
+          expect(events[1].detail.section).to.exists;
+          expect(events[1].detail.section.id).to.equal('section2');
+        });
+      });
+    </script>
+  </body>
+</html>
