@@ -4,7 +4,7 @@
     <main>
       <div class="section">
         <div class="wrapper">
-          <div class="ablock block" data-block-name="noopblock"><img src="/test/fixtures/logo.png" loading="eager"></div>
+          <div><img loading="lazy"></div>
         </div>
       </div>
     </main>
@@ -13,7 +13,7 @@
       /* eslint-env mocha */
       import { runTests } from '@web/test-runner-mocha';
       import { expect } from '@esm-bundle/chai';
-      import { waitForLCP } from '../../src/block-loader.js';
+      import { waitForFirstImage } from '../../src/block-loader.js';
 
       window.hlx = {};
 
@@ -21,15 +21,13 @@
         it('waitForLCP -  wait for eager loaded img in block', async () => {
           window.hlx.codeBasePath = '/test/fixtures';
 
-          const block = document.querySelector('.ablock');
+          const section = document.querySelector('.section');
 
-          await waitForLCP(['noopblock']);
+          let img = document.querySelector('img');
+          img.src = '/test/fixtures/logo.png';
+          await waitForFirstImage(section);
 
-          expect(block.dataset.blockName).to.equal('noopblock');
-          expect(block.dataset.blockStatus).to.equal('loaded');
-
-          const img = block.querySelector('img');
-          expect(img).to.not.be.null;
+          img = document.querySelector('img');
           expect(img.complete).to.be.true;
           expect(img.naturalHeight).to.not.equal(0);
         });

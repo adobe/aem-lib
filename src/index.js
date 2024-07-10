@@ -26,15 +26,15 @@ export { decorateButtons, decorateIcons, decorateSections } from './decorate.js'
 export { sampleRUM } from '@adobe/helix-rum-js';
 export { fetchPlaceholders } from './placeholders.js';
 export {
-  updateSectionsStatus,
   buildBlock,
   loadBlock,
-  loadBlocks,
   decorateBlock,
   decorateBlocks,
   loadHeader,
   loadFooter,
-  waitForLCP,
+  loadSection,
+  loadSections,
+  waitForFirstImage,
 } from './block-loader.js';
 
 export { setup } from './setup.js';
