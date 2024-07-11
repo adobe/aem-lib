@@ -41,5 +41,4 @@ export function setup() {
 export function init() {
   setup();
   sampleRUM();
-  window.addEventListener('hlx:section:loaded', sampleRUM.enhance, { once: true });
 }
