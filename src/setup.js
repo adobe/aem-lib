@@ -18,6 +18,7 @@ import { sampleRUM } from '@adobe/helix-rum-js';
 export function setup() {
   window.hlx = window.hlx || {};
   window.hlx.RUM_MASK_URL = 'full';
+  window.hlx.RUM_MANUAL_ENHANCE = true;
   window.hlx.codeBasePath = '';
   window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
 
@@ -39,21 +40,5 @@ export function setup() {
 /* c8 ignore next 18 */
 export function init() {
   setup();
-  sampleRUM('top');
-
-  window.addEventListener('load', () => sampleRUM('load'));
-
-  ['error', 'unhandledrejection'].forEach((event) => {
-    window.addEventListener(event, ({ reason, error }) => {
-      const errData = { source: 'undefined error' };
-      try {
-        errData.target = (reason || error).toString();
-        errData.source = (reason || error).stack.split('\n')
-          .filter((line) => line.match(/https?:\/\//)).shift()
-          .replace(/at ([^ ]+) \((.+)\)/, '$1@$2')
-          .trim();
-      } catch (err) { /* error structure was not as expected */ }
-      sampleRUM('error', errData);
-    });
-  });
+  sampleRUM();
 }
