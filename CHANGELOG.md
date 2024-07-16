@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/adobe/aem-lib/compare/v2.4.0...v2.5.0) (2024-07-16)
+
+
+### Features
+
+* migration to rum v2 ([#76](https://github.com/adobe/aem-lib/issues/76)) ([7ebf186](https://github.com/adobe/aem-lib/commit/7ebf186834c2f5b36034d188cc7dcb2c3bc675f4))
+
 # [2.4.0](https://github.com/adobe/aem-lib/compare/v2.3.0...v2.4.0) (2024-07-16)
 
 
