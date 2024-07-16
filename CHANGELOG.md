@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/adobe/aem-lib/compare/v2.3.0...v2.4.0) (2024-07-16)
+
+
+### Features
+
+* section loader ([#80](https://github.com/adobe/aem-lib/issues/80)) ([d94e1f2](https://github.com/adobe/aem-lib/commit/d94e1f2735f40ac0719930bbb81361df87dac20f))
+
 # [2.3.0](https://github.com/adobe/aem-lib/compare/v2.2.0...v2.3.0) (2024-07-01)
 
 

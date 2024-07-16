@@ -3,16 +3,19 @@
   <body>
     <main>
       <div class="section section1">
-        <div class="wrapper wrapper1">
-          <div class="ablock1"><p>This is a first block</p></div>
+        <div class="wrapper">
+          <div class="block1"><p>This is the first block</p></div>
         </div>
-        <div class="wrapper wrapper2">
-          <div class="ablock2"><p>This is a second block</p></div>
+        <div class="wrapper">
+          <div class="block2"><p>This is the second block</p></div>
         </div>
       </div>
       <div class="section section2">
-        <div class="wrapper wrapper1">
-          <div class="ablock3"><p>This is a third block in another section</p></div>
+        <div class="wrapper">
+          <div class="block3"><p>This is the third block</p></div>
+        </div>
+        <div class="wrapper">
+          <div class="block4"><p>This is the fourth block</p></div>
         </div>
       </div>
     </main>
@@ -23,58 +26,32 @@
       import { expect } from '@esm-bundle/chai';
       import { decorateBlocks } from '../../src/block-loader.js';
 
+      window.hlx = {};
+
       runTests(() => {
-        it('decorateBlocks - blocks and parents are decorated', () => {
-          const section1 = document.querySelector('.section1');
-          const section2 = document.querySelector('.section2');
-          const wrapper11 = document.querySelector('.section1 .wrapper1');
-          const wrapper12 = document.querySelector('.section1 .wrapper2');
-          const wrapper21 = document.querySelector('.section2 .wrapper1');
-          const block1 = document.querySelector('.ablock1');
-          const block2 = document.querySelector('.ablock2');
-          const block3 = document.querySelector('.ablock3');
+        it('decorateBlocks - decorate all blocks', async () => {
+          window.hlx.codeBasePath = '/test/fixtures';
 
-          decorateBlocks(document.body);
+          await decorateBlocks(document.querySelector('main'));
 
-          expect(section1.classList.contains('ablock1-container')).to.be.true;
-          expect(section1.classList.contains('ablock2-container')).to.be.true;
-          expect(section1.classList.contains('ablock3-container')).to.be.false;
+          const testBlock = (name, text) => {
+            const block = document.querySelector(`.${name}`);
+            const wrapper = block.parentElement;
+            const section = block.closest('.section');
 
-          expect(section2.classList.contains('ablock1-container')).to.be.false;
-          expect(section2.classList.contains('ablock2-container')).to.be.false;
-          expect(section2.classList.contains('ablock3-container')).to.be.true;
+            expect(section.classList.contains(`${name}-container`)).to.be.true;
+            expect(wrapper.classList.contains(`${name}-wrapper`)).to.be.true;
+            expect(block.classList.contains(name)).to.be.true;
+            expect(block.classList.contains('block')).to.be.true;
+            expect(block.dataset.blockName).to.equal(name);
+            expect(block.dataset.blockStatus).to.equal('initialized');
+            expect(block.innerHTML).to.equal(`<p>${text}</p>`);
+          };
 
-          expect(wrapper11.classList.contains('ablock1-wrapper')).to.be.true;
-          expect(wrapper11.classList.contains('ablock2-wrapper')).to.be.false;
-          expect(wrapper11.classList.contains('ablock3-wrapper')).to.be.false;
-
-          expect(wrapper12.classList.contains('ablock1-wrapper')).to.be.false;
-          expect(wrapper12.classList.contains('ablock2-wrapper')).to.be.true;
-          expect(wrapper12.classList.contains('ablock3-wrapper')).to.be.false;
-
-          expect(wrapper21.classList.contains('ablock1-wrapper')).to.be.false;
-          expect(wrapper21.classList.contains('ablock2-wrapper')).to.be.false;
-          expect(wrapper21.classList.contains('ablock3-wrapper')).to.be.true;
-
-          expect(block1.classList.contains('block')).to.be.true;
-          expect(block2.classList.contains('block')).to.be.true;
-          expect(block3.classList.contains('block')).to.be.true;
-
-          expect(block1.classList.contains('ablock1')).to.be.true;
-          expect(block1.classList.contains('ablock2')).to.be.false;
-          expect(block1.classList.contains('ablock3')).to.be.false;
-
-          expect(block2.classList.contains('ablock1')).to.be.false;
-          expect(block2.classList.contains('ablock2')).to.be.true;
-          expect(block2.classList.contains('ablock3')).to.be.false;
-
-          expect(block3.classList.contains('ablock1')).to.be.false;
-          expect(block3.classList.contains('ablock2')).to.be.false;
-          expect(block3.classList.contains('ablock3')).to.be.true;
-
-          expect(block1.dataset.blockStatus).to.equal('initialized');
-          expect(block2.dataset.blockStatus).to.equal('initialized');
-          expect(block3.dataset.blockStatus).to.equal('initialized');
+          testBlock('block1', 'This is the first block');
+          testBlock('block2', 'This is the second block');
+          testBlock('block3', 'This is the third block');
+          testBlock('block4', 'This is the fourth block');
         });
       });
     </script>
