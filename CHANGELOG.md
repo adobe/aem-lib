@@ -1,3 +1,10 @@
+## [2.5.1](https://github.com/adobe/aem-lib/compare/v2.5.0...v2.5.1) (2024-08-13)
+
+
+### Bug Fixes
+
+* use latest rum-js released version ([#86](https://github.com/adobe/aem-lib/issues/86)) ([ddd6b3c](https://github.com/adobe/aem-lib/commit/ddd6b3cad100d4cd667954e7a9e75d026ba326d9))
+
 # [2.5.0](https://github.com/adobe/aem-lib/compare/v2.4.0...v2.5.0) (2024-07-16)
 
 
