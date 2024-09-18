@@ -50,6 +50,6 @@
     "stylelint-config-standard": "36.0.1"
   },
   "dependencies": {
-    "@adobe/helix-rum-js": "2.5.0"
+    "@adobe/helix-rum-js": "2.5.3"
   }
 }
