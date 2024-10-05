@@ -8,7 +8,7 @@
       /* eslint-env mocha */
       import { runTests } from '@web/test-runner-mocha';
       import { expect } from '@esm-bundle/chai';
-      import { setup } from '../../src/setup.js';
+      import { setup, init } from '../../src/setup.js';
 
       runTests(() => {
         it('setup - defines window.hlx', () => {
@@ -32,6 +32,14 @@
           expect(window.hlx).to.not.be.null;
           expect(window.hlx.codeBasePath).to.be.equal('/some/path');
           expect(window.hlx.lighthouse).to.be.false;
+        });
+
+        it('init - does not enable RUM during prerendering', () => {
+          Object.defineProperty(document, 'prerendering', { value: true });
+          init();
+          expect(window.hlx.rum).to.be.undefined;
+          document.dispatchEvent(new Event('prerenderingchange'));
+          expect(window.hlx.rum).to.not.be.undefined;
         });
       });
     </script>
