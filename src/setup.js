@@ -40,5 +40,10 @@ export function setup() {
 /* c8 ignore next 18 */
 export function init() {
   setup();
-  sampleRUM();
+  // Prerender-aware initialization
+  if (document.prerendering) {
+    document.addEventListener('prerenderingchange', sampleRUM, { once: true });
+  } else {
+    sampleRUM();
+  }
 }
