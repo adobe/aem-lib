@@ -145,12 +145,7 @@ function setup() {
 
 function init() {
   setup();
-  // Prerender-aware initialization
-  if (document.prerendering) {
-    document.addEventListener('prerenderingchange', sampleRUM, { once: true });
-  } else {
-    sampleRUM();
-  }
+  sampleRUM();
 }
 
 /**

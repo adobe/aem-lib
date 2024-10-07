@@ -1,3 +1,10 @@
+## [2.6.1](https://github.com/adobe/aem-lib/compare/v2.6.0...v2.6.1) (2024-10-07)
+
+
+### Reverts
+
+* Revert "feat: add support for proper tracking in a speculative pre-rendering context ([#102](https://github.com/adobe/aem-lib/issues/102))" ([543fa72](https://github.com/adobe/aem-lib/commit/543fa72666a1f971ab890ce3fc137a9c80492aca))
+
 # [2.6.0](https://github.com/adobe/aem-lib/compare/v2.5.7...v2.6.0) (2024-10-07)
 
 
