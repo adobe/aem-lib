@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/adobe/aem-lib/compare/v2.5.7...v2.6.0) (2024-10-07)
+
+
+### Features
+
+* add support for proper tracking in a speculative pre-rendering context ([#102](https://github.com/adobe/aem-lib/issues/102)) ([aba822a](https://github.com/adobe/aem-lib/commit/aba822a616f8ee15a0aefbb42cebe5f85cfe65e2))
+
 ## [2.5.7](https://github.com/adobe/aem-lib/compare/v2.5.6...v2.5.7) (2024-09-19)
 
 

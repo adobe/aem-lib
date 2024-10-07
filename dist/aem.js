@@ -145,7 +145,12 @@ function setup() {
 
 function init() {
   setup();
-  sampleRUM();
+  // Prerender-aware initialization
+  if (document.prerendering) {
+    document.addEventListener('prerenderingchange', sampleRUM, { once: true });
+  } else {
+    sampleRUM();
+  }
 }
 
 /**
