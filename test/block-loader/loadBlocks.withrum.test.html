@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <main>
+      <div class="section">
+        <div class="wrapper">
+          <div class="block block1" data-block-name="simpleblock"><p>This is the first block</p></div>
+        </div>
+        <div class="wrapper">
+          <div class="block block2" data-block-name="asyncblock"><p>This is the second block</p></div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="wrapper">
+          <div class="block block3" data-block-name="simpleblock"><p>This is the third block</p></div>
+        </div>
+        <div class="wrapper">
+          <div class="block block4" data-block-name="asyncblock"><p>This is the fourth block</p></div>
+        </div>
+      </div>
+    </main>
+    
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { sampleRUM } from '@adobe/helix-rum-js';
+      import { loadSections } from '../../src/block-loader.js';
+
+      window.hlx = {};
+
+      runTests(() => {
+        beforeEach(() => {
+          const usp = new URLSearchParams(window.location.search);
+          usp.append('rum', 'on');
+          window.history.replaceState({}, '', `${window.location.pathname}?${usp.toString()}`);
+        });
+
+        afterEach(() => {
+          const usp = new URLSearchParams(window.location.search);
+          usp.delete('rum');
+          window.history.replaceState({}, '', `${window.location.pathname}?${usp.toString()}`);
+          // eslint-disable-next-line no-underscore-dangle
+          window.hlx.rum = undefined;
+
+          const enhancer = document.querySelector('script[src*="rum-enhancer"]');
+          if (enhancer) {
+            enhancer.remove();
+          }
+        });
+
+        it('loadBlocks - loads all blocks', async () => {
+          window.hlx.codeBasePath = '/test/fixtures';
+          sampleRUM();
+
+          await loadSections(document.querySelector('main'));
+
+          // loadSections should have run "sampleRUM.enhance()"
+          expect(document.querySelector('script[src*="rum-enhancer"]')).to.exist;
+        });
+      });
+    </script>
+  </body>
+</html>
