@@ -1,3 +1,10 @@
+## [2.7.2](https://github.com/adobe/aem-lib/compare/v2.7.1...v2.7.2) (2024-11-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-rum-js to v2.8.0 ([3e02886](https://github.com/adobe/aem-lib/commit/3e02886692db43d59da28ecd44151ae3d7536de3))
+
 ## [2.7.1](https://github.com/adobe/aem-lib/compare/v2.7.0...v2.7.1) (2024-10-17)
 
 
