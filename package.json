@@ -28,7 +28,7 @@
     "@babel/core": "7.26.0",
     "@babel/eslint-parser": "7.25.9",
     "@esm-bundle/chai": "4.3.4-fix.0",
-    "@rollup/plugin-node-resolve": "15.3.1",
+    "@rollup/plugin-node-resolve": "16.0.0",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/exec": "6.0.3",
     "@semantic-release/git": "10.0.1",
