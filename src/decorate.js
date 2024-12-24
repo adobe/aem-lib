@@ -65,7 +65,7 @@ export function decorateIcon(span, prefix = '', alt = '') {
  * @param {string} [prefix] prefix to be added to icon the src
  */
 export function decorateIcons(element, prefix = '') {
-  const icons = [...element.querySelectorAll('span.icon')];
+  const icons = element.querySelectorAll('span.icon');
   icons.forEach((span) => {
     decorateIcon(span, prefix);
   });
