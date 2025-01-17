@@ -6,14 +6,5 @@
     "main"
   ],
   "packageRules": [
-    {
-      "matchPackageNames": [
-        "helix-rum-js"
-      ],
-      "matchBaseBranches": [
-        "main"
-      ],
-      "allowedVersions": "<2.0.0"
-    }
   ]
 }
