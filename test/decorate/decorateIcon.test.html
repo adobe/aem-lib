@@ -1,39 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-  <script type="module">
-    /* eslint-env mocha */
-    import { runTests } from '@web/test-runner-mocha';
-    import { expect } from '@esm-bundle/chai';
-    import { decorateIcon } from '../../src/decorate.js';
+<script type="module">
+  /* eslint-env mocha */
+  import { runTests } from '@web/test-runner-mocha';
+  import { expect } from '@esm-bundle/chai';
+  import { decorateIcon } from '../../src/decorate.js';
+  import { decorateIcons } from '../../src/index.js';
 
-    window.hlx = {};
+  window.hlx = {};
 
-    runTests(() => {
-      it('decorates icons with alt text', async () => {
-        window.hlx.codeBasePath = '/test/fixtures';
+  runTests(() => {
+    beforeEach(() => {
+      document.body.querySelectorAll('span').forEach((el) => el.remove());
+    });
 
-        const iconA = document.createElement('span');
-        iconA.className = 'icon icon-a';
-        decorateIcon(iconA, '', 'icon a alt text');
+    it('decorates icons with alt text', async () => {
+      window.hlx.codeBasePath = '/test/fixtures';
 
-        const iconB = document.createElement('span');
-        iconB.className = 'icon icon-b';
-        decorateIcon(iconB);
+      const iconA = document.createElement('span');
+      iconA.className = 'icon icon-a';
+      decorateIcon(iconA, '', 'icon a alt text');
 
-        document.body.prepend(iconA, iconB);
+      const iconB = document.createElement('span');
+      iconB.className = 'icon icon-b';
+      decorateIcon(iconB);
 
-        const icons = document.querySelectorAll('.icon');
-        icons.forEach((icon) => {
-          expect(icon.firstElementChild.alt).to.exist;
-          if (icon === iconA) {
-            expect(icon.firstElementChild.alt).to.be.equal('icon a alt text');
-          } else if (icon === iconB) {
-            expect(icon.firstElementChild.alt).to.be.equal('');
-          }
-        });
+      document.body.prepend(iconA, iconB);
+
+      const icons = document.querySelectorAll('.icon');
+      icons.forEach((icon) => {
+        expect(icon.firstElementChild.alt).to.exist;
+        if (icon === iconA) {
+          expect(icon.firstElementChild.alt).to.be.equal('icon a alt text');
+        } else if (icon === iconB) {
+          expect(icon.firstElementChild.alt).to.be.equal('');
+        }
       });
     });
-  </script>
+
+    it('does not process icon if img exists', async () => {
+      window.hlx.codeBasePath = '/test/fixtures';
+      const iconA = document.createElement('span');
+      iconA.className = 'icon icon-a';
+      decorateIcon(iconA, '', 'icon a alt text');
+
+      const iconB = document.createElement('span');
+      iconB.className = 'icon icon-b';
+      decorateIcon(iconB);
+
+      document.body.prepend(iconA, iconB);
+      decorateIcons(document.body);
+
+      const icons = document.querySelectorAll('.icon');
+      icons.forEach((icon) => {
+        const img = icon.querySelectorAll('img');
+        expect(img.length).to.be.equal(1);
+      });
+    });
+  });
+</script>
 </body>
 </html>
