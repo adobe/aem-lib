@@ -1,0 +1,15 @@
+{
+  "total": 2,
+  "offset": 0,
+  "limit": 2,
+  "data": [
+    {
+      "Key": "Key2",
+      "Value": "Value2"
+    }, 
+    {
+      "Key": "Key.With.Dot",
+      "Value": "Key With Dot Value 2"
+    }
+  ]
+}

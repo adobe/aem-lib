@@ -15,6 +15,10 @@
       import { fetchPlaceholders } from '../../src/placeholders.js';
 
       runTests(() => {
+        beforeEach(() => {
+          window.placeholders = {};
+        });
+
         it('fetchPlaceholders - no placeholder file at root', async () => {
           try {
             const placeholders = await fetchPlaceholders();
@@ -26,9 +30,60 @@
 
         it('fetchPlaceholders - placeholder file in fixtures folder', async () => {
           const placeholders = await fetchPlaceholders('../fixtures');
-          expect(placeholders.key1).to.equal('Value1');
-          expect(placeholders.keyWithSpace).to.equal('Key With Space Value');
+          expect(placeholders.Key1).to.equal('Value1');
+          expect(placeholders['Key With Space']).to.equal('Key With Space Value');
+          expect(placeholders.Key.With.Dot).to.equal('Key With Dot Value');
           expect(placeholders.unknown).to.be.undefined;
+        });
+
+        it('fetchPlaceholders - override placeholders path with metadata', async () => {
+          // Add meta tag for this test only
+          const meta = document.createElement('meta');
+          meta.setAttribute('name', 'placeholders');
+          meta.setAttribute('content', '../fixtures/placeholders2.json');
+          document.head.appendChild(meta);
+
+          const placeholders = await fetchPlaceholders();
+          expect(placeholders.Key1).to.be.undefined;
+          expect(placeholders['Key With Space']).to.be.undefined;
+          expect(placeholders.Key2).to.equal('Value2');
+          expect(placeholders.Key.With.Dot).to.equal('Key With Dot Value 2');
+
+          // Clean up after test
+          meta.remove();
+        });
+
+        it('fetchPlaceholders - override placeholders path with metadata with fallback', async () => {
+          // Add meta tag for this test only
+          const meta = document.createElement('meta');
+          meta.setAttribute('name', 'placeholders');
+          meta.setAttribute('content', '../fixtures/placeholders.json\n../fixtures/placeholders2.json');
+          document.head.appendChild(meta);
+
+          const placeholders = await fetchPlaceholders();
+          expect(placeholders.Key1).to.equal('Value1');
+          expect(placeholders.Key2).to.equal('Value2');
+          expect(placeholders['Key With Space']).to.equal('Key With Space Value');
+          expect(placeholders.Key.With.Dot).to.equal('Key With Dot Value 2');
+
+          // Clean up after test
+          meta.remove();
+        });
+
+        it('fetchPlaceholders - override placeholders path with root metadata', async () => {
+          // Add meta tag for this test only
+          const meta = document.createElement('meta');
+          meta.setAttribute('name', 'root');
+          meta.setAttribute('content', '../fixtures/es/');
+          document.head.appendChild(meta);
+
+          const placeholders = await fetchPlaceholders();
+          expect(placeholders.Key1).to.equal('Valor1');
+          expect(placeholders['Key With Space']).to.equal('Valor con espacio');
+          expect(placeholders.Key.With.Dot).to.equal('Valor con punto');
+
+          // Clean up after test
+          meta.remove();
         });
       });
     </script>

@@ -1,0 +1,18 @@
+{
+    "total": 3,
+    "offset": 0,
+    "limit": 3,
+    "data": [
+      {
+        "Key": "Key1",
+        "Value": "Valor1"
+      }, {
+        "Key": "Key With Space",
+        "Value": "Valor con espacio"
+      },
+      {
+        "Key": "Key.With.Dot",
+        "Value": "Valor con punto"
+      }
+    ]
+  }

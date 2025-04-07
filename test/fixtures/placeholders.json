@@ -1,14 +1,18 @@
 {
-  "total": 2,
+  "total": 3,
   "offset": 0,
-  "limit": 2,
+  "limit": 3,
   "data": [
     {
       "Key": "Key1",
-      "Text": "Value1"
+      "Value": "Value1"
     }, {
       "Key": "Key With Space",
-      "Text": "Key With Space Value"
+      "Value": "Key With Space Value"
+    },
+    {
+      "Key": "Key.With.Dot",
+      "Value": "Key With Dot Value"
     }
   ]
 }
