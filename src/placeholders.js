@@ -15,7 +15,7 @@ import { toCamelCase } from './utils.js';
 /**
  * Gets placeholders object.
  * @param {string} [prefix] Location of placeholders
- * @returns {object} Window placeholders object
+ * @returns {Promise<Record<string, string>>} Window placeholders object
  */
 // eslint-disable-next-line import/prefer-default-export
 export async function fetchPlaceholders(prefix = 'default') {
@@ -27,10 +27,10 @@ export async function fetchPlaceholders(prefix = 'default') {
           if (resp.ok) {
             return resp.json();
           }
-          return {};
-        }).then((json) => {
+          return { data: [] };
+        }).then((/** @type {{ data: Array<{ Key: string, Text: string }> }} */ { data }) => {
           const placeholders = {};
-          json.data
+          data
             .filter((placeholder) => placeholder.Key)
             .forEach((placeholder) => {
               placeholders[toCamelCase(placeholder.Key)] = placeholder.Text;
@@ -39,8 +39,9 @@ export async function fetchPlaceholders(prefix = 'default') {
           resolve(window.placeholders[prefix]);
         }).catch(() => {
           // error loading placeholders
-          window.placeholders[prefix] = {};
-          resolve(window.placeholders[prefix]);
+          const emptyPlaceholders = /** @type {Record<string, string>} */ ({});
+          window.placeholders[prefix] = emptyPlaceholders;
+          resolve(emptyPlaceholders);
         });
     });
   }

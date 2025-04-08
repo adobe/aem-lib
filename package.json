@@ -4,7 +4,9 @@
   "description": "AEM Library",
   "type": "module",
   "scripts": {
-    "build": "rollup --config --environment NODE_ENV:development && npm run format",
+    "build:js": "rollup --config --environment NODE_ENV:development && npm run format",
+    "build:types": "tsc ./dist/aem.js --declaration --allowJs --emitDeclarationOnly --outDir ./dist --skipLibCheck --target ES2015",
+    "build": "npm run build:js && npm run build:types",
     "prepack": "npm run build",
     "format": "prettier-eslint \"dist/*.js\" --write",
     "lint:js": "eslint --ext js,html .",
@@ -47,7 +49,8 @@
     "semantic-release": "24.2.3",
     "sinon": "20.0.0",
     "stylelint": "16.18.0",
-    "stylelint-config-standard": "38.0.0"
+    "stylelint-config-standard": "38.0.0",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "@adobe/helix-rum-js": "2.10.1"

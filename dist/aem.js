@@ -136,6 +136,7 @@ function setup() {
   window.hlx.codeBasePath = '';
   window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
 
+  /** @type {HTMLScriptElement} */
   const scriptEl = document.querySelector('script[src$="/scripts/scripts.js"]');
   if (scriptEl) {
     try {
@@ -195,6 +196,7 @@ function readBlockConfig(block) {
       if (cols[1]) {
         const col = cols[1];
         const name = toClassName(cols[0].textContent);
+        /** @type {string | string[]} */
         let value = '';
         if (col.querySelector('a')) {
           const as = [...col.querySelectorAll('a')];
@@ -475,9 +477,9 @@ function decorateSections(main) {
       wrappers[wrappers.length - 1].append(e);
     });
     wrappers.forEach((wrapper) => section.append(wrapper));
-    section.classList.add('section');
-    section.dataset.sectionStatus = 'initialized';
-    section.style.display = 'none';
+    /** @type {HTMLElement} */ (section).classList.add('section');
+    /** @type {HTMLElement} */ (section).dataset.sectionStatus = 'initialized';
+    /** @type {HTMLElement} */ (section).style.display = 'none';
 
     // Process section metadata
     const sectionMeta = section.querySelector('div.section-metadata');
@@ -491,10 +493,10 @@ function decorateSections(main) {
             .map((style) => toClassName(style.trim()));
           styles.forEach((style) => section.classList.add(style));
         } else {
-          section.dataset[toCamelCase(key)] = meta[key];
+          /** @type {HTMLElement} */ (section).dataset[toCamelCase(key)] = meta[key];
         }
       });
-      sectionMeta.parentNode.remove();
+      /** @type {Element} */ (sectionMeta.parentNode).remove();
     }
   });
 }
@@ -502,7 +504,7 @@ function decorateSections(main) {
 /**
  * Gets placeholders object.
  * @param {string} [prefix] Location of placeholders
- * @returns {object} Window placeholders object
+ * @returns {Promise<Record<string, string>>} Window placeholders object
  */
 // eslint-disable-next-line import/prefer-default-export
 async function fetchPlaceholders(prefix = 'default') {
@@ -514,11 +516,11 @@ async function fetchPlaceholders(prefix = 'default') {
           if (resp.ok) {
             return resp.json();
           }
-          return {};
+          return { data: [] };
         })
-        .then((json) => {
+        .then((/** @type {{ data: Array<{ Key: string, Text: string }> }} */ { data }) => {
           const placeholders = {};
-          json.data
+          data
             .filter((placeholder) => placeholder.Key)
             .forEach((placeholder) => {
               placeholders[toCamelCase(placeholder.Key)] = placeholder.Text;
@@ -528,8 +530,9 @@ async function fetchPlaceholders(prefix = 'default') {
         })
         .catch(() => {
           // error loading placeholders
-          window.placeholders[prefix] = {};
-          resolve(window.placeholders[prefix]);
+          const emptyPlaceholders = /** @type {Record<string, string>} */ ({});
+          window.placeholders[prefix] = emptyPlaceholders;
+          resolve(emptyPlaceholders);
         });
     });
   }
@@ -569,7 +572,7 @@ function buildBlock(blockName, content) {
 
 /**
  * Loads JS and CSS for a block.
- * @param {Element} block The block element
+ * @param {HTMLElement} block The block element
  */
 async function loadBlock(block) {
   const status = block.dataset.blockStatus;
@@ -606,7 +609,7 @@ async function loadBlock(block) {
 
 /**
  * Decorates a block.
- * @param {Element} block The block element
+ * @param {HTMLElement} block The block element
  */
 function decorateBlock(block) {
   const shortBlockName = block.classList[0];
@@ -673,13 +676,16 @@ async function waitForFirstImage(section) {
 
 /**
  * Loads all blocks in a section.
- * @param {Element} section The section element
+ * @param {HTMLElement} section The section element
+ * @param {Function} [loadCallback] Callback function to be called after blocks are loadeds
  */
 
 async function loadSection(section, loadCallback) {
   const status = section.dataset.sectionStatus;
   if (!status || status === 'initialized') {
     section.dataset.sectionStatus = 'loading';
+    /** @type {HTMLElement[]} */
+    // @ts-ignore
     const blocks = [...section.querySelectorAll('div.block')];
     for (let i = 0; i < blocks.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -697,6 +703,8 @@ async function loadSection(section, loadCallback) {
  */
 
 async function loadSections(element) {
+  /** @type {HTMLElement[]} */
+  // @ts-ignore
   const sections = [...element.querySelectorAll('div.section')];
   for (let i = 0; i < sections.length; i += 1) {
     // eslint-disable-next-line no-await-in-loop

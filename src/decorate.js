@@ -91,9 +91,9 @@ export function decorateSections(main) {
       wrappers[wrappers.length - 1].append(e);
     });
     wrappers.forEach((wrapper) => section.append(wrapper));
-    section.classList.add('section');
-    section.dataset.sectionStatus = 'initialized';
-    section.style.display = 'none';
+    /** @type {HTMLElement} */ (section).classList.add('section');
+    /** @type {HTMLElement} */ (section).dataset.sectionStatus = 'initialized';
+    /** @type {HTMLElement} */ (section).style.display = 'none';
 
     // Process section metadata
     const sectionMeta = section.querySelector('div.section-metadata');
@@ -104,10 +104,10 @@ export function decorateSections(main) {
           const styles = meta.style.split(',').filter((style) => style).map((style) => toClassName(style.trim()));
           styles.forEach((style) => section.classList.add(style));
         } else {
-          section.dataset[toCamelCase(key)] = meta[key];
+          /** @type {HTMLElement} */ (section).dataset[toCamelCase(key)] = meta[key];
         }
       });
-      sectionMeta.parentNode.remove();
+      /** @type {Element} */ (sectionMeta.parentNode).remove();
     }
   });
 }
