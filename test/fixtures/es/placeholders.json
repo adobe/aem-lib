@@ -5,14 +5,14 @@
     "data": [
       {
         "Key": "Key1",
-        "Value": "Valor1"
+        "Text": "Valor1"
       }, {
         "Key": "Key With Space",
-        "Value": "Valor con espacio"
+        "Text": "Valor con espacio"
       },
       {
         "Key": "Key.With.Dot",
-        "Value": "Valor con punto"
+        "Text": "Valor con punto"
       }
     ]
   }

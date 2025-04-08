@@ -50,8 +50,8 @@ export async function fetchPlaceholders(prefix = 'default') {
           allKeys.forEach((Key) => {
             if (!Key) return;
             const keys = Key.split('.');
-            const originalValue = json.data?.find((item) => item.Key === Key)?.Value;
-            const overrideValue = oJson?.data?.find((item) => item.Key === Key)?.Value;
+            const originalValue = json.data?.find((item) => item.Key === Key)?.Text;
+            const overrideValue = oJson?.data?.find((item) => item.Key === Key)?.Text;
             const finalValue = overrideValue ?? originalValue;
             const lastKey = keys.pop();
             const target = keys.reduce((obj, key) => {
