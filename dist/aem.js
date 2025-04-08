@@ -506,53 +506,27 @@ function decorateSections(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 async function fetchPlaceholders(prefix = 'default') {
-  const overrides = getMetadata('placeholders') || getMetadata('root')?.replace(/\/$/, '/placeholders.json') || '';
-  const [fallback, override] = overrides.split('\n');
   window.placeholders = window.placeholders || {};
-
   if (!window.placeholders[prefix]) {
     window.placeholders[prefix] = new Promise((resolve) => {
-      const url = fallback || `${prefix === 'default' ? '' : prefix}/placeholders.json`;
-      Promise.all([fetch(url), override ? fetch(override) : Promise.resolve()])
-        // get json from sources
-        .then(async ([resp, oResp]) => {
+      fetch(`${prefix === 'default' ? '' : prefix}/placeholders.json`)
+        .then((resp) => {
           if (resp.ok) {
-            if (oResp?.ok) {
-              return Promise.all([resp.json(), await oResp.json()]);
-            }
-            return Promise.all([resp.json(), {}]);
+            return resp.json();
           }
-          return [{}];
+          return {};
         })
-        // process json from sources
-        .then(([json, oJson]) => {
+        .then((json) => {
           const placeholders = {};
-
-          const allKeys = new Set([
-            ...(json.data?.map(({ Key }) => Key) || []),
-            ...(oJson?.data?.map(({ Key }) => Key) || []),
-          ]);
-
-          allKeys.forEach((Key) => {
-            if (!Key) return;
-            const keys = Key.split('.');
-            const originalValue = json.data?.find((item) => item.Key === Key)?.Value;
-            const overrideValue = oJson?.data?.find((item) => item.Key === Key)?.Value;
-            const finalValue = overrideValue ?? originalValue;
-            const lastKey = keys.pop();
-            const target = keys.reduce((obj, key) => {
-              obj[key] = obj[key] || {};
-              return obj[key];
-            }, placeholders);
-            target[lastKey] = finalValue;
-          });
-
+          json.data
+            .filter((placeholder) => placeholder.Key)
+            .forEach((placeholder) => {
+              placeholders[toCamelCase(placeholder.Key)] = placeholder.Text;
+            });
           window.placeholders[prefix] = placeholders;
-          resolve(placeholders);
+          resolve(window.placeholders[prefix]);
         })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error('error loading placeholders', error);
+        .catch(() => {
           // error loading placeholders
           window.placeholders[prefix] = {};
           resolve(window.placeholders[prefix]);
