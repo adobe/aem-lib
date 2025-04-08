@@ -19,14 +19,15 @@ import { getMetadata } from './dom-utils.js';
  */
 // eslint-disable-next-line import/prefer-default-export
 export async function fetchPlaceholders(prefix = 'default') {
-  const overrides = getMetadata('placeholders') || getMetadata('root')?.replace(/\/$/, '/placeholders.json') || '';
-  const [fallback, override] = overrides.split('\n');
+  const root = getMetadata('root')?.replace(/\/$/, '') || (prefix === 'default' ? '' : prefix);
+  const [override, fallback] = getMetadata('placeholders')?.split('\n') || [];
+  const url = override || `${root}/placeholders.json`;
   window.placeholders = window.placeholders || {};
 
   if (!window.placeholders[prefix]) {
     window.placeholders[prefix] = new Promise((resolve) => {
-      const url = fallback || `${prefix === 'default' ? '' : prefix}/placeholders.json`;
-      Promise.all([fetch(url), override ? fetch(override) : Promise.resolve()])
+      // const url = fallback || `${prefix === 'default' ? '' : prefix}/placeholders.json`;
+      Promise.all([fetch(url), fallback ? fetch(fallback) : Promise.resolve()])
         // get json from sources
         .then(async ([resp, oResp]) => {
           if (resp.ok) {
