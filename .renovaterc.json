@@ -5,6 +5,8 @@
   "baseBranches": [
     "main"
   ],
-  "packageRules": [
-  ]
+  "packageRules": [{
+    "matchDepTypes": ["devDependencies"],
+    "automerge": true
+  }]
 }
