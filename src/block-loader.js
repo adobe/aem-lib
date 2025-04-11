@@ -46,7 +46,7 @@ export function buildBlock(blockName, content) {
 
 /**
  * Loads JS and CSS for a block.
- * @param {Element} block The block element
+ * @param {HTMLElement} block The block element
  */
 export async function loadBlock(block) {
   const status = block.dataset.blockStatus;
@@ -81,7 +81,7 @@ export async function loadBlock(block) {
 
 /**
  * Decorates a block.
- * @param {Element} block The block element
+ * @param {HTMLElement} block The block element
  */
 export function decorateBlock(block) {
   const shortBlockName = block.classList[0];
@@ -150,13 +150,16 @@ export async function waitForFirstImage(section) {
 
 /**
  * Loads all blocks in a section.
- * @param {Element} section The section element
+ * @param {HTMLElement} section The section element
+ * @param {Function} [loadCallback] Callback function to be called after blocks are loadeds
  */
 
 export async function loadSection(section, loadCallback) {
   const status = section.dataset.sectionStatus;
   if (!status || status === 'initialized') {
     section.dataset.sectionStatus = 'loading';
+    /** @type {HTMLElement[]} */
+    // @ts-ignore
     const blocks = [...section.querySelectorAll('div.block')];
     for (let i = 0; i < blocks.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
@@ -174,6 +177,8 @@ export async function loadSection(section, loadCallback) {
  */
 
 export async function loadSections(element) {
+  /** @type {HTMLElement[]} */
+  // @ts-ignore
   const sections = [...element.querySelectorAll('div.section')];
   for (let i = 0; i < sections.length; i += 1) {
     // eslint-disable-next-line no-await-in-loop
