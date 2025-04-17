@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/adobe/aem-lib/compare/v2.7.7...v2.8.0) (2025-04-17)
+
+
+### Features
+
+* remove fetchPlaceholders ([#148](https://github.com/adobe/aem-lib/issues/148)) ([3017e89](https://github.com/adobe/aem-lib/commit/3017e89fce7075c34a7dff188a66605560f6b13b))
+
 ## [2.7.7](https://github.com/adobe/aem-lib/compare/v2.7.6...v2.7.7) (2025-04-15)
 
 
