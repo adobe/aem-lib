@@ -1,3 +1,10 @@
+## [2.8.2](https://github.com/adobe/aem-lib/compare/v2.8.1...v2.8.2) (2025-05-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-rum-js to v2.12.0 ([#160](https://github.com/adobe/aem-lib/issues/160)) ([693e6dc](https://github.com/adobe/aem-lib/commit/693e6dcfb32bb1435e7995dd79ac880e5f65d8f1))
+
 ## [2.8.1](https://github.com/adobe/aem-lib/compare/v2.8.0...v2.8.1) (2025-05-21)
 
 
