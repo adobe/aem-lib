@@ -26,7 +26,7 @@
   "homepage": "https://github.com/adobe/aem-lib#readme",
   "devDependencies": {
     "@babel/core": "7.27.4",
-    "@babel/eslint-parser": "7.27.1",
+    "@babel/eslint-parser": "7.27.5",
     "@esm-bundle/chai": "4.3.4-fix.0",
     "@rollup/plugin-node-resolve": "16.0.1",
     "@semantic-release/changelog": "6.0.3",
@@ -42,7 +42,7 @@
     "eslint-plugin-import": "2.31.0",
     "prettier-eslint": "16.4.2",
     "prettier-eslint-cli": "8.0.1",
-    "rollup": "4.41.1",
+    "rollup": "4.42.0",
     "rollup-plugin-cleanup": "3.2.1",
     "semantic-release": "24.2.5",
     "sinon": "20.0.0",
