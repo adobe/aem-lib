@@ -1,3 +1,10 @@
+## [2.9.1](https://github.com/adobe/aem-lib/compare/v2.9.0...v2.9.1) (2025-08-12)
+
+
+### Bug Fixes
+
+* release with branch names ([4bad1fb](https://github.com/adobe/aem-lib/commit/4bad1fb41fc2df8511856f9666bc87bacba98b2a))
+
 # [2.9.0](https://github.com/adobe/aem-lib/compare/v2.8.4...v2.9.0) (2025-08-12)
 
 
