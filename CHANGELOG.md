@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/adobe/aem-lib/compare/v2.8.4...v2.9.0) (2025-08-12)
+
+
+### Features
+
+* trigger release ([1c32d59](https://github.com/adobe/aem-lib/commit/1c32d5970f706ff996d3d62f8179b9d575cc77d1))
+
 ## [2.8.4](https://github.com/adobe/aem-lib/compare/v2.8.3...v2.8.4) (2025-08-12)
 
 
