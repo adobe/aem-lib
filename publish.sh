@@ -60,5 +60,5 @@ echo "Successfully added remote"
 
 echo git push --set-upstream token-authed-github $BRANCH
 git push --set-upstream token-authed-github $BRANCH
-echo gh pr create -f
-gh pr create -f
+echo gh pr create -f --head $BRANCH --base main
+gh pr create -f --head $BRANCH --base main
