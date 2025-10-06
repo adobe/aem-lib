@@ -42,9 +42,9 @@
     "eslint-plugin-import": "2.32.0",
     "prettier-eslint": "16.4.2",
     "prettier-eslint-cli": "8.0.1",
-    "rollup": "4.50.2",
+    "rollup": "4.52.0",
     "rollup-plugin-cleanup": "3.2.1",
-    "semantic-release": "24.2.8",
+    "semantic-release": "24.2.9",
     "sinon": "21.0.0",
     "stylelint": "16.24.0",
     "stylelint-config-standard": "39.0.0"
