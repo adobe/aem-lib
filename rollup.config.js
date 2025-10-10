@@ -12,6 +12,7 @@
 
 import cleanup from 'rollup-plugin-cleanup';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
 
 const banner = `/*
  * Copyright ${new Date().getFullYear()} Adobe. All rights reserved.
@@ -51,5 +52,11 @@ export default [...bundles.map(({ outputFile, source }) => ({
       maxEmptyLines: -1,
     }),
     nodeResolve({ resolveOnly: ['@adobe/helix-rum-js'] }),
+    replace({
+      preventAssignment: true,
+      values: {
+        'https://rum.hlx.page': 'https://ot.aem.live',
+      },
+    }),
   ],
 }))];
