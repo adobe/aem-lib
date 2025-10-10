@@ -1,3 +1,10 @@
+# [2.10.0](https://github.com/adobe/aem-lib/compare/v2.9.2...v2.10.0) (2025-10-10)
+
+
+### Features
+
+* **build:** automatically replace RUM hostname for aem-boilerplate ([c98df8b](https://github.com/adobe/aem-lib/commit/c98df8bba2a2fc11d34d101f876b8a67b462915a)), closes [adobe/aem-boilerplate#546](https://github.com/adobe/aem-boilerplate/issues/546)
+
 ## [2.9.2](https://github.com/adobe/aem-lib/compare/v2.9.1...v2.9.2) (2025-10-08)
 
 
