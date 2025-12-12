@@ -26,4 +26,41 @@ describe('createOptimizedPictured', () => {
     // default
     expect(picture.querySelector(':scope img').src).to.include('format=png&optimize=medium');
   });
+
+  it('creates optimized picture for off-origin images', () => {
+    const picture = createOptimizedPicture('https://example.com/images/photo.jpg');
+    const img = picture.querySelector(':scope img');
+    const webpSource = picture.querySelector(':scope source[type="image/webp"]');
+    const fallbackSource = picture.querySelector(':scope source:not([type="image/webp"])');
+
+    // should preserve the external origin
+    expect(img.src).to.include('https://example.com/images/photo.jpg');
+    expect(img.src).to.include('format=jpg&optimize=medium');
+
+    // webp source should also use the external origin
+    expect(webpSource.srcset).to.include('https://example.com/images/photo.jpg');
+    expect(webpSource.srcset).to.include('format=webply&optimize=medium');
+
+    // fallback source should use the external origin
+    expect(fallbackSource.srcset).to.include('https://example.com/images/photo.jpg');
+    expect(fallbackSource.srcset).to.include('format=jpg&optimize=medium');
+  });
+
+  it('creates optimized picture with eager loading', () => {
+    const picture = createOptimizedPicture('/test/fixtures/logo.png', 'Test Alt', true);
+    const img = picture.querySelector(':scope img');
+    expect(img.getAttribute('loading')).to.equal('eager');
+    expect(img.getAttribute('alt')).to.equal('Test Alt');
+  });
+
+  it('creates optimized picture with custom breakpoints', () => {
+    const breakpoints = [{ media: '(min-width: 900px)', width: '1200' }, { width: '600' }];
+    const picture = createOptimizedPicture('/test/fixtures/logo.png', '', false, breakpoints);
+    const sources = picture.querySelectorAll(':scope source');
+
+    // 2 webp sources (one with media query, one without) + 1 fallback source
+    expect(sources.length).to.equal(3);
+    expect(sources[0].srcset).to.include('width=1200');
+    expect(sources[0].getAttribute('media')).to.equal('(min-width: 900px)');
+  });
 });
