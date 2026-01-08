@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rollup --config --environment NODE_ENV:development && npm run format",
     "prepack": "npm run build",
-    "format": "prettier-eslint \"dist/*.js\" --write",
+    "format": "prettier --write --print-width 99 --single-quote dist/*.js && eslint --fix dist/*.js",
     "lint:js": "eslint --ext js,html .",
     "lint:css": "stylelint test/fixtures/blocks/**/*.css test/fixtures/*.css",
     "lint": "npm run lint:js && npm run lint:css",
