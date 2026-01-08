@@ -1,3 +1,10 @@
+## [2.10.5](https://github.com/adobe/aem-lib/compare/v2.10.4...v2.10.5) (2026-01-08)
+
+
+### Bug Fixes
+
+* rollup + cleanup breaks lint ([80b7240](https://github.com/adobe/aem-lib/commit/80b7240b28d8bcfce832ade9b9bde1b131b6a5a5))
+
 ## [2.10.4](https://github.com/adobe/aem-lib/compare/v2.10.3...v2.10.4) (2025-11-15)
 
 
