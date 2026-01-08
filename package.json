@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rollup --config --environment NODE_ENV:development && npm run format",
     "prepack": "npm run build",
-    "format": "prettier-eslint \"dist/*.js\" --write",
+    "format": "prettier --write --print-width 99 --single-quote dist/*.js && eslint --fix dist/*.js",
     "lint:js": "eslint --ext js,html .",
     "lint:css": "stylelint test/fixtures/blocks/**/*.css test/fixtures/*.css",
     "lint": "npm run lint:js && npm run lint:css",
@@ -45,7 +45,7 @@
     "prettier-eslint-cli": "8.0.1",
     "rollup": "4.52.5",
     "rollup-plugin-cleanup": "3.2.1",
-    "semantic-release": "24.2.9",
+    "semantic-release": "25.0.2",
     "sinon": "21.0.0",
     "stylelint": "16.25.0",
     "stylelint-config-standard": "39.0.1"
