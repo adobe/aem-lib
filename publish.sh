@@ -26,21 +26,21 @@ case $TYPE in
   major)
     git commit -m "feat(lib): update $FILENAME to aem.js@$VERSION
 
-Test URL: https://$BRANCH--$REPO--$ORG.hlx.live/
+Test URL: https://$BRANCH--$REPO--$ORG.aem.live/
 BREAKING CHANGE: please check https://github.com/adobe/aem-lib/releases/tag/v$VERSION for breaking changes
 "
     ;;
   minor)
     git commit -m "feat(lib): update $FILENAME to aem.js@$VERSION
 
-Test URL: https://$BRANCH--$REPO--$ORG.hlx.live/
+Test URL: https://$BRANCH--$REPO--$ORG.aem.live/
 Release Notes: https://github.com/adobe/aem-lib/releases/tag/v$VERSION
 "
     ;;
   patch)
     git commit -m "fix(lib): update $FILENAME to aem.js@$VERSION
 
-Test URL: https://$BRANCH--$REPO--$ORG.hlx.live/
+Test URL: https://$BRANCH--$REPO--$ORG.aem.live/
 Release Notes: https://github.com/adobe/aem-lib/releases/tag/v$VERSION
 "
     ;;
