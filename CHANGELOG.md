@@ -1,3 +1,10 @@
+## [2.10.6](https://github.com/adobe/aem-lib/compare/v2.10.5...v2.10.6) (2026-02-03)
+
+
+### Bug Fixes
+
+* **release:** add missing @semantic-release/npm plugin ([d2de5e5](https://github.com/adobe/aem-lib/commit/d2de5e5a95b1f17e5793cdca666776cc8d7b72ce))
+
 ## [2.10.5](https://github.com/adobe/aem-lib/compare/v2.10.4...v2.10.5) (2026-01-08)
 
 
