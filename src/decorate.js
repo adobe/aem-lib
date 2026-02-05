@@ -50,6 +50,7 @@ export function decorateButtons(element) {
  * @param {string} [alt] alt text to be added to icon
  */
 export function decorateIcon(span, prefix = '', alt = '') {
+  if (span.hasChildNodes()) return; // already decorated
   const iconName = Array.from(span.classList).find((c) => c.startsWith('icon-')).substring(5);
   const img = document.createElement('img');
   img.dataset.iconName = iconName;
