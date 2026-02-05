@@ -22,15 +22,11 @@ export function setup() {
   window.hlx.codeBasePath = '';
   window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
 
-  const scriptEl = document.querySelector('script[src$="/scripts/scripts.js"]');
-  if (scriptEl) {
-    try {
-      [window.hlx.codeBasePath] = new URL(scriptEl.src).pathname.split('/scripts/scripts.js');
-      /* c8 ignore next 4 */
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
-    }
+  try {
+    [window.hlx.codeBasePath] = new URL(import.meta.url).pathname.split('/scripts/');
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
   }
 }
 
