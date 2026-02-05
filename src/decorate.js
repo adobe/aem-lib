@@ -60,6 +60,12 @@ export function decorateIcon(span, prefix = '', alt = '') {
   img.width = 16;
   img.height = 16;
   span.append(img);
+  // add accessible label to icon-only links
+  const link = span.closest('a');
+  if (link && !link.textContent.trim() && !link.getAttribute('aria-label')) {
+    const label = alt || iconName;
+    link.setAttribute('aria-label', label);
+  }
 }
 
 /**
