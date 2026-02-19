@@ -6,7 +6,7 @@ Migration instructions for breaking changes in `@adobe/aem-lib`.
 
 ---
 
-## [3.0.0](https://github.com/adobe/aem-lib/compare/v2.10.6...v3.0.0) (TBD)
+## [3.0.0](https://github.com/adobe/aem-lib/compare/v2.10.6...v3.0.0) (19/02/2026)
 
 ### BREAKING CHANGE: Removed `decorateButtons` function
 
