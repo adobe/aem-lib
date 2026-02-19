@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/adobe/aem-lib/compare/v2.10.6...v3.0.0) (2026-02-19)
+
+
+### Documentation
+
+* add migration guide for v3.0.0 ([f031893](https://github.com/adobe/aem-lib/commit/f0318933e9204e668026d6b629f7318373bfc4a2)), closes [adobe/aem-boilerplate#585](https://github.com/adobe/aem-boilerplate/issues/585)
+
+
+### BREAKING CHANGES
+
+* The decorateButtons function has been removed. See MIGRATION.md for upgrade instructions.
+
 ## [2.10.6](https://github.com/adobe/aem-lib/compare/v2.10.5...v2.10.6) (2026-02-03)
 
 
