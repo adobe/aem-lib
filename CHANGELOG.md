@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/adobe/aem-lib/compare/v3.0.2...v3.1.0) (2026-05-01)
+
+
+### Features
+
+* remove section        metadata handling ([31873e6](https://github.com/adobe/aem-lib/commit/31873e673b4e7effec61c20aa85c7904f72c213f))
+
 ## [3.0.2](https://github.com/adobe/aem-lib/compare/v3.0.1...v3.0.2) (2026-04-16)
 
 
