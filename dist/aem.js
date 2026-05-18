@@ -97,7 +97,7 @@ function sampleRUM(checkpoint, data) {
           const rumData = JSON.stringify({
             weight,
             id,
-            referer: window.location.href,
+            referer: window.location.origin + window.location.pathname,
             checkpoint: ck,
             t: time,
             ...pingData,

@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/adobe/aem-lib/compare/v3.1.0...v3.1.1) (2026-05-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-rum-js to v2.14.4 ([#221](https://github.com/adobe/aem-lib/issues/221)) ([e9c98a9](https://github.com/adobe/aem-lib/commit/e9c98a9f8553af64b1da717ee2db0f870c453ae4))
+
 # [3.1.0](https://github.com/adobe/aem-lib/compare/v3.0.2...v3.1.0) (2026-05-01)
 
 
