@@ -1,3 +1,10 @@
+## [3.1.3](https://github.com/adobe/aem-lib/compare/v3.1.2...v3.1.3) (2026-06-14)
+
+
+### Bug Fixes
+
+* **deps:** update adobe fixes to v2.15.1 ([#227](https://github.com/adobe/aem-lib/issues/227)) ([7f7675b](https://github.com/adobe/aem-lib/commit/7f7675b85496c3ed58987d2b18096f4ed9cd0327))
+
 ## [3.1.2](https://github.com/adobe/aem-lib/compare/v3.1.1...v3.1.2) (2026-05-20)
 
 
