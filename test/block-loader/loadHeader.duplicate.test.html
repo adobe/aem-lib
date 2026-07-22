@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <header></header>
+
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { loadHeader } from '../../src/block-loader.js';
+
+      window.hlx = {};
+
+      runTests(() => {
+        it('loadHeader - calling twice does not duplicate the header block', async () => {
+          window.hlx.codeBasePath = '/test/fixtures';
+          const header = document.querySelector('header');
+          header.innerHTML = '';
+
+          await loadHeader(header);
+          await loadHeader(header);
+
+          const headerBlocks = header.querySelectorAll(':scope > .header');
+          expect(headerBlocks.length).to.equal(1);
+        });
+      });
+    </script>
+  </body>
+</html>
