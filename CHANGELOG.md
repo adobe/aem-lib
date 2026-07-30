@@ -1,3 +1,10 @@
+## [3.1.6](https://github.com/adobe/aem-lib/compare/v3.1.5...v3.1.6) (2026-07-30)
+
+
+### Bug Fixes
+
+* **block-loader:** replace existing header/footer block instead of appending ([cdf7533](https://github.com/adobe/aem-lib/commit/cdf75331332543a69e2d8c5abce2d80ddd934c7f)), closes [#236](https://github.com/adobe/aem-lib/issues/236)
+
 ## [3.1.5](https://github.com/adobe/aem-lib/compare/v3.1.4...v3.1.5) (2026-06-17)
 
 
