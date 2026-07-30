@@ -24,12 +24,18 @@
           expect(window.hlx.custom).to.be.equal('keep it');
         });
 
-        it('setup - sets codeBasePath from import.meta.url', () => {
+        it('setup - sets codeBasePath from the given import URL', () => {
+          setup('https://aem.live/foo/scripts/aem.js');
+          expect(window.hlx.codeBasePath).to.equal('/foo');
+        });
+
+        it('setup - sets codeBasePath to the full pathname when /scripts/ is not present', () => {
+          setup('https://aem.live/foo/bar.js');
+          expect(window.hlx.codeBasePath).to.equal('/foo/bar.js');
+        });
+
+        it('setup - defaults to import.meta.url when no importUrl is given', () => {
           setup();
-          expect(window.hlx).to.not.be.null;
-          // When setup.js is in /src/, codeBasePath will be empty or src path
-          // In production, aem.js is at /scripts/aem.js so split works correctly
-          expect(window.hlx.codeBasePath).to.exist;
           expect(window.hlx.lighthouse).to.be.false;
         });
       });

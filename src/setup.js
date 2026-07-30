@@ -15,13 +15,13 @@ import { sampleRUM } from '@adobe/helix-rum-js';
 /**
  * Setup block utils.
  */
-export function setup() {
+export function setup(importUrl = import.meta.url) {
   window.hlx = window.hlx || {};
   window.hlx.RUM_MASK_URL = 'full';
   window.hlx.RUM_MANUAL_ENHANCE = true;
   window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
 
-  [window.hlx.codeBasePath] = new URL(import.meta.url).pathname.split('/scripts/');
+  [window.hlx.codeBasePath] = new URL(importUrl).pathname.split('/scripts/');
 }
 
 /**
