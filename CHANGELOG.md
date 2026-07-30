@@ -1,3 +1,71 @@
+## [3.1.5](https://github.com/adobe/aem-lib/compare/v3.1.4...v3.1.5) (2026-06-17)
+
+
+### Bug Fixes
+
+* **deps:** update adobe fixes to v2.15.3 ([#229](https://github.com/adobe/aem-lib/issues/229)) ([5ca38ff](https://github.com/adobe/aem-lib/commit/5ca38ff7d9824e699f031a0dc497612be14f32b4))
+
+## [3.1.4](https://github.com/adobe/aem-lib/compare/v3.1.3...v3.1.4) (2026-06-16)
+
+
+### Bug Fixes
+
+* **deps:** update adobe fixes to v2.15.2 ([#228](https://github.com/adobe/aem-lib/issues/228)) ([cbe10f5](https://github.com/adobe/aem-lib/commit/cbe10f54966ec2b567d5390a66c98c4b0ca0f688))
+
+## [3.1.3](https://github.com/adobe/aem-lib/compare/v3.1.2...v3.1.3) (2026-06-14)
+
+
+### Bug Fixes
+
+* **deps:** update adobe fixes to v2.15.1 ([#227](https://github.com/adobe/aem-lib/issues/227)) ([7f7675b](https://github.com/adobe/aem-lib/commit/7f7675b85496c3ed58987d2b18096f4ed9cd0327))
+
+## [3.1.2](https://github.com/adobe/aem-lib/compare/v3.1.1...v3.1.2) (2026-05-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-rum-js to v2.15.0 ([#223](https://github.com/adobe/aem-lib/issues/223)) ([fce28db](https://github.com/adobe/aem-lib/commit/fce28db5165c37932d9c2761b2f29eea7da7a37d))
+
+## [3.1.1](https://github.com/adobe/aem-lib/compare/v3.1.0...v3.1.1) (2026-05-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-rum-js to v2.14.4 ([#221](https://github.com/adobe/aem-lib/issues/221)) ([e9c98a9](https://github.com/adobe/aem-lib/commit/e9c98a9f8553af64b1da717ee2db0f870c453ae4))
+
+# [3.1.0](https://github.com/adobe/aem-lib/compare/v3.0.2...v3.1.0) (2026-05-01)
+
+
+### Features
+
+* remove section        metadata handling ([31873e6](https://github.com/adobe/aem-lib/commit/31873e673b4e7effec61c20aa85c7904f72c213f))
+
+## [3.0.2](https://github.com/adobe/aem-lib/compare/v3.0.1...v3.0.2) (2026-04-16)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-rum-js to v2.14.3 ([#217](https://github.com/adobe/aem-lib/issues/217)) ([f582b70](https://github.com/adobe/aem-lib/commit/f582b70fd0dc6f0c279f16b4657af348e40eb9f6))
+
+## [3.0.1](https://github.com/adobe/aem-lib/compare/v3.0.0...v3.0.1) (2026-03-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @adobe/helix-rum-js to v2.14.2 ([#206](https://github.com/adobe/aem-lib/issues/206)) ([b5887f4](https://github.com/adobe/aem-lib/commit/b5887f4563a6f3399edfc00d659645962f2daccc))
+
+# [3.0.0](https://github.com/adobe/aem-lib/compare/v2.10.6...v3.0.0) (2026-02-19)
+
+
+### Documentation
+
+* add migration guide for v3.0.0 ([f031893](https://github.com/adobe/aem-lib/commit/f0318933e9204e668026d6b629f7318373bfc4a2)), closes [adobe/aem-boilerplate#585](https://github.com/adobe/aem-boilerplate/issues/585)
+
+
+### BREAKING CHANGES
+
+* The decorateButtons function has been removed. See MIGRATION.md for upgrade instructions.
+
 ## [2.10.6](https://github.com/adobe/aem-lib/compare/v2.10.5...v2.10.6) (2026-02-03)
 
 

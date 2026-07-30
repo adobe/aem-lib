@@ -22,7 +22,7 @@ export {
   decorateTemplateAndTheme,
   wrapTextNodes,
 } from './dom-utils.js';
-export { decorateButtons, decorateIcons, decorateSections } from './decorate.js';
+export { decorateIcons, decorateSections } from './decorate.js';
 export { sampleRUM } from '@adobe/helix-rum-js';
 export {
   buildBlock,

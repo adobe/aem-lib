@@ -28,6 +28,7 @@ function sampleRUM(checkpoint, data) {
         on: 1,
         off: 0,
         high: 10,
+        medium: 100,
         low: 1000,
       }[rate];
       const weight = rateValue !== undefined ? rateValue : 100;
@@ -93,14 +94,18 @@ function sampleRUM(checkpoint, data) {
         sampleRUM.baseURL = sampleRUM.baseURL || new URL(window.RUM_BASE || '/', new URL('https://ot.aem.live'));
         sampleRUM.collectBaseURL = sampleRUM.collectBaseURL || sampleRUM.baseURL;
         sampleRUM.sendPing = (ck, time, pingData = {}) => {
+          const uaExtra = navigator.webdriver && !navigator.userAgent.includes('+http')
+            ? { ua: `${navigator.userAgent} +http://navigator.webdriver` }
+            : {};
           // eslint-disable-next-line max-len, object-curly-newline
           const rumData = JSON.stringify({
             weight,
             id,
-            referer: window.location.href,
+            referer: window.location.origin + window.location.pathname,
             checkpoint: ck,
             t: time,
             ...pingData,
+            ...uaExtra,
           });
           const urlParams = window.RUM_PARAMS
             ? new URLSearchParams(window.RUM_PARAMS).toString() || ''
@@ -120,7 +125,9 @@ function sampleRUM(checkpoint, data) {
 
         sampleRUM.enhance = () => {
           // only enhance once
-          if (document.querySelector('script[src*="rum-enhancer"]')) return;
+          if (document.querySelector('script[src*="rum-enhancer"]')) {
+            return;
+          }
           const { enhancerVersion, enhancerHash } = sampleRUM.enhancerContext || {};
           const script = document.createElement('script');
           if (enhancerHash) {
@@ -409,44 +416,6 @@ function wrapTextNodes(block) {
 }
 
 /**
- * Decorates paragraphs containing a single link as buttons.
- * @param {Element} element container element
- */
-function decorateButtons(element) {
-  element.querySelectorAll('a').forEach((a) => {
-    a.title = a.title || a.textContent;
-    if (a.href !== a.textContent) {
-      const up = a.parentElement;
-      const twoup = a.parentElement.parentElement;
-      if (!a.querySelector('img')) {
-        if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
-          a.className = 'button'; // default
-          up.classList.add('button-container');
-        }
-        if (
-          up.childNodes.length === 1
-          && up.tagName === 'STRONG'
-          && twoup.childNodes.length === 1
-          && twoup.tagName === 'P'
-        ) {
-          a.className = 'button primary';
-          twoup.classList.add('button-container');
-        }
-        if (
-          up.childNodes.length === 1
-          && up.tagName === 'EM'
-          && twoup.childNodes.length === 1
-          && twoup.tagName === 'P'
-        ) {
-          a.className = 'button secondary';
-          twoup.classList.add('button-container');
-        }
-      }
-    }
-  });
-}
-
-/**
  * Add <img> for icon, prefixed with codeBasePath and optional prefix.
  * @param {Element} [span] span element with icon classes
  * @param {string} [prefix] prefix to be added to icon src
@@ -500,24 +469,6 @@ function decorateSections(main) {
     section.classList.add('section');
     section.dataset.sectionStatus = 'initialized';
     section.style.display = 'none';
-
-    // Process section metadata
-    const sectionMeta = section.querySelector('div.section-metadata');
-    if (sectionMeta) {
-      const meta = readBlockConfig(sectionMeta);
-      Object.keys(meta).forEach((key) => {
-        if (key === 'style') {
-          const styles = meta.style
-            .split(',')
-            .filter((style) => style)
-            .map((style) => toClassName(style.trim()));
-          styles.forEach((style) => section.classList.add(style));
-        } else {
-          section.dataset[toCamelCase(key)] = meta[key];
-        }
-      });
-      sectionMeta.parentNode.remove();
-    }
   });
 }
 
@@ -699,7 +650,6 @@ export {
   createOptimizedPicture,
   decorateBlock,
   decorateBlocks,
-  decorateButtons,
   decorateIcons,
   decorateSections,
   decorateTemplateAndTheme,

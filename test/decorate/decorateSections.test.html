@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-  <div>
+  <div class="highlight afterempty" data-anchor="highlights">
     <h2 id="boilerplate-highlights">Boilerplate Highlights?</h2>
     <p>Find some of our favorite staff picks below:</p>
     <div class="cards">
@@ -70,16 +70,6 @@
         </div>
       </div>
     </div>
-    <div class="section-metadata">
-      <div>
-        <div>Style</div>
-        <div>highlight,,afterempty</div>
-      </div>
-      <div>
-        <div>Anchor</div>
-        <div>highlights</div>
-      </div>
-    </div>
   </div>
   <script type="module">
     /* eslint-env mocha */
@@ -90,7 +80,6 @@
     runTests(() => {
       it('decorates sections', () => {
         const { body } = document;
-        const meta = body.querySelector('.section-metadata').parentElement;
         decorateSections(body);
         const sections = body.querySelectorAll(':scope > div');
         sections.forEach((section) => {
@@ -107,10 +96,11 @@
             }
           });
         });
-        // section metadata is applied
-        expect(meta.classList.contains('highlight')).to.be.true;
-        expect(meta.classList.contains('afterempty')).to.be.true;
-        expect(meta.dataset.anchor).to.equal('highlights');
+        // pre-applied section metadata is preserved
+        const styled = sections[1];
+        expect(styled.classList.contains('highlight')).to.be.true;
+        expect(styled.classList.contains('afterempty')).to.be.true;
+        expect(styled.dataset.anchor).to.equal('highlights');
       });
     });
   </script>

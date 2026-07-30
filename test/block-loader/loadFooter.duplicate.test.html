@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <footer></footer>
+
+    <script type="module">
+      /* eslint-env mocha */
+      import { runTests } from '@web/test-runner-mocha';
+      import { expect } from '@esm-bundle/chai';
+      import { loadFooter } from '../../src/block-loader.js';
+
+      window.hlx = {};
+
+      runTests(() => {
+        it('loadFooter - calling twice does not duplicate the footer block', async () => {
+          window.hlx.codeBasePath = '/test/fixtures';
+          const footer = document.querySelector('footer');
+          footer.innerHTML = '';
+
+          await loadFooter(footer);
+          await loadFooter(footer);
+
+          const footerBlocks = footer.querySelectorAll(':scope > .footer');
+          expect(footerBlocks.length).to.equal(1);
+        });
+      });
+    </script>
+  </body>
+</html>
