@@ -110,6 +110,16 @@
           <div></div>
         </div>
       </div>
+      <div class="blockquotes original">
+        <div>
+          <div><blockquote>a blockquote will not be wrapped</blockquote></div>
+        </div>
+      </div>
+      <div class="blockquotes expected">
+        <div>
+          <div><blockquote>a blockquote will not be wrapped</blockquote></div>
+        </div>
+      </div>
     </div>
   </main>
   <script type="module">
@@ -164,6 +174,14 @@
       it('does not modify empty cells', () => {
         const original = document.querySelector('.original.empty-cells');
         const expected = document.querySelector('.expected.empty-cells');
+        wrapTextNodes(original);
+
+        expect(original.innerHTML).to.equal(expected.innerHTML);
+      });
+
+      it('does not modify blockquotes', () => {
+        const original = document.querySelector('.original.blockquotes');
+        const expected = document.querySelector('.expected.blockquotes');
         wrapTextNodes(original);
 
         expect(original.innerHTML).to.equal(expected.innerHTML);

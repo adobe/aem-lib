@@ -136,6 +136,7 @@ export function wrapTextNodes(block) {
     'UL', 'OL',
     'PICTURE',
     'TABLE',
+    'BLOCKQUOTE',
     'H1', 'H2', 'H3', 'H4', 'H5', 'H6',
   ];
 
