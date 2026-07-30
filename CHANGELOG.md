@@ -1,3 +1,10 @@
+## [3.1.7](https://github.com/adobe/aem-lib/compare/v3.1.6...v3.1.7) (2026-07-30)
+
+
+### Bug Fixes
+
+* treat blockquote as a valid wrapper in wrapTextNodes ([c3f92c8](https://github.com/adobe/aem-lib/commit/c3f92c801e48c7647affacae11b54ed52aba3926))
+
 ## [3.1.6](https://github.com/adobe/aem-lib/compare/v3.1.5...v3.1.6) (2026-07-30)
 
 
