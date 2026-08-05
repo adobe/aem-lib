@@ -58,6 +58,54 @@
         expect(img.length).to.be.equal(1);
       });
     });
+
+    it('adds aria-label to parent link', async () => {
+      window.hlx.codeBasePath = '/test/fixtures';
+
+      const link = document.createElement('a');
+      link.href = '/';
+      const icon = document.createElement('span');
+      icon.className = 'icon icon-logo';
+      link.appendChild(icon);
+      document.body.appendChild(link);
+
+      decorateIcon(icon);
+
+      expect(link.getAttribute('aria-label')).to.equal('logo');
+      expect(icon.querySelector('img')).to.exist;
+    });
+
+    it('does not overwrite existing aria-label on parent link', async () => {
+      window.hlx.codeBasePath = '/test/fixtures';
+
+      const link = document.createElement('a');
+      link.href = '/';
+      link.setAttribute('aria-label', 'Custom Label');
+      const icon = document.createElement('span');
+      icon.className = 'icon icon-logo';
+      link.appendChild(icon);
+      document.body.appendChild(link);
+
+      decorateIcon(icon);
+
+      expect(link.getAttribute('aria-label')).to.equal('Custom Label');
+    });
+
+    it('does not add aria-label to links with text content', async () => {
+      window.hlx.codeBasePath = '/test/fixtures';
+
+      const link = document.createElement('a');
+      link.href = '/';
+      link.textContent = 'Home ';
+      const icon = document.createElement('span');
+      icon.className = 'icon icon-arrow';
+      link.appendChild(icon);
+      document.body.appendChild(link);
+
+      decorateIcon(icon);
+
+      expect(link.getAttribute('aria-label')).to.be.null;
+    });
   });
 </script>
 </body>
