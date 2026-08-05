@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="/some/path/scripts/scripts.js"></script>
-  </head>
   <body>
     <script type="module">
       /* eslint-env mocha */
@@ -27,10 +24,18 @@
           expect(window.hlx.custom).to.be.equal('keep it');
         });
 
-        it('setup - sets some globals', () => {
+        it('setup - sets codeBasePath from the given import URL', () => {
+          setup('https://aem.live/foo/scripts/aem.js');
+          expect(window.hlx.codeBasePath).to.equal('/foo');
+        });
+
+        it('setup - sets codeBasePath to the full pathname when /scripts/ is not present', () => {
+          setup('https://aem.live/foo/bar.js');
+          expect(window.hlx.codeBasePath).to.equal('/foo/bar.js');
+        });
+
+        it('setup - defaults to import.meta.url when no importUrl is given', () => {
           setup();
-          expect(window.hlx).to.not.be.null;
-          expect(window.hlx.codeBasePath).to.be.equal('/some/path');
           expect(window.hlx.lighthouse).to.be.false;
         });
       });
