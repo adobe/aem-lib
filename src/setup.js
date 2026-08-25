@@ -37,9 +37,8 @@ export function setup() {
 /**
  * Auto initialization.
  */
-/* c8 ignore next 18 */
 export function init() {
   setup();
-  sampleRUM.collectBaseURL = window.origin;
+  sampleRUM.collectBaseURL = new URL(`${window.hlx.codeBasePath}/`, window.origin);
   sampleRUM();
 }

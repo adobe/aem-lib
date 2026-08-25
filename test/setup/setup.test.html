@@ -8,7 +8,8 @@
       /* eslint-env mocha */
       import { runTests } from '@web/test-runner-mocha';
       import { expect } from '@esm-bundle/chai';
-      import { setup } from '../../src/setup.js';
+      import { sampleRUM } from '@adobe/helix-rum-js';
+      import { setup, init } from '../../src/setup.js';
 
       runTests(() => {
         it('setup - defines window.hlx', () => {
@@ -32,6 +33,11 @@
           expect(window.hlx).to.not.be.null;
           expect(window.hlx.codeBasePath).to.be.equal('/some/path');
           expect(window.hlx.lighthouse).to.be.false;
+        });
+
+        it('init - sets sampleRUM.collectBaseURL to include the codeBasePath', () => {
+          init();
+          expect(sampleRUM.collectBaseURL.href).to.be.equal(`${window.origin}/some/path/`);
         });
       });
     </script>
