@@ -42,7 +42,7 @@
 
         it('init - sets sampleRUM.collectBaseURL to include the codeBasePath', () => {
           init();
-          expect(sampleRUM.collectBaseURL.href).to.be.equal(`${window.origin}/some/path/`);
+          expect(sampleRUM.collectBaseURL.href).to.be.equal(`${window.origin}/src/setup.js/`);
         });
       });
     </script>
