@@ -1,3 +1,12 @@
+## [3.1.8](https://github.com/adobe/aem-lib/compare/v3.1.7...v3.1.8) (2026-08-27)
+
+
+### Bug Fixes
+
+* derive codeBasePath from import.meta.url instead of DOM query ([#205](https://github.com/adobe/aem-lib/issues/205)) ([af0d5c2](https://github.com/adobe/aem-lib/commit/af0d5c299f33ae4e4685055ae1dadc68e8466ea2))
+* send RUM beacons to codeBasePath-relative /.rum instead of root ([#242](https://github.com/adobe/aem-lib/issues/242)) ([e9e4786](https://github.com/adobe/aem-lib/commit/e9e47860bc3491a7bb05184816bfd6750c53e9a3))
+* update stale setup test and rebuild dist ([#243](https://github.com/adobe/aem-lib/issues/243)) ([34fb1f9](https://github.com/adobe/aem-lib/commit/34fb1f9789bbe1231221706355b049baf1f4392b)), closes [#205](https://github.com/adobe/aem-lib/issues/205) [#205](https://github.com/adobe/aem-lib/issues/205) [#242](https://github.com/adobe/aem-lib/issues/242)
+
 ## [3.1.7](https://github.com/adobe/aem-lib/compare/v3.1.6...v3.1.7) (2026-07-30)
 
 
